@@ -8,9 +8,13 @@
 
 #import "Post.h"
 #import <Parse/PFObject+Subclass.h>
-
+#import "User.h"
 
 @implementation Post
+@dynamic author;
+@dynamic roll;
+@dynamic description;
+@dynamic timeStamp;
 
 + (void)load {
     [self registerSubclass];

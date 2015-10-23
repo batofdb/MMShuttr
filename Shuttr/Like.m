@@ -1,19 +1,16 @@
 //
-//  Comment.m
+//  Like.m
 //  Shuttr
 //
-//  Created by Philip Henson on 10/22/15.
+//  Created by Francis Bato on 10/23/15.
 //  Copyright © 2015 MMInstaGroup. All rights reserved.
 //
 
-#import "Comment.h"
-#import <Parse/PFObject+Subclass.h>
+#import "Like.h"
 
-
-@implementation Comment
+@implementation Like
 @dynamic post;
 @dynamic author;
-@dynamic commentText;
 
 
 + (void)load {
@@ -21,7 +18,8 @@
 }
 
 + (NSString *)parseClassName {
-    return @"Comment";
+    return @"Like";
 }
+
 
 @end

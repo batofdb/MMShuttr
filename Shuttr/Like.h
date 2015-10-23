@@ -1,8 +1,8 @@
 //
-//  Comment.h
+//  Like.h
 //  Shuttr
 //
-//  Created by Philip Henson on 10/22/15.
+//  Created by Francis Bato on 10/23/15.
 //  Copyright © 2015 MMInstaGroup. All rights reserved.
 //
 
@@ -10,12 +10,13 @@
 @class Post;
 @class User;
 
-@interface Comment : PFObject <PFSubclassing>
 
-@property Post *post;
+@interface Like : PFObject <PFSubclassing>
+
 @property User *author;
-@property NSString *commentText;
+@property Post *post;
 
 + (NSString *)parseClassName;
+
 
 @end

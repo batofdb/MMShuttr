@@ -7,8 +7,14 @@
 //
 
 #import <Parse/Parse.h>
+@class User;
 
 @interface Post : PFObject <PFSubclassing>
+
+@property (nonatomic) User *author;
+@property (nonatomic) NSArray *roll;
+@property (nonatomic) NSString *description;
+@property (nonatomic) NSDate *timeStamp;
 
 + (NSString *)parseClassName;
 
