@@ -10,6 +10,4 @@
 
 @interface User : PFUser <PFSubclassing>
 
-+ (NSString *)parseClassName;
-
 @end

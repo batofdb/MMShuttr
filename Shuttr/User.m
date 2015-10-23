@@ -16,8 +16,4 @@
     [self registerSubclass];
 }
 
-+ (NSString *)parseClassName {
-    return @"User";
-}
-
 @end
