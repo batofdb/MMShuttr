@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
+		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
+		3ACF116F1BD9FBA900EDBF4B /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116E1BD9FBA900EDBF4B /* Comment.m */; };
+		3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */; };
 		47A4A85F1BD9CF19006091DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A85E1BD9CF19006091DA /* main.m */; };
 		47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8611BD9CF19006091DA /* AppDelegate.m */; };
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
@@ -56,6 +60,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3ACF11671BD9FB8500EDBF4B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		3ACF11681BD9FB8500EDBF4B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		3ACF116A1BD9FB9500EDBF4B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		3ACF116B1BD9FB9500EDBF4B /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		3ACF116D1BD9FBA900EDBF4B /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		3ACF116E1BD9FBA900EDBF4B /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		3ACF11701BDA083C00EDBF4B /* PostCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCollectionViewCell.h; sourceTree = "<group>"; };
+		3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCollectionViewCell.m; sourceTree = "<group>"; };
 		47A4A85A1BD9CF19006091DA /* Shuttr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A85E1BD9CF19006091DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A4A8601BD9CF19006091DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -206,6 +218,14 @@
 		47A4A8B21BD9CFF0006091DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3ACF11671BD9FB8500EDBF4B /* User.h */,
+				3ACF11681BD9FB8500EDBF4B /* User.m */,
+				3ACF116A1BD9FB9500EDBF4B /* Post.h */,
+				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
+				3ACF116D1BD9FBA900EDBF4B /* Comment.h */,
+				3ACF116E1BD9FBA900EDBF4B /* Comment.m */,
+				3ACF11701BDA083C00EDBF4B /* PostCollectionViewCell.h */,
+				3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -390,9 +410,13 @@
 			files = (
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
+				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
+				3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */,
 				658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */,
+				3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */,
+				3ACF116F1BD9FBA900EDBF4B /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
