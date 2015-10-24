@@ -1,5 +1,5 @@
 //
-//  FeedRollLayout.h
+//  FeedContainerCellView.h
 //  Shuttr
 //
 //  Created by Francis Bato on 10/23/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedRollLayout : UICollectionViewLayout
+@interface FeedContainerCellView : UIView
+
+- (void)setCollectionData:(NSArray *)collectionData;
 
 @end

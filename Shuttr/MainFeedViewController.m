@@ -8,12 +8,11 @@
 
 #import "MainFeedViewController.h"
 #import "User.h"
-#import "FeedPostTableViewCell.h"
+#import "FeedTableViewCell.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
-@property (nonatomic, strong) NSMutableDictionary *contentOffsetDictionary;
-@property (nonatomic, strong) NSArray *colorArray;
+@property NSArray *objects;
 @end
 
 @implementation MainFeedViewController
@@ -21,111 +20,72 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // We have one test user for now
-    [PFUser logInWithUsername:@"francis" password:@"pizza"];
+    [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 
-    //Insert number of posts you want on the tablview
-    const NSInteger numberOfTableViewRows = 20;
-
-    //Inser number of pictures in a roll
-    const NSInteger numberOfCollectionViewCells = 15;
-
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:numberOfTableViewRows];
-
-    for (NSInteger tableViewRow = 0; tableViewRow < numberOfTableViewRows; tableViewRow++)
-    {
-        NSMutableArray *colorArray = [NSMutableArray arrayWithCapacity:numberOfCollectionViewCells];
-
-        for (NSInteger collectionViewItem = 0; collectionViewItem < numberOfCollectionViewCells; collectionViewItem++)
-        {
-
-            CGFloat red = arc4random() % 255;
-            CGFloat green = arc4random() % 255;
-            CGFloat blue = arc4random() % 255;
-            UIColor *color = [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0f];
-
-            [colorArray addObject:color];
-        }
-
-        [mutableArray addObject:colorArray];
-    }
-
-    self.colorArray = [NSArray arrayWithArray:mutableArray];
-
-    self.contentOffsetDictionary = [NSMutableDictionary dictionary];
-    
+    self.objects = @[ @{ @"description": @"Section A",
+                     @"articles": @[ @{ @"title": @"Article A1" },
+                                     @{ @"title": @"Article A2" },
+                                     @{ @"title": @"Article A3" },
+                                     @{ @"title": @"Article A4" },
+                                     @{ @"title": @"Article A5" }
+                                     ]
+                     },
+                  @{ @"description": @"Section B",
+                     @"articles": @[ @{ @"title": @"Article B1" },
+                                     @{ @"title": @"Article B2" },
+                                     @{ @"title": @"Article B3" },
+                                     @{ @"title": @"Article B4" },
+                                     @{ @"title": @"Article B5" }
+                                     ]
+                     },
+                  @{ @"description": @"Section C",
+                     @"articles": @[ @{ @"title": @"Article C1" },
+                                     @{ @"title": @"Article C2" },
+                                     @{ @"title": @"Article C3" },
+                                     @{ @"title": @"Article C4" },
+                                     @{ @"title": @"Article C5" }
+                                     ]
+                     },
+                  @{ @"description": @"Section D",
+                     @"articles": @[ @{ @"title": @"Article D1" },
+                                     @{ @"title": @"Article D2" },
+                                     @{ @"title": @"Article D3" },
+                                     @{ @"title": @"Article D4" },
+                                     @{ @"title": @"Article D5" }
+                                     ]
+                     }
+                  ];
 }
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
-}
-/*
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-
-}
-*/
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
-    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:@"PostHeader"];
-    return headerView;
-
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:@"PostFooter"];
-    return headerView;
-
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 60;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 60;
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_objects count]; // Total number of rows in the sample data.
+}
+
+// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CellIdentifier";
-
-    FeedPostTableViewCell *cell = (FeedPostTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (!cell)
-    {
-        cell = [[FeedPostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-
-    cell.backgroundColor = [UIColor blackColor];
+    FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
+    NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
+    NSArray *articleData = [cellData objectForKey:@"articles"];
+    [cell setCollectionData:articleData];
     return cell;
 }
 
--(NSInteger)collectionView:(FeedPostCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 12;
+#pragma mark UITableViewDelegate methods
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSDictionary *sectionData = [_objects objectAtIndex:section];
+    NSString *header = [sectionData objectForKey:@"description"];
+    return header;
 }
--(void)tableView:(UITableView *)tableView willDisplayCell:(FeedPostTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [cell setCollectionViewDataSourceDelegate:self indexPath:indexPath];
-    NSInteger index = cell.collectionView.tag;
-
-    CGFloat horizontalOffset = [self.contentOffsetDictionary[[@(index) stringValue]] floatValue];
-    [cell.collectionView setContentOffset:CGPointMake(horizontalOffset, 0)];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 20.0;
 }
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
-
-    NSArray *collectionViewArray = self.colorArray[[(FeedPostCollectionView *)collectionView indexPath].row];
-    cell.backgroundColor = collectionViewArray[indexPath.item];
-
-    return cell;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 180.0;
 }
-
 
 @end
