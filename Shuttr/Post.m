@@ -15,6 +15,8 @@
 @dynamic roll;
 @dynamic description;
 @dynamic timeStamp;
+@dynamic likeCount;
+@dynamic commentCount;
 
 + (void)load {
     [self registerSubclass];

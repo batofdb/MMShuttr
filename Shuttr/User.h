@@ -10,7 +10,7 @@
 
 @interface User : PFUser <PFSubclassing>
 
-@property NSArray *posts;
+@property PFRelation *posts;
 @property NSString *fullName;
 @property UIImage *profilePicture;
 
