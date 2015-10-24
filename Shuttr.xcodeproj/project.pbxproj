@@ -15,6 +15,7 @@
 		3ACF11CC1BDB3B5900EDBF4B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */; };
 		3ACF11CF1BDB3BD200EDBF4B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF11CD1BDB3BD200EDBF4B /* Profile.storyboard */; };
 		3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */; };
+		3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */; };
 		47A4A85F1BD9CF19006091DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A85E1BD9CF19006091DA /* main.m */; };
 		47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8611BD9CF19006091DA /* AppDelegate.m */; };
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
@@ -32,7 +33,7 @@
 		47A4A8AD1BD9CFC3006091DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AC1BD9CFC3006091DA /* SystemConfiguration.framework */; };
 		47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AE1BD9CFCB006091DA /* libz.tbd */; };
 		47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */; };
-		47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Acitivty.m */; };
+		47A4A91A1BDB0962006091DA /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
 		658E32341BD9D85300314027 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322D1BD9D85300314027 /* Bolts.framework */; };
 		658E32351BD9D85300314027 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322E1BD9D85300314027 /* Parse.framework */; };
 		658E32361BD9D85300314027 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322F1BD9D85300314027 /* ParseCrashReporting.framework */; };
@@ -79,6 +80,8 @@
 		3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3ACF11CE1BDB3BD200EDBF4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		47A4A85A1BD9CF19006091DA /* Shuttr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A85E1BD9CF19006091DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A4A8601BD9CF19006091DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,8 +106,8 @@
 		47A4A8AC1BD9CFC3006091DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		47A4A8AE1BD9CFCB006091DA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		47A4A9181BDB0962006091DA /* Acitivty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acitivty.h; sourceTree = "<group>"; };
-		47A4A9191BDB0962006091DA /* Acitivty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Acitivty.m; sourceTree = "<group>"; };
+		47A4A9181BDB0962006091DA /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		47A4A9191BDB0962006091DA /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		658E322D1BD9D85300314027 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		658E322E1BD9D85300314027 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		658E322F1BD9D85300314027 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -237,8 +240,8 @@
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
 				3ACF11701BDA083C00EDBF4B /* PostCollectionViewCell.h */,
 				3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */,
-				47A4A9181BDB0962006091DA /* Acitivty.h */,
-				47A4A9191BDB0962006091DA /* Acitivty.m */,
+				47A4A9181BDB0962006091DA /* Activity.h */,
+				47A4A9191BDB0962006091DA /* Activity.m */,
 				3ACF11C41BDB19FB00EDBF4B /* ImageProcessing.h */,
 				3ACF11C51BDB19FB00EDBF4B /* ImageProcessing.m */,
 			);
@@ -271,6 +274,8 @@
 				3ACF11C81BDB3B4C00EDBF4B /* SearchViewController.m */,
 				3ACF11CA1BDB3B5900EDBF4B /* ProfileViewController.h */,
 				3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */,
+				3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */,
+				3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -431,7 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */,
+				47A4A91A1BDB0962006091DA /* Activity.m in Sources */,
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
@@ -439,6 +444,7 @@
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
 				3ACF11C61BDB19FC00EDBF4B /* ImageProcessing.m in Sources */,
 				3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */,
+				3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */,
 				3ACF11C91BDB3B4C00EDBF4B /* SearchViewController.m in Sources */,
 				658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */,
 				3ACF11CC1BDB3B5900EDBF4B /* ProfileViewController.m in Sources */,

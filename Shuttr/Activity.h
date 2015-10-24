@@ -10,7 +10,7 @@
 #import "Post.h"
 #import "User.h"
 
-@interface Acitivty : PFObject <PFSubclassing>
+@interface Activity : PFObject <PFSubclassing>
 
 @property (nonatomic) NSNumber *activityType;
 @property (nonatomic) NSString *content;
