@@ -13,7 +13,7 @@
 @implementation Post
 @dynamic author;
 @dynamic roll;
-@dynamic description;
+@dynamic textDescription;
 @dynamic timeStamp;
 @dynamic likeCount;
 @dynamic activityList;

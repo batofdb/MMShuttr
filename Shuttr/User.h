@@ -12,6 +12,6 @@
 
 @property PFRelation *posts;
 @property NSString *fullName;
-@property UIImage *profilePicture;
+@property NSData *profilePicture;
 
 @end
