@@ -38,33 +38,45 @@
 - (void) queryAndPopulateView {
 
     User *user = [User currentUser];
-
     [self getUserProperties];
 
     // TODO: refactor this
     // Get user posts
     PFQuery *queryPosts = [Post query];
     [queryPosts whereKey:@"user" equalTo:user];
-    NSArray *userPosts = [queryPosts findObjects];
-    self.postsCountLabel.text = [NSString stringWithFormat:@"Posts: %lu", userPosts.count];
+    [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        NSArray *userPosts = [NSArray arrayWithArray:objects];
+        self.postsCountLabel.text = [NSString stringWithFormat:@"Posts: %lu", userPosts.count];
+    }];
 
-    // Get likes to users content
-    PFQuery *queryLikes = [Activity query];
-    [queryLikes whereKey:@"toUser" equalTo:user];
-    NSArray *userLikes = [queryLikes findObjects];
-    self.likesCountLabel.text = [NSString stringWithFormat:@"Likes: %lu", userLikes.count];
+    PFQuery *fromQuery = [Activity query];
+    [fromQuery whereKey:@"fromUser" equalTo:user];
 
-    // Get followers
-    PFQuery *queryFollowers = [Activity query];
-    [queryFollowers whereKey:@"toUser" equalTo:user];
-    NSArray *userFollowers = [queryLikes findObjects];
-    self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", (unsigned long)userFollowers.count];
+    PFQuery *toQuery = [Activity query];
+    [toQuery whereKey:@"toUser" equalTo:user];
 
-    // Get following
-    PFQuery *queryFollowing = [Activity query];
-    [queryFollowing whereKey:@"fromUser" equalTo:user];
-    NSArray *userFollowing = [queryLikes findObjects];
-    self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", (unsigned long)userFollowing.count];
+    PFQuery *activityQuery = [PFQuery orQueryWithSubqueries:@[toQuery, fromQuery]];
+    [activityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+        NSMutableArray *userLikes = [NSMutableArray new];
+        NSMutableArray *userFollowers = [NSMutableArray new];
+        NSMutableArray *userFollowing = [NSMutableArray new];
+
+        for (Activity *activity in objects){
+            if ([activity.activityType  isEqual:@0] && [activity.toUser isEqual:user]){
+                [userLikes addObject:activity];
+            } else if ([activity.activityType  isEqual:@2] && [activity.toUser isEqual:user]) {
+                [userFollowers addObject:activity];
+            }else if ([activity.activityType  isEqual:@2] && [activity.fromUser isEqual:user]) {
+                [userFollowing addObject:activity];
+            }
+        }
+
+        self.likesCountLabel.text = [NSString stringWithFormat:@"Likes: %lu", userLikes.count];
+        self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
+        self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
+    }];
+
 
     }
 

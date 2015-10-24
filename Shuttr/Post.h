@@ -14,7 +14,6 @@
 @property (nonatomic) User *author;
 @property (nonatomic) NSArray *roll;
 @property (nonatomic) NSString *textDescription;
-@property (nonatomic) NSDate *timeStamp;
 @property (nonatomic) NSNumber *likeCount;
 @property (nonatomic) NSNumber *commentCount;
 @property (nonatomic) PFRelation *activityList;

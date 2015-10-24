@@ -40,6 +40,21 @@
                     [UIImage imageNamed:@"Sansa_Stark"],
                     [UIImage imageNamed:@"Tyrion_Lannister"]];
 */
+
+    /*
+    self.images = @[[UIImage imageNamed:@"goofy"],
+                    [UIImage imageNamed:@"olaf"],
+                    [UIImage imageNamed:@"rapunzel"]];
+     */
+
+    /*
+    self.images = @[[UIImage imageNamed:@"cookie"],
+                    [UIImage imageNamed:@"cupcake"],
+                    [UIImage imageNamed:@"strudel"]];
+     */
+
+    
+    
     
 /*************Option Two: Query the current user to test Parse upload***************/
 
@@ -50,9 +65,6 @@
 
     self.images = [ImageProcessing getImageArrayFromDataArray:post.roll];
      */
-
-
-
     
     [self.collectionView reloadData];
 }
@@ -87,7 +99,21 @@
     post.author = user;
     post.roll = [ImageProcessing getDataArrayFromImageArray:self.images];
     post.textDescription = self.descriptionTextField.text;
-    post.timeStamp = [NSDate date];
+
+    // TODO: maybe add a check to see if the user posted something similar before to catch for duplicate posts
+//    PFQuery *query = [Post query];
+//    [query whereKey:@"user" equalTo:user];
+
+//    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//
+//        if (objects.count >0){
+//            NSLog(@"similar post found");
+//        } else {
+//            NSLog(@"unique post");
+//        }
+//
+//    }];
+
 
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
