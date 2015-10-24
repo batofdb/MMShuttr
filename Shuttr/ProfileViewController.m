@@ -40,7 +40,7 @@
     User *user = [User currentUser];
     [self getUserProperties];
 
-    // TODO: refactor this
+    // TODO: possible refactor opportunities here
     // Get user posts
     PFQuery *queryPosts = [Post query];
     [queryPosts whereKey:@"user" equalTo:user];

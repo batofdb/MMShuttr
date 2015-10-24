@@ -7,8 +7,15 @@
 //
 
 #import "SearchViewController.h"
+#import "User.h"
+#import "UIImage+ImageResizing.h"
+#import "ImageProcessing.h"
 
-@interface SearchViewController ()
+@interface SearchViewController () <UISearchBarDelegate, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UISearchController *searchController;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSArray *filteredSearchResults;
 
 @end
 
@@ -16,22 +23,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initializeSearchController];
+    self.filteredSearchResults = [NSArray new];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) initializeSearchController {
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.definesPresentationContext = YES;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    [self.searchController.searchBar sizeToFit];
+    //self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.delegate = self;
+
 }
 
-/*
-#pragma mark - Navigation
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    PFQuery *query = [User query];
+    [query whereKey:@"fullName" containsString:searchController.searchBar.text];
+
+    //TODO: refactor this so it only downloads once, not each time search bar text is updated
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        self.filteredSearchResults = [NSArray arrayWithArray:objects];
+        [self.tableView reloadData];
+
+    }];
+
+
 }
-*/
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
+    User *user = [self.filteredSearchResults objectAtIndex:indexPath.row];
+    cell.textLabel.text = user.fullName;
+    cell.imageView.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(cell.imageView.frame.size.width, cell.imageView.frame.size.height)];
+    return cell;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.filteredSearchResults.count;
+}
+
 
 @end
