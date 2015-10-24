@@ -10,4 +10,8 @@
 
 @interface User : PFUser <PFSubclassing>
 
+@property PFRelation *posts;
+@property NSString *fullName;
+@property UIImage *profilePicture;
+
 @end

@@ -12,6 +12,11 @@
 
 @implementation User
 
+@dynamic fullName;
+@dynamic posts;
+@dynamic profilePicture;
+
+
 + (void)load {
     [self registerSubclass];
 }
