@@ -15,6 +15,7 @@
 @end
 
 
+
 static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
 
 @interface FeedPostTableViewCell : UITableViewCell
