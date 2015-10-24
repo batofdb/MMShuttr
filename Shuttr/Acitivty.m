@@ -21,7 +21,7 @@
 }
 
 + (NSString *)parseClassName {
-    return @"Post";
+    return @"Activity";
 }
 
 

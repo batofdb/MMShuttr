@@ -7,10 +7,10 @@
 //
 
 #import <Parse/Parse.h>
-@class User;
-@class Post;
+#import "Post.h"
+#import "User.h"
 
-@interface Acitivty : PFObject
+@interface Acitivty : PFObject <PFSubclassing>
 
 @property (nonatomic) NSNumber *activityType;
 @property (nonatomic) NSString *content;
