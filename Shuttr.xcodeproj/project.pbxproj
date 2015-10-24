@@ -28,6 +28,7 @@
 		47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AE1BD9CFCB006091DA /* libz.tbd */; };
 		47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */; };
 		47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Acitivty.m */; };
+		6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6518FC501BDB3707002E0FD5 /* PhotoManager.m */; };
 		658E32341BD9D85300314027 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322D1BD9D85300314027 /* Bolts.framework */; };
 		658E32351BD9D85300314027 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322E1BD9D85300314027 /* Parse.framework */; };
 		658E32361BD9D85300314027 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322F1BD9D85300314027 /* ParseCrashReporting.framework */; };
@@ -92,6 +93,8 @@
 		47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		47A4A9181BDB0962006091DA /* Acitivty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acitivty.h; sourceTree = "<group>"; };
 		47A4A9191BDB0962006091DA /* Acitivty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Acitivty.m; sourceTree = "<group>"; };
+		6518FC4F1BDB3707002E0FD5 /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
+		6518FC501BDB3707002E0FD5 /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
 		658E322D1BD9D85300314027 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		658E322E1BD9D85300314027 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		658E322F1BD9D85300314027 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				3ACF11671BD9FB8500EDBF4B /* User.h */,
+				6518FC4F1BDB3707002E0FD5 /* PhotoManager.h */,
+				6518FC501BDB3707002E0FD5 /* PhotoManager.m */,
 				3ACF11681BD9FB8500EDBF4B /* User.m */,
 				3ACF116A1BD9FB9500EDBF4B /* Post.h */,
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
@@ -410,6 +415,7 @@
 			files = (
 				47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */,
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
+				6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */,
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,

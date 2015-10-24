@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
@@ -18,18 +17,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5F-RH-gPh">
-                                <rect key="frame" x="20" y="71" width="359" height="342"/>
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="600"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="405"/>
+                                </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPt-cH-62A">
-                                <rect key="frame" x="64" y="421" width="77" height="30"/>
-                                <state key="normal" title="Take Photo"/>
+                                <rect key="frame" x="0.0" y="100" width="383" height="443"/>
                                 <connections>
                                     <action selector="takePhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="hwW-Y9-c4D"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-HP-Pc4">
-                                <rect key="frame" x="64" y="459" width="88" height="30"/>
-                                <state key="normal" title="Select Photo"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="select" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-HP-Pc4">
+                                <rect key="frame" x="20" y="11" width="363" height="66"/>
                                 <connections>
                                     <action selector="selectPhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="6od-Kl-qxk"/>
                                 </connections>
@@ -40,13 +40,13 @@
                     <tabBarItem key="tabBarItem" title="Item" id="qfr-G1-Wzn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="imageView" destination="X5F-RH-gPh" id="Vkj-M8-fpD"/>
+                        <outlet property="imageView" destination="X5F-RH-gPh" id="xgA-j2-ADu"/>
                         <segue destination="aUI-cb-kSg" kind="show" identifier="ToPostSegue" id="Swh-NP-0V3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JeJ-yM-eU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="837"/>
+            <point key="canvasLocation" x="1443" y="837"/>
         </scene>
         <!--Post-->
         <scene sceneID="kj8-n5-73M">

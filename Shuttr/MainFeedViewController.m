@@ -19,7 +19,8 @@
     [super viewDidLoad];
 
     // We have one test user for now
-    [PFUser logInWithUsername:@"francis" password:@"pizza"];
+
+    [PFUser logInWithUsernameInBackground:@"lin" password:@"12345"];
 
     // Call this anywhere in the code to get a reference to our test user
     PFUser *user = [PFUser currentUser];
