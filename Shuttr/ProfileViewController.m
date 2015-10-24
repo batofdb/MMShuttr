@@ -12,6 +12,7 @@
 #import "Activity.h"
 #import "ImageProcessing.h"
 #import "EditProfileViewController.h"
+#import "UIImage+ImageResizing.h"
 
 @interface ProfileViewController () <EditProfileDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -24,7 +25,9 @@
 
 @end
 
-@implementation ProfileViewController
+@implementation ProfileViewController\
+
+//TODO: implement Feed View here, but just include photo reels taken by the user
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,12 +39,9 @@
 
     User *user = [User currentUser];
 
-    // Get username
-    self.usernameLabel.text = user.username;
+    [self getUserProperties];
 
-    // Get full name
-    self.fullNameLabel.text = user.fullName;
-
+    // TODO: refactor this
     // Get user posts
     PFQuery *queryPosts = [Post query];
     [queryPosts whereKey:@"user" equalTo:user];
@@ -66,13 +66,25 @@
     NSArray *userFollowing = [queryLikes findObjects];
     self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", (unsigned long)userFollowing.count];
 
+    }
+
+- (void)getUserProperties {
+
+    User *user = [User currentUser];
+    // Get username
+    self.usernameLabel.text = user.username;
+
+    // Get full name
+    self.fullNameLabel.text = user.fullName;
+
     // Get profile pic
-    UIImage *profilePicture = [ImageProcessing getImageFromData:user.profilePicture];
+    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(self.profileImageView.frame.size.width, self.profileImageView.frame.size.height)] ;
+    
     self.profileImageView.image = profilePicture;
 }
 
 - (void)profileWasChanged:(id)view {
-    //TODO: load changes to profile here
+    [self getUserProperties];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

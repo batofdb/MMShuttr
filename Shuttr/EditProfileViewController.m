@@ -32,8 +32,27 @@
 
 - (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender {
 
-    //TODO: save changes to profile here
-    [self.delegate profileWasChanged:self];
+    // TODO: need to query database here to make sure name/email isn't already taken
+
+    [self.user setObject:self.fullNameTextField.text forKey:@"fullName"];
+    [self.user setObject:self.usernameTextField.text forKey:@"username"];
+    [self.user setObject:self.emailTextField.text forKey:@"email"];
+    [self.user setObject:[ImageProcessing getDataFromImage:self.profilePictureImageView.image] forKey:@"profilePicture"];
+
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self.delegate profileWasChanged:self];
+        } else {
+            NSLog(@"Unable to make changes to profile");
+        }
+    }];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    self.profilePictureImageView.image = image;
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onEditProfilePictureButtonPressed:(UIButton *)sender {
@@ -60,8 +79,6 @@
     [alert addAction:takePhotoAction];
     [alert addAction:selectPhotoAction];
     [self presentViewController:alert animated:YES completion:nil];
-
-
 }
 
 @end
