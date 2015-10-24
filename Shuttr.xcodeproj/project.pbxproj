@@ -33,6 +33,8 @@
 		47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */; };
 		47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */; };
 		47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9441BDB7070006091DA /* FeedTableViewCell.m */; };
+		47A4A9481BDC478F006091DA /* FeedTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9471BDC478F006091DA /* FeedTableFooterView.m */; };
+		47A4A94A1BDC47C0006091DA /* FeedTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */; };
 		658E32341BD9D85300314027 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322D1BD9D85300314027 /* Bolts.framework */; };
 		658E32351BD9D85300314027 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322E1BD9D85300314027 /* Parse.framework */; };
 		658E32361BD9D85300314027 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322F1BD9D85300314027 /* ParseCrashReporting.framework */; };
@@ -105,6 +107,9 @@
 		47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		47A4A9431BDB7070006091DA /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		47A4A9441BDB7070006091DA /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		47A4A9461BDC478F006091DA /* FeedTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableFooterView.h; sourceTree = "<group>"; };
+		47A4A9471BDC478F006091DA /* FeedTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableFooterView.m; sourceTree = "<group>"; };
+		47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableFooterView.xib; sourceTree = "<group>"; };
 		658E322D1BD9D85300314027 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		658E322E1BD9D85300314027 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		658E322F1BD9D85300314027 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -258,6 +263,9 @@
 				47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */,
 				47A4A9431BDB7070006091DA /* FeedTableViewCell.h */,
 				47A4A9441BDB7070006091DA /* FeedTableViewCell.m */,
+				47A4A9461BDC478F006091DA /* FeedTableFooterView.h */,
+				47A4A9471BDC478F006091DA /* FeedTableFooterView.m */,
+				47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -406,6 +414,7 @@
 				47A4A86A1BD9CF19006091DA /* Assets.xcassets in Resources */,
 				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
+				47A4A94A1BDC47C0006091DA /* FeedTableFooterView.xib in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +446,7 @@
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
+				47A4A9481BDC478F006091DA /* FeedTableFooterView.m in Sources */,
 				47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */,
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
 				3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */,

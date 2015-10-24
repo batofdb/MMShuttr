@@ -9,6 +9,7 @@
 #import "MainFeedViewController.h"
 #import "User.h"
 #import "FeedTableViewCell.h"
+#import "FeedTableFooterView.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
@@ -21,6 +22,8 @@
     [super viewDidLoad];
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
+
+    [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostFooter"];
 
     self.objects = @[ @{ @"description": @"Section A",
                      @"articles": @[ @{ @"title": @"Article A1" },
@@ -75,15 +78,26 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"PostHeader";
+    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    return headerView;
+}
+
+
 #pragma mark UITableViewDelegate methods
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSDictionary *sectionData = [_objects objectAtIndex:section];
-    NSString *header = [sectionData objectForKey:@"description"];
-    return header;
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostFooter"];
+    return footerView;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40.0;
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 100;
 }
+
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 400.0;
 }
