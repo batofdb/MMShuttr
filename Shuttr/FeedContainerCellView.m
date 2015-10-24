@@ -28,7 +28,8 @@
     self.collectionView.backgroundColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    flowLayout.itemSize = CGSizeMake(130.0, 170.0);
+#warning adjust the photosizes here
+    flowLayout.itemSize = CGSizeMake(400.0, 400.0);
     [self.collectionView setCollectionViewLayout:flowLayout];
 
 #warning update this to the custom collection view cell
