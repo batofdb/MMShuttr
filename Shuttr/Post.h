@@ -7,7 +7,7 @@
 //
 
 #import <Parse/Parse.h>
-@class User;
+#import "User.h"
 
 @interface Post : PFObject <PFSubclassing>
 

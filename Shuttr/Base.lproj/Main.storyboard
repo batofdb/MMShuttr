@@ -34,7 +34,41 @@
                     <view key="view" contentMode="scaleToFill" id="16z-ka-AoS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-Rg-Dac">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="vhm-X2-Fri"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Shuttr" id="ERM-cF-D6T"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-hm-H9e">
+                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="B9b-Fc-OIZ">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B9b-Fc-OIZ" id="Cim-lo-yqH">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X6c-hm-H9e" firstAttribute="top" secondItem="n7i-Rg-Dac" secondAttribute="bottom" id="FRP-ed-ocx"/>
+                            <constraint firstItem="n7i-Rg-Dac" firstAttribute="leading" secondItem="16z-ka-AoS" secondAttribute="leading" id="K9T-fp-VqJ"/>
+                            <constraint firstAttribute="trailing" secondItem="X6c-hm-H9e" secondAttribute="trailing" id="MiW-cD-N9f"/>
+                            <constraint firstItem="W0K-XM-k3k" firstAttribute="top" secondItem="X6c-hm-H9e" secondAttribute="bottom" id="PYw-rC-rDz"/>
+                            <constraint firstAttribute="trailing" secondItem="n7i-Rg-Dac" secondAttribute="trailing" id="WLS-5i-Qxn"/>
+                            <constraint firstItem="X6c-hm-H9e" firstAttribute="leading" secondItem="16z-ka-AoS" secondAttribute="leading" id="mC1-uj-ABt"/>
+                            <constraint firstItem="n7i-Rg-Dac" firstAttribute="top" secondItem="16z-ka-AoS" secondAttribute="top" id="ut7-24-M91"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="eAO-qO-RZA"/>
                 </viewController>

@@ -9,7 +9,7 @@
 #import "MainFeedViewController.h"
 #import "User.h"
 
-@interface MainFeedViewController ()
+@interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -19,7 +19,7 @@
     [super viewDidLoad];
 
     // We have one test user for now
-    [PFUser logInWithUsername:@"admin" password:@"password"];
+    [PFUser logInWithUsername:@"francis" password:@"pizza"];
 
     // Call this anywhere in the code to get a reference to our test user
     PFUser *user = [PFUser currentUser];
