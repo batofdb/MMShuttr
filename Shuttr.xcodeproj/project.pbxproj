@@ -17,6 +17,7 @@
 		3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */; };
 		3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */; };
 		3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */; };
+		3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */; };
 		47A4A85F1BD9CF19006091DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A85E1BD9CF19006091DA /* main.m */; };
 		47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8611BD9CF19006091DA /* AppDelegate.m */; };
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
@@ -85,6 +86,8 @@
 		3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		3ACF11D51BDB6FF900EDBF4B /* UIImage+ImageResizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageResizing.h"; sourceTree = "<group>"; };
 		3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageResizing.m"; sourceTree = "<group>"; };
+		3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailViewController.h; sourceTree = "<group>"; };
+		3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailViewController.m; sourceTree = "<group>"; };
 		47A4A85A1BD9CF19006091DA /* Shuttr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A85E1BD9CF19006091DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A4A8601BD9CF19006091DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -277,6 +280,8 @@
 				658E32421BD9DB6300314027 /* PostPhotosViewController.m */,
 				3ACF11C71BDB3B4C00EDBF4B /* SearchViewController.h */,
 				3ACF11C81BDB3B4C00EDBF4B /* SearchViewController.m */,
+				3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */,
+				3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */,
 				3ACF11CA1BDB3B5900EDBF4B /* ProfileViewController.h */,
 				3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */,
 				3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */,
@@ -453,6 +458,7 @@
 				3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */,
 				3ACF11C91BDB3B4C00EDBF4B /* SearchViewController.m in Sources */,
 				658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */,
+				3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */,
 				3ACF11CC1BDB3B5900EDBF4B /* ProfileViewController.m in Sources */,
 				3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */,
 			);

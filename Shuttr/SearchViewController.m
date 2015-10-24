@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "SearchDetailViewController.h"
 #import "User.h"
 #import "UIImage+ImageResizing.h"
 #import "ImageProcessing.h"
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) UISearchController *searchController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *filteredSearchResults;
+@property (nonatomic) NSArray *users;
 
 @end
 
@@ -25,6 +27,7 @@
     [super viewDidLoad];
     [self initializeSearchController];
     self.filteredSearchResults = [NSArray new];
+    [self userQueryAndSave];
 
 }
 
@@ -33,27 +36,26 @@
     self.definesPresentationContext = YES;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     [self.searchController.searchBar sizeToFit];
-    //self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.searchController.searchBar.placeholder = @"Search for users.";
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchResultsUpdater = self;
     self.searchController.searchBar.delegate = self;
 
 }
 
+- (void)userQueryAndSave {
+    PFQuery *query = [User query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        self.users = [[NSArray alloc] initWithArray:objects];
+    }];
+}
+
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 
-    PFQuery *query = [User query];
-    [query whereKey:@"fullName" containsString:searchController.searchBar.text];
-
-    //TODO: refactor this so it only downloads once, not each time search bar text is updated
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        self.filteredSearchResults = [NSArray arrayWithArray:objects];
-        [self.tableView reloadData];
-
-    }];
-
-
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"username contains [c] %@ AND fullName contains [c] %@", searchController.searchBar.text, searchController.searchBar.text];
+    self.filteredSearchResults = [self.users filteredArrayUsingPredicate:resultPredicate];
+    [self.tableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,6 +68,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.filteredSearchResults.count;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ToSearchDetailSegue"]) {
+        SearchDetailViewController *vc = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row];
+
+    }
 }
 
 

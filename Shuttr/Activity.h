@@ -12,6 +12,14 @@
 
 @interface Activity : PFObject <PFSubclassing>
 
+/******Activity Types:**********
+
+ @0 - Like
+ @1 - Comment
+ @2 - Follow
+
+********************************/
+
 @property (nonatomic) NSNumber *activityType;
 @property (nonatomic) NSString *content;
 @property (nonatomic) User *toUser;
