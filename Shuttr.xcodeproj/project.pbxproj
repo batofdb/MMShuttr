@@ -179,8 +179,6 @@
 				47A4A8B21BD9CFF0006091DA /* Model */,
 				658E324D1BD9DBE200314027 /* Frameworks */,
 				47A4A85D1BD9CF19006091DA /* Supporting Files */,
-				47A4A9181BDB0962006091DA /* Acitivty.h */,
-				47A4A9191BDB0962006091DA /* Acitivty.m */,
 			);
 			path = Shuttr;
 			sourceTree = "<group>";
@@ -226,6 +224,8 @@
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
 				3ACF11701BDA083C00EDBF4B /* PostCollectionViewCell.h */,
 				3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */,
+				47A4A9181BDB0962006091DA /* Acitivty.h */,
+				47A4A9191BDB0962006091DA /* Acitivty.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

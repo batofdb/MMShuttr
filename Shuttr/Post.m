@@ -16,6 +16,7 @@
 @dynamic description;
 @dynamic timeStamp;
 @dynamic likeCount;
+@dynamic activityList;
 @dynamic commentCount;
 
 + (void)load {
