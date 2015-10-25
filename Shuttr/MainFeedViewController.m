@@ -10,6 +10,7 @@
 #import "User.h"
 #import "FeedTableViewCell.h"
 #import "ImageProcessing.h"
+#import "Activity.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;

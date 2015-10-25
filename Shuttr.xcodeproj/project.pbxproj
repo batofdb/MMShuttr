@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AA7CF591BDC61A000C09601 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
 		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
 		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
 		3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */; };
@@ -15,6 +16,9 @@
 		3ACF11CC1BDB3B5900EDBF4B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */; };
 		3ACF11CF1BDB3BD200EDBF4B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF11CD1BDB3BD200EDBF4B /* Profile.storyboard */; };
 		3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */; };
+		3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */; };
+		3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */; };
+		3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */; };
 		47A4A85F1BD9CF19006091DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A85E1BD9CF19006091DA /* main.m */; };
 		47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8611BD9CF19006091DA /* AppDelegate.m */; };
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
@@ -32,13 +36,12 @@
 		47A4A8AD1BD9CFC3006091DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AC1BD9CFC3006091DA /* SystemConfiguration.framework */; };
 		47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AE1BD9CFCB006091DA /* libz.tbd */; };
 		47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */; };
-		47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Acitivty.m */; };
-		6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6518FC501BDB3707002E0FD5 /* PhotoManager.m */; };
 		47A4A9361BDB638B006091DA /* FeedContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A9351BDB638B006091DA /* FeedContainerCellView.xib */; };
 		47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */; };
 		47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */; };
 		47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */; };
 		47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9441BDB7070006091DA /* FeedTableViewCell.m */; };
+		6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6518FC501BDB3707002E0FD5 /* PhotoManager.m */; };
 		658E32341BD9D85300314027 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322D1BD9D85300314027 /* Bolts.framework */; };
 		658E32351BD9D85300314027 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322E1BD9D85300314027 /* Parse.framework */; };
 		658E32361BD9D85300314027 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322F1BD9D85300314027 /* ParseCrashReporting.framework */; };
@@ -85,6 +88,12 @@
 		3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3ACF11CE1BDB3BD200EDBF4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		3ACF11D51BDB6FF900EDBF4B /* UIImage+ImageResizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageResizing.h"; sourceTree = "<group>"; };
+		3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageResizing.m"; sourceTree = "<group>"; };
+		3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailViewController.h; sourceTree = "<group>"; };
+		3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailViewController.m; sourceTree = "<group>"; };
 		47A4A85A1BD9CF19006091DA /* Shuttr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A85E1BD9CF19006091DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A4A8601BD9CF19006091DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,8 +118,8 @@
 		47A4A8AC1BD9CFC3006091DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		47A4A8AE1BD9CFCB006091DA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		47A4A9181BDB0962006091DA /* Acitivty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Acitivty.h; sourceTree = "<group>"; };
-		47A4A9191BDB0962006091DA /* Acitivty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Acitivty.m; sourceTree = "<group>"; };
+		47A4A9181BDB0962006091DA /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		47A4A9191BDB0962006091DA /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		47A4A9351BDB638B006091DA /* FeedContainerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedContainerCellView.xib; sourceTree = "<group>"; };
 		47A4A9371BDB63A4006091DA /* FeedContainerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedContainerCellView.h; sourceTree = "<group>"; };
 		47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedContainerCellView.m; sourceTree = "<group>"; };
@@ -255,10 +264,12 @@
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
 				3ACF11701BDA083C00EDBF4B /* PostCollectionViewCell.h */,
 				3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */,
-				47A4A9181BDB0962006091DA /* Acitivty.h */,
-				47A4A9191BDB0962006091DA /* Acitivty.m */,
+				47A4A9181BDB0962006091DA /* Activity.h */,
+				47A4A9191BDB0962006091DA /* Activity.m */,
 				3ACF11C41BDB19FB00EDBF4B /* ImageProcessing.h */,
 				3ACF11C51BDB19FB00EDBF4B /* ImageProcessing.m */,
+				3ACF11D51BDB6FF900EDBF4B /* UIImage+ImageResizing.h */,
+				3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -295,8 +306,12 @@
 				658E32421BD9DB6300314027 /* PostPhotosViewController.m */,
 				3ACF11C71BDB3B4C00EDBF4B /* SearchViewController.h */,
 				3ACF11C81BDB3B4C00EDBF4B /* SearchViewController.m */,
+				3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */,
+				3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */,
 				3ACF11CA1BDB3B5900EDBF4B /* ProfileViewController.h */,
 				3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */,
+				3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */,
+				3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -459,7 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */,
+				3AA7CF591BDC61A000C09601 /* Activity.m in Sources */,
 				47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */,
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
 				6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */,
@@ -468,11 +483,14 @@
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
 				47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */,
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
+				3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */,
 				3ACF11C61BDB19FC00EDBF4B /* ImageProcessing.m in Sources */,
 				3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */,
+				3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */,
 				3ACF11C91BDB3B4C00EDBF4B /* SearchViewController.m in Sources */,
 				47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */,
 				658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */,
+				3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */,
 				3ACF11CC1BDB3B5900EDBF4B /* ProfileViewController.m in Sources */,
 				3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */,
 			);

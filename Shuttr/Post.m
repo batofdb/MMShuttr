@@ -14,7 +14,6 @@
 @dynamic author;
 @dynamic roll;
 @dynamic textDescription;
-@dynamic timeStamp;
 @dynamic likeCount;
 @dynamic activityList;
 @dynamic commentCount;

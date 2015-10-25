@@ -6,9 +6,10 @@
 //  Copyright © 2015 MMInstaGroup. All rights reserved.
 //
 
-#import "Acitivty.h"
+#import "Activity.h"
+#import <Parse/PFObject+Subclass.h>
 
-@implementation Acitivty
+@implementation Activity
 
 @dynamic toUser;
 @dynamic fromUser;
