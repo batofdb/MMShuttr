@@ -28,6 +28,7 @@
 		47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AE1BD9CFCB006091DA /* libz.tbd */; };
 		47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */; };
 		47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Acitivty.m */; };
+		6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6518FC501BDB3707002E0FD5 /* PhotoManager.m */; };
 		47A4A9361BDB638B006091DA /* FeedContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A9351BDB638B006091DA /* FeedContainerCellView.xib */; };
 		47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */; };
 		47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */; };
@@ -105,6 +106,8 @@
 		47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		47A4A9431BDB7070006091DA /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		47A4A9441BDB7070006091DA /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		6518FC4F1BDB3707002E0FD5 /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
+		6518FC501BDB3707002E0FD5 /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
 		658E322D1BD9D85300314027 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		658E322E1BD9D85300314027 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		658E322F1BD9D85300314027 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				3ACF11671BD9FB8500EDBF4B /* User.h */,
+				6518FC4F1BDB3707002E0FD5 /* PhotoManager.h */,
+				6518FC501BDB3707002E0FD5 /* PhotoManager.m */,
 				3ACF11681BD9FB8500EDBF4B /* User.m */,
 				3ACF116A1BD9FB9500EDBF4B /* Post.h */,
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
@@ -434,6 +439,7 @@
 				47A4A91A1BDB0962006091DA /* Acitivty.m in Sources */,
 				47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */,
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
+				6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */,
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
@@ -602,6 +608,7 @@
 					"$(PROJECT_DIR)/Shuttr",
 				);
 				INFOPLIST_FILE = Shuttr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMInstaGroup.Shuttr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -617,6 +624,7 @@
 					"$(PROJECT_DIR)/Shuttr",
 				);
 				INFOPLIST_FILE = Shuttr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MMInstaGroup.Shuttr;
 				PRODUCT_NAME = "$(TARGET_NAME)";

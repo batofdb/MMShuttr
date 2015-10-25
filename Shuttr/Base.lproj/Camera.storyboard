@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
@@ -16,17 +15,52 @@
                     <view key="view" contentMode="scaleToFill" id="W39-uj-K97">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5F-RH-gPh">
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="600"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="405"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="select" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-HP-Pc4">
+                                <rect key="frame" x="20" y="11" width="363" height="66"/>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="6od-Kl-qxk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPt-cH-62A">
+                                <rect key="frame" x="0.0" y="348" width="383" height="195"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="hwW-Y9-c4D"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1J-aG-eDL">
+                                <rect key="frame" x="273" y="14" width="78" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUC-oY-i98">
+                                <rect key="frame" x="140" y="116" width="51" height="31"/>
+                            </switch>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CameraWheel" translatesAutoresizingMaskIntoConstraints="NO" id="rAR-U5-apy">
+                                <rect key="frame" x="43" y="146" width="297" height="251"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="qfr-G1-Wzn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="countLabel" destination="u1J-aG-eDL" id="H8D-QV-tDW"/>
+                        <outlet property="imageView" destination="X5F-RH-gPh" id="xgA-j2-ADu"/>
+                        <outlet property="wheelImageView" destination="rAR-U5-apy" id="IXf-hY-mkU"/>
                         <segue destination="aUI-cb-kSg" kind="show" identifier="ToPostSegue" id="Swh-NP-0V3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JeJ-yM-eU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="837"/>
+            <point key="canvasLocation" x="1445" y="847"/>
         </scene>
         <!--Post-->
         <scene sceneID="kj8-n5-73M">
@@ -37,4 +71,7 @@
             <point key="canvasLocation" x="2166" y="837"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CameraWheel" width="361" height="346"/>
+    </resources>
 </document>

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoManager.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface CameraViewController : UIViewController
+
+@property PhotoManager *photoManager;
 
 @end
