@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="D3z-xX-LMh">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -19,17 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Lr-ts-Nbl">
-                                <rect key="frame" x="70" y="235" width="263" height="61"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Lr-ts-Nbl">
+                                <rect key="frame" x="70" y="235" width="82" height="22"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kr-KO-nZJ">
-                                        <rect key="frame" x="20" y="20" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kr-KO-nZJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xu-bH-fG2">
-                                        <rect key="frame" x="201" y="20" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xu-bH-fG2">
+                                        <rect key="frame" x="41" y="0.0" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
@@ -40,17 +40,17 @@
                                     <rect key="frame" x="40" y="284" width="320" height="22"/>
                                 </variation>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5Y-72-0xF">
-                                <rect key="frame" x="70" y="295" width="263" height="61"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q5Y-72-0xF">
+                                <rect key="frame" x="70" y="295" width="82" height="22"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uau-zM-pb0">
-                                        <rect key="frame" x="20" y="20" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uau-zM-pb0">
+                                        <rect key="frame" x="0.0" y="0.0" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1x-n1-ose">
-                                        <rect key="frame" x="201" y="20" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1x-n1-ose">
+                                        <rect key="frame" x="41" y="0.0" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                     <rect key="frame" x="40" y="335" width="320" height="22"/>
                                 </variation>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="trw-on-cJE">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="trw-on-cJE">
                                 <rect key="frame" x="0.0" y="370" width="408" height="181"/>
                                 <animations/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t5u-H0-uV4">
@@ -72,7 +72,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IQL-MX-SEK">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
@@ -84,21 +84,21 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NwM-dT-f7f">
-                                <rect key="frame" x="125" y="0.0" width="151" height="209"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NwM-dT-f7f">
+                                <rect key="frame" x="125" y="0.0" width="237" height="156"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt1-If-Dxp">
-                                        <rect key="frame" x="54" y="20" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt1-If-Dxp">
+                                        <rect key="frame" x="0.0" y="67" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="zfH-M9-fmb">
-                                        <rect key="frame" x="20" y="42" width="111" height="118"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="zfH-M9-fmb">
+                                        <rect key="frame" x="41" y="0.0" width="155" height="156"/>
                                         <animations/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-Ra-L5o">
-                                        <rect key="frame" x="54" y="168" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-Ra-L5o">
+                                        <rect key="frame" x="196" y="67" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
@@ -175,6 +175,8 @@
                                 <exclude reference="WGQ-Bf-ihU"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="LgL-BI-MDE"/>
+                                <exclude reference="qtS-OO-HbX"/>
                                 <exclude reference="D2M-vO-2RT"/>
                                 <exclude reference="aXH-go-vTx"/>
                                 <exclude reference="iBC-yO-796"/>
@@ -185,8 +187,6 @@
                                 <exclude reference="M8h-BA-a2a"/>
                                 <exclude reference="Urd-u8-yWw"/>
                                 <exclude reference="ZkZ-Ob-AjL"/>
-                                <exclude reference="LgL-BI-MDE"/>
-                                <exclude reference="qtS-OO-HbX"/>
                                 <exclude reference="0C5-Gy-Lqw"/>
                                 <exclude reference="2vj-4a-okC"/>
                                 <exclude reference="c4u-XS-PjU"/>
@@ -203,6 +203,8 @@
                                 <include reference="WGQ-Bf-ihU"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="LgL-BI-MDE"/>
+                                <include reference="qtS-OO-HbX"/>
                                 <exclude reference="D2M-vO-2RT"/>
                                 <exclude reference="aXH-go-vTx"/>
                                 <include reference="iBC-yO-796"/>
@@ -213,8 +215,6 @@
                                 <exclude reference="M8h-BA-a2a"/>
                                 <include reference="Urd-u8-yWw"/>
                                 <include reference="ZkZ-Ob-AjL"/>
-                                <include reference="LgL-BI-MDE"/>
-                                <include reference="qtS-OO-HbX"/>
                                 <include reference="0C5-Gy-Lqw"/>
                                 <include reference="2vj-4a-okC"/>
                                 <include reference="c4u-XS-PjU"/>
@@ -252,6 +252,7 @@
                         <viewControllerLayoutGuide type="bottom" id="nhU-xF-MtN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7F0-hZ-Vsy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3M5-aS-AU4">
@@ -370,13 +371,6 @@
                                 <exclude reference="oCW-uX-xhb"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Szd-d7-SoZ"/>
-                                <exclude reference="kM3-QB-gPO"/>
-                                <exclude reference="wQS-rq-2i3"/>
-                                <exclude reference="TzM-tm-lue"/>
-                                <exclude reference="atN-DB-8Rh"/>
-                                <exclude reference="w2I-9e-2m0"/>
-                                <exclude reference="xc9-de-LEQ"/>
                                 <exclude reference="TJO-WJ-tUB"/>
                                 <exclude reference="glQ-Rs-NUN"/>
                                 <exclude reference="nUL-8y-ZUS"/>
@@ -385,12 +379,19 @@
                                 <exclude reference="KRD-Xu-xtm"/>
                                 <exclude reference="bFh-VI-PY7"/>
                                 <exclude reference="qUP-mb-lTV"/>
-                                <exclude reference="9sa-e0-XNa"/>
-                                <exclude reference="McX-Y1-yUP"/>
-                                <exclude reference="Q0C-RP-V0P"/>
+                                <exclude reference="TzM-tm-lue"/>
+                                <exclude reference="atN-DB-8Rh"/>
+                                <exclude reference="w2I-9e-2m0"/>
+                                <exclude reference="xc9-de-LEQ"/>
                                 <exclude reference="62y-wv-Ag8"/>
                                 <exclude reference="bDg-Dh-1AQ"/>
                                 <exclude reference="e9v-WA-bJF"/>
+                                <exclude reference="Szd-d7-SoZ"/>
+                                <exclude reference="kM3-QB-gPO"/>
+                                <exclude reference="wQS-rq-2i3"/>
+                                <exclude reference="9sa-e0-XNa"/>
+                                <exclude reference="McX-Y1-yUP"/>
+                                <exclude reference="Q0C-RP-V0P"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -403,13 +404,6 @@
                                 <include reference="oCW-uX-xhb"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Szd-d7-SoZ"/>
-                                <include reference="kM3-QB-gPO"/>
-                                <include reference="wQS-rq-2i3"/>
-                                <include reference="TzM-tm-lue"/>
-                                <exclude reference="atN-DB-8Rh"/>
-                                <include reference="w2I-9e-2m0"/>
-                                <include reference="xc9-de-LEQ"/>
                                 <exclude reference="TJO-WJ-tUB"/>
                                 <include reference="glQ-Rs-NUN"/>
                                 <include reference="nUL-8y-ZUS"/>
@@ -418,12 +412,19 @@
                                 <include reference="KRD-Xu-xtm"/>
                                 <include reference="bFh-VI-PY7"/>
                                 <exclude reference="qUP-mb-lTV"/>
-                                <include reference="9sa-e0-XNa"/>
-                                <include reference="McX-Y1-yUP"/>
-                                <exclude reference="Q0C-RP-V0P"/>
+                                <include reference="TzM-tm-lue"/>
+                                <exclude reference="atN-DB-8Rh"/>
+                                <include reference="w2I-9e-2m0"/>
+                                <include reference="xc9-de-LEQ"/>
                                 <include reference="62y-wv-Ag8"/>
                                 <exclude reference="bDg-Dh-1AQ"/>
                                 <include reference="e9v-WA-bJF"/>
+                                <include reference="Szd-d7-SoZ"/>
+                                <include reference="kM3-QB-gPO"/>
+                                <include reference="wQS-rq-2i3"/>
+                                <include reference="9sa-e0-XNa"/>
+                                <include reference="McX-Y1-yUP"/>
+                                <exclude reference="Q0C-RP-V0P"/>
                             </mask>
                         </variation>
                     </view>

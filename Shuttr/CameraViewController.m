@@ -123,12 +123,12 @@
              self.imageView.image = image;
              
              
-             [self.photoArray addObject: self.imageView];
+             [self.photoArray addObject: self.imageView.image];
               //save image to photosAlbum
              UIImageWriteToSavedPhotosAlbum (self.imageView.image, nil, nil , nil);
              
              //segue when image reaches to 10
-             if (self.photoArray.count == 10) {
+             if (self.photoArray.count == 1) {
            
              [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
                     self.photoArray = [NSMutableArray new];
@@ -186,12 +186,12 @@
                  self.imageView.image = image;
                  
                  
-                 [self.photoArray addObject: self.imageView];
+                 [self.photoArray addObject: self.imageView.image];
                  //save image to photosAlbum
                  UIImageWriteToSavedPhotosAlbum (self.imageView.image, nil, nil , nil);
                  
                  //segue when image reaches to 10
-                 if (self.photoArray.count == 10) {
+                 if (self.photoArray.count == 1) {
                      
                      
                      [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
@@ -286,12 +286,9 @@
 
 #pragma mark segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    
-    PostPhotosViewController * postPhotoViewcontroller = [PostPhotosViewController new];
-    
+
+    PostPhotosViewController * postPhotoViewcontroller = segue.destinationViewController;
     postPhotoViewcontroller.images = self.photoArray;
-    
     NSLog(@"%lu",(unsigned long)postPhotoViewcontroller.images.count);
 }
 
