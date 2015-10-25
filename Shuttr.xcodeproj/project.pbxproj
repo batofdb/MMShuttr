@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A7483391BDC7F0D00484FED /* FeedTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7483381BDC7F0D00484FED /* FeedTableHeaderView.xib */; };
+		3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */; };
 		3AA7CF591BDC61A000C09601 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
 		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
 		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
@@ -76,6 +78,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A7483381BDC7F0D00484FED /* FeedTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableHeaderView.xib; sourceTree = "<group>"; };
+		3A74833A1BDC7F3A00484FED /* FeedTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableHeaderView.h; sourceTree = "<group>"; };
+		3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableHeaderView.m; sourceTree = "<group>"; };
 		3ACF11671BD9FB8500EDBF4B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3ACF11681BD9FB8500EDBF4B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3ACF116A1BD9FB9500EDBF4B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -299,6 +304,9 @@
 				47A4A9461BDC478F006091DA /* FeedTableFooterView.h */,
 				47A4A9471BDC478F006091DA /* FeedTableFooterView.m */,
 				47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */,
+				3A7483381BDC7F0D00484FED /* FeedTableHeaderView.xib */,
+				3A74833A1BDC7F3A00484FED /* FeedTableHeaderView.h */,
+				3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -456,6 +464,7 @@
 				47A4A86A1BD9CF19006091DA /* Assets.xcassets in Resources */,
 				3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */,
 				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
+				3A7483391BDC7F0D00484FED /* FeedTableHeaderView.xib in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
 				47A4A94A1BDC47C0006091DA /* FeedTableFooterView.xib in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
@@ -484,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA7CF591BDC61A000C09601 /* Activity.m in Sources */,
+				3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */,
 				47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */,
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
 				6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */,

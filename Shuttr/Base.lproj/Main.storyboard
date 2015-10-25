@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="410" y="-543"/>
         </scene>
-        <!--Item-->
+        <!--Feed-->
         <scene sceneID="JEI-WY-KCL">
             <objects>
                 <viewController id="PAA-dQ-cCR" customClass="MainFeedViewController" sceneMemberID="viewController">
@@ -150,14 +150,23 @@
                             <constraint firstItem="n7i-Rg-Dac" firstAttribute="top" secondItem="16z-ka-AoS" secondAttribute="top" id="ut7-24-M91"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="eAO-qO-RZA"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="eAO-qO-RZA"/>
                     <connections>
                         <outlet property="feedTableView" destination="X6c-hm-H9e" id="F1R-Iv-2no"/>
+                        <segue destination="Wdk-Pa-WdH" kind="presentation" identifier="ToUserProfileSegue" id="UTR-8x-XIs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="and-li-s4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1419" y="226"/>
+        </scene>
+        <!--SearchDetailViewController-->
+        <scene sceneID="eqD-Im-uJL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="SearchDetailViewController" id="Wdk-Pa-WdH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xSU-ff-LFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985.5" y="71"/>
         </scene>
         <!--Camera-->
         <scene sceneID="ZY7-2I-ki8">

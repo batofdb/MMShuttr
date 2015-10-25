@@ -12,8 +12,10 @@
 #import "ImageProcessing.h"
 #import "Activity.h"
 #import "FeedTableFooterView.h"
+#import "FeedTableHeaderView.h"
+#import "SearchDetailViewController.h"
 
-@interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property NSArray *objects;
 @end
@@ -23,9 +25,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    User *user = [User currentUser];
+
+    if (!user){
+        [User logInWithUsernameInBackground:@"francis" password:@"pizza" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
+    }
+
+
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 
     [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostFooter"];
+
+    [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostHeader"];
 
     self.objects = @[ @{ @"description": @"Section A",
                      @"articles": @[ @{ @"title": @"Article A1" },
@@ -79,12 +90,12 @@
     [cell setCollectionData:articleData];
     return cell;
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    static NSString *CellIdentifier = @"PostHeader";
-    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    return headerView;
-}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    static NSString *CellIdentifier = @"PostHeader";
+//    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    return headerView;
+//}
 
 
 #pragma mark UITableViewDelegate methods
@@ -93,15 +104,32 @@
     return footerView;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 100;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    FeedTableHeaderView *headerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostHeader"];
+    headerView.delegate = self;
+    return headerView;
 }
 
-
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 85;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 400.0;
 }
+
+#pragma mark - Feed Table Header Delegate Methods
+
+-(void)headerAuthorButtonTapped:(id)sender {
+    [self performSegueWithIdentifier:@"ToUserProfileSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    SearchDetailViewController *vc = segue.destinationViewController;
+
+    // TODO: change current user to user name in header
+    vc.user = [User currentUser];
+}
+
 
 @end

@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--My Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="DbE-Kf-f50">
             <objects>
                 <viewController id="D3z-xX-LMh" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -227,7 +227,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Profile" id="lou-Gs-kWQ"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="lou-Gs-kWQ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="followersCountLabel" destination="0Kr-KO-nZJ" id="cQc-le-9YY"/>

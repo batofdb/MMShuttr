@@ -85,6 +85,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CameraWheel" width="361" height="346"/>
+        <image name="CameraWheel" width="64" height="64"/>
     </resources>
 </document>

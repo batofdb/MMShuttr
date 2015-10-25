@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Find Users-->
+        <!--Explore-->
         <scene sceneID="Gka-8E-45L">
             <objects>
                 <viewController id="PGh-hg-4Xe" customClass="SearchViewController" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Find Users" id="K3C-Kq-WnM"/>
+                    <navigationItem key="navigationItem" title="Explore" id="K3C-Kq-WnM"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="51D-R1-QrK" id="OpK-6v-fXH"/>
@@ -82,7 +82,7 @@
         <!--Search Detail View Controller-->
         <scene sceneID="9L0-Zs-Rsw">
             <objects>
-                <viewController id="dNP-1U-kWm" customClass="SearchDetailViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SearchDetailViewController" storyboardIdentifier="SearchDetailViewController" id="dNP-1U-kWm" customClass="SearchDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="smT-3K-koF"/>
                         <viewControllerLayoutGuide type="bottom" id="pWg-pD-XVc"/>
