@@ -41,14 +41,16 @@
 		47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */; };
 		47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */; };
 		47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9441BDB7070006091DA /* FeedTableViewCell.m */; };
+		47A4A9481BDC478F006091DA /* FeedTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9471BDC478F006091DA /* FeedTableFooterView.m */; };
+		47A4A94A1BDC47C0006091DA /* FeedTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */; };
+		47A4A9521BDC645B006091DA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A94B1BDC645B006091DA /* Bolts.framework */; };
+		47A4A9531BDC645B006091DA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A94C1BDC645B006091DA /* Parse.framework */; };
+		47A4A9541BDC645B006091DA /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A94D1BDC645B006091DA /* ParseCrashReporting.framework */; };
+		47A4A9551BDC645B006091DA /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A94E1BDC645B006091DA /* ParseFacebookUtils.framework */; };
+		47A4A9561BDC645B006091DA /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A94F1BDC645B006091DA /* ParseFacebookUtilsV4.framework */; };
+		47A4A9571BDC645B006091DA /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A9501BDC645B006091DA /* ParseTwitterUtils.framework */; };
+		47A4A9581BDC645B006091DA /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A9511BDC645B006091DA /* ParseUI.framework */; };
 		6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6518FC501BDB3707002E0FD5 /* PhotoManager.m */; };
-		658E32341BD9D85300314027 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322D1BD9D85300314027 /* Bolts.framework */; };
-		658E32351BD9D85300314027 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322E1BD9D85300314027 /* Parse.framework */; };
-		658E32361BD9D85300314027 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E322F1BD9D85300314027 /* ParseCrashReporting.framework */; };
-		658E32371BD9D85300314027 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E32301BD9D85300314027 /* ParseFacebookUtils.framework */; };
-		658E32381BD9D85300314027 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E32311BD9D85300314027 /* ParseFacebookUtilsV4.framework */; };
-		658E32391BD9D85300314027 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E32321BD9D85300314027 /* ParseTwitterUtils.framework */; };
-		658E323A1BD9D85300314027 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 658E32331BD9D85300314027 /* ParseUI.framework */; };
 		658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E323C1BD9D90900314027 /* MainFeedViewController.m */; };
 		658E32401BD9D92300314027 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E323F1BD9D92300314027 /* CameraViewController.m */; };
 		658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E32421BD9DB6300314027 /* PostPhotosViewController.m */; };
@@ -128,15 +130,18 @@
 		47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		47A4A9431BDB7070006091DA /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		47A4A9441BDB7070006091DA /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		47A4A9461BDC478F006091DA /* FeedTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableFooterView.h; sourceTree = "<group>"; };
+		47A4A9471BDC478F006091DA /* FeedTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableFooterView.m; sourceTree = "<group>"; };
+		47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableFooterView.xib; sourceTree = "<group>"; };
+		47A4A94B1BDC645B006091DA /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		47A4A94C1BDC645B006091DA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		47A4A94D1BDC645B006091DA /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		47A4A94E1BDC645B006091DA /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		47A4A94F1BDC645B006091DA /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		47A4A9501BDC645B006091DA /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
+		47A4A9511BDC645B006091DA /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		6518FC4F1BDB3707002E0FD5 /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
 		6518FC501BDB3707002E0FD5 /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
-		658E322D1BD9D85300314027 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		658E322E1BD9D85300314027 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		658E322F1BD9D85300314027 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
-		658E32301BD9D85300314027 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		658E32311BD9D85300314027 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
-		658E32321BD9D85300314027 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
-		658E32331BD9D85300314027 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		658E323B1BD9D90900314027 /* MainFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
 		658E323C1BD9D90900314027 /* MainFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		658E323E1BD9D92300314027 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
@@ -152,23 +157,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				658E32371BD9D85300314027 /* ParseFacebookUtils.framework in Frameworks */,
+				47A4A9551BDC645B006091DA /* ParseFacebookUtils.framework in Frameworks */,
 				47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */,
 				47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */,
 				47A4A8AD1BD9CFC3006091DA /* SystemConfiguration.framework in Frameworks */,
 				47A4A8AB1BD9CFBC006091DA /* StoreKit.framework in Frameworks */,
 				47A4A8A91BD9CFB6006091DA /* Security.framework in Frameworks */,
-				658E32391BD9D85300314027 /* ParseTwitterUtils.framework in Frameworks */,
+				47A4A9571BDC645B006091DA /* ParseTwitterUtils.framework in Frameworks */,
 				47A4A8A71BD9CFB1006091DA /* QuartzCore.framework in Frameworks */,
 				47A4A8A51BD9CFAB006091DA /* CoreLocation.framework in Frameworks */,
-				658E323A1BD9D85300314027 /* ParseUI.framework in Frameworks */,
+				47A4A9581BDC645B006091DA /* ParseUI.framework in Frameworks */,
 				47A4A8A31BD9CFA4006091DA /* CoreGraphics.framework in Frameworks */,
-				658E32341BD9D85300314027 /* Bolts.framework in Frameworks */,
+				47A4A9521BDC645B006091DA /* Bolts.framework in Frameworks */,
 				47A4A8A11BD9CF9E006091DA /* CFNetwork.framework in Frameworks */,
-				658E32351BD9D85300314027 /* Parse.framework in Frameworks */,
+				47A4A9531BDC645B006091DA /* Parse.framework in Frameworks */,
 				47A4A89F1BD9CF98006091DA /* AudioToolbox.framework in Frameworks */,
-				658E32361BD9D85300314027 /* ParseCrashReporting.framework in Frameworks */,
-				658E32381BD9D85300314027 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				47A4A9541BDC645B006091DA /* ParseCrashReporting.framework in Frameworks */,
+				47A4A9561BDC645B006091DA /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +296,9 @@
 				47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */,
 				47A4A9431BDB7070006091DA /* FeedTableViewCell.h */,
 				47A4A9441BDB7070006091DA /* FeedTableViewCell.m */,
+				47A4A9461BDC478F006091DA /* FeedTableFooterView.h */,
+				47A4A9471BDC478F006091DA /* FeedTableFooterView.m */,
+				47A4A9491BDC47C0006091DA /* FeedTableFooterView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -319,13 +327,13 @@
 		658E324D1BD9DBE200314027 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				658E322D1BD9D85300314027 /* Bolts.framework */,
-				658E322E1BD9D85300314027 /* Parse.framework */,
-				658E322F1BD9D85300314027 /* ParseCrashReporting.framework */,
-				658E32301BD9D85300314027 /* ParseFacebookUtils.framework */,
-				658E32311BD9D85300314027 /* ParseFacebookUtilsV4.framework */,
-				658E32321BD9D85300314027 /* ParseTwitterUtils.framework */,
-				658E32331BD9D85300314027 /* ParseUI.framework */,
+				47A4A94B1BDC645B006091DA /* Bolts.framework */,
+				47A4A94C1BDC645B006091DA /* Parse.framework */,
+				47A4A94D1BDC645B006091DA /* ParseCrashReporting.framework */,
+				47A4A94E1BDC645B006091DA /* ParseFacebookUtils.framework */,
+				47A4A94F1BDC645B006091DA /* ParseFacebookUtilsV4.framework */,
+				47A4A9501BDC645B006091DA /* ParseTwitterUtils.framework */,
+				47A4A9511BDC645B006091DA /* ParseUI.framework */,
 				47A4A8AC1BD9CFC3006091DA /* SystemConfiguration.framework */,
 				47A4A8AA1BD9CFBC006091DA /* StoreKit.framework */,
 				47A4A8A81BD9CFB6006091DA /* Security.framework */,
@@ -449,6 +457,7 @@
 				3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */,
 				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
+				47A4A94A1BDC47C0006091DA /* FeedTableFooterView.xib in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +490,7 @@
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
+				47A4A9481BDC478F006091DA /* FeedTableFooterView.m in Sources */,
 				47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */,
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
 				3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */,
