@@ -10,6 +10,22 @@
 
 @implementation FeedTableFooterView
 
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithReuseIdentifier:reuseIdentifier];
+    if (self)
+    {
+        NSArray* objects = [[NSBundle mainBundle] loadNibNamed:@"FeedTableFooterView"
+                                                         owner:self
+                                                       options:nil];
+        UIView *nibView = [objects firstObject];
+        UIView *contentView = self.contentView;
+        CGSize contentViewSize = contentView.frame.size;
+        nibView.frame = CGRectMake(0, 0, contentViewSize.width, contentViewSize.height);
+        [contentView addSubview:nibView];
+    }
+    return self;
+}
 
 -(void)awakeFromNib {
     [self prefix_addUpperBorder];

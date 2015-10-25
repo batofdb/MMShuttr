@@ -34,9 +34,9 @@
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 
-    [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostFooter"];
+    [self.feedTableView registerClass:[FeedTableFooterView class] forHeaderFooterViewReuseIdentifier:@"FeedFooter"];
 
-    [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostHeader"];
+    [self.feedTableView registerClass:[FeedTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"FeedHeader"];
 
     self.objects = @[ @{ @"description": @"Section A",
                      @"articles": @[ @{ @"title": @"Article A1" },
@@ -100,18 +100,27 @@
 
 #pragma mark UITableViewDelegate methods
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *footerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostFooter"];
+    FeedTableFooterView *footerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"FeedFooter"];
+
+    footerView.backgroundColor = [UIColor grayColor];
+
     return footerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    FeedTableHeaderView *headerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostHeader"];
+    FeedTableHeaderView *headerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"FeedHeader"];
+
+    headerView.authorButton.titleLabel.text = @"authors";
     headerView.delegate = self;
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 85;
+    return 50;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 90;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
