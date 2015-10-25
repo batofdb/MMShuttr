@@ -11,7 +11,7 @@
 #import "FeedTableViewCell.h"
 #import "ImageProcessing.h"
 #import "Activity.h"
-#import "FeedTableFooterView.h"
+#import "FeedTableFooterCellView.h"
 #import "FeedTableHeaderView.h"
 #import "SearchDetailViewController.h"
 
@@ -34,7 +34,7 @@
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 
-    [self.feedTableView registerClass:[FeedTableFooterView class] forHeaderFooterViewReuseIdentifier:@"FeedFooter"];
+    //[self.feedTableView registerClass:[FeedTableFooterView class] forHeaderFooterViewReuseIdentifier:@"FeedFooter"];
 
     [self.feedTableView registerClass:[FeedTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"FeedHeader"];
 
@@ -71,10 +71,11 @@
                                      ]
                      }
                   ];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 
@@ -85,28 +86,21 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
-    NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
-    NSArray *articleData = [cellData objectForKey:@"articles"];
-    [cell setCollectionData:articleData];
+
+    if (indexPath.row == 1) {
+        [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterCellView" bundle:nil] forCellReuseIdentifier:@"FooterCellView"];
+        cell = [self.feedTableView dequeueReusableCellWithIdentifier:@"FooterCellView"];
+    } else {
+
+        NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
+        NSArray *articleData = [cellData objectForKey:@"articles"];
+        [cell setCollectionData:articleData];
+    }
     return cell;
 }
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    static NSString *CellIdentifier = @"PostHeader";
-//    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    return headerView;
-//}
 
 
 #pragma mark UITableViewDelegate methods
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    FeedTableFooterView *footerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"FeedFooter"];
-
-    footerView.backgroundColor = [UIColor grayColor];
-
-    return footerView;
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     FeedTableHeaderView *headerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"FeedHeader"];
 
@@ -119,12 +113,13 @@
     return 50;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 90;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 400.0;
+    if (indexPath.row == 1)
+#warning match this height with feedtablefootercellview
+        return 90;
+    else
+        return 400.0;
 }
 
 #pragma mark - Feed Table Header Delegate Methods

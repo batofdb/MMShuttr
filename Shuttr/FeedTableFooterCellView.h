@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedTableFooterView : UITableViewHeaderFooterView
+@interface FeedTableFooterCellView : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *likeImage;
 
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+//- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 @end

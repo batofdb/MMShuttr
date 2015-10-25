@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FeedTableFooterView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FeedTableFooterCellView">
             <rect key="frame" x="0.0" y="0.0" width="400" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -19,7 +19,7 @@
                     </constraints>
                     <string key="text">Lomo small batch heirloom Helvetica. Polaroid readymade beard cronut hella. Keytar stumptown XOXO occupy McSweeney's skateboard typewriter literally, Wes Anderson flannel. Wolf Schlitz YOLO, sartorial Portland McSweeney's pour-over quinoa gentrify flexitarian 90's post-ironic. </string>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
