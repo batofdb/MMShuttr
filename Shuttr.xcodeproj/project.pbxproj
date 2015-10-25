@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		3A7483391BDC7F0D00484FED /* FeedTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A7483381BDC7F0D00484FED /* FeedTableHeaderView.xib */; };
 		3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */; };
+		3A7483491BDC8ABF00484FED /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A74833F1BDC8ABE00484FED /* SVIndefiniteAnimatedView.m */; };
+		3A74834A1BDC8ABF00484FED /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A7483411BDC8ABE00484FED /* SVProgressHUD.bundle */; };
+		3A74834B1BDC8ABF00484FED /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7483431BDC8ABE00484FED /* SVProgressHUD.m */; };
+		3A74834C1BDC8ABF00484FED /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7483451BDC8ABF00484FED /* SVRadialGradientLayer.m */; };
+		3A74834D1BDC8ABF00484FED /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A7483471BDC8ABF00484FED /* Info.plist */; };
+		3A74834F1BDC9A0F00484FED /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A74834E1BDC9A0F00484FED /* PostDetail.storyboard */; };
+		3A7483521BDC9A9800484FED /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7483511BDC9A9800484FED /* PostDetailViewController.m */; };
 		3AA7CF591BDC61A000C09601 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
 		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
 		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
@@ -81,6 +88,19 @@
 		3A7483381BDC7F0D00484FED /* FeedTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableHeaderView.xib; sourceTree = "<group>"; };
 		3A74833A1BDC7F3A00484FED /* FeedTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableHeaderView.h; sourceTree = "<group>"; };
 		3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableHeaderView.m; sourceTree = "<group>"; };
+		3A74833E1BDC8ABE00484FED /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		3A74833F1BDC8ABE00484FED /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		3A7483401BDC8ABE00484FED /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		3A7483411BDC8ABE00484FED /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		3A7483421BDC8ABE00484FED /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		3A7483431BDC8ABE00484FED /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		3A7483441BDC8ABF00484FED /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		3A7483451BDC8ABF00484FED /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		3A7483471BDC8ABF00484FED /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A7483481BDC8ABF00484FED /* SVProgressHUD-Framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Framework.h"; sourceTree = "<group>"; };
+		3A74834E1BDC9A0F00484FED /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
+		3A7483501BDC9A9800484FED /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		3A7483511BDC9A9800484FED /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		3ACF11671BD9FB8500EDBF4B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3ACF11681BD9FB8500EDBF4B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3ACF116A1BD9FB9500EDBF4B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -199,6 +219,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A74833D1BDC8ABE00484FED /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				3A74833E1BDC8ABE00484FED /* SVIndefiniteAnimatedView.h */,
+				3A74833F1BDC8ABE00484FED /* SVIndefiniteAnimatedView.m */,
+				3A7483401BDC8ABE00484FED /* SVProgressHUD-Prefix.pch */,
+				3A7483411BDC8ABE00484FED /* SVProgressHUD.bundle */,
+				3A7483421BDC8ABE00484FED /* SVProgressHUD.h */,
+				3A7483431BDC8ABE00484FED /* SVProgressHUD.m */,
+				3A7483441BDC8ABF00484FED /* SVRadialGradientLayer.h */,
+				3A7483451BDC8ABF00484FED /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		3A7483461BDC8ABF00484FED /* SVProgressHUD-Framework */ = {
+			isa = PBXGroup;
+			children = (
+				3A7483471BDC8ABF00484FED /* Info.plist */,
+				3A7483481BDC8ABF00484FED /* SVProgressHUD-Framework.h */,
+			);
+			path = "SVProgressHUD-Framework";
+			sourceTree = "<group>";
+		};
 		47A4A8511BD9CF19006091DA = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +278,8 @@
 		47A4A85D1BD9CF19006091DA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A74833D1BDC8ABE00484FED /* SVProgressHUD */,
+				3A7483461BDC8ABF00484FED /* SVProgressHUD-Framework */,
 				47A4A8691BD9CF19006091DA /* Assets.xcassets */,
 				47A4A8601BD9CF19006091DA /* AppDelegate.h */,
 				47A4A8611BD9CF19006091DA /* AppDelegate.m */,
@@ -266,9 +312,9 @@
 		47A4A8B21BD9CFF0006091DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3ACF11671BD9FB8500EDBF4B /* User.h */,
 				6518FC4F1BDB3707002E0FD5 /* PhotoManager.h */,
 				6518FC501BDB3707002E0FD5 /* PhotoManager.m */,
+				3ACF11671BD9FB8500EDBF4B /* User.h */,
 				3ACF11681BD9FB8500EDBF4B /* User.m */,
 				3ACF116A1BD9FB9500EDBF4B /* Post.h */,
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
@@ -290,6 +336,7 @@
 				47A4A8661BD9CF19006091DA /* Main.storyboard */,
 				3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */,
 				3ACF11CD1BDB3BD200EDBF4B /* Profile.storyboard */,
+				3A74834E1BDC9A0F00484FED /* PostDetail.storyboard */,
 				658E324E1BD9DCC200314027 /* Camera.storyboard */,
 				658E32511BD9DCDE00314027 /* Post.storyboard */,
 				47A4A86B1BD9CF19006091DA /* LaunchScreen.storyboard */,
@@ -326,6 +373,8 @@
 				3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */,
 				3ACF11CA1BDB3B5900EDBF4B /* ProfileViewController.h */,
 				3ACF11CB1BDB3B5900EDBF4B /* ProfileViewController.m */,
+				3A7483501BDC9A9800484FED /* PostDetailViewController.h */,
+				3A7483511BDC9A9800484FED /* PostDetailViewController.m */,
 				3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */,
 				3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */,
 			);
@@ -460,14 +509,17 @@
 				3ACF11CF1BDB3BD200EDBF4B /* Profile.storyboard in Resources */,
 				47A4A9361BDB638B006091DA /* FeedContainerCellView.xib in Resources */,
 				47A4A86D1BD9CF19006091DA /* LaunchScreen.storyboard in Resources */,
+				3A74834F1BDC9A0F00484FED /* PostDetail.storyboard in Resources */,
 				658E32501BD9DCC200314027 /* Camera.storyboard in Resources */,
 				47A4A86A1BD9CF19006091DA /* Assets.xcassets in Resources */,
 				3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */,
 				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
+				3A74834A1BDC8ABF00484FED /* SVProgressHUD.bundle in Resources */,
 				3A7483391BDC7F0D00484FED /* FeedTableHeaderView.xib in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
 				47A4A94A1BDC47C0006091DA /* FeedTableFooterView.xib in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
+				3A74834D1BDC8ABF00484FED /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +553,9 @@
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
 				47A4A9481BDC478F006091DA /* FeedTableFooterView.m in Sources */,
+				3A7483491BDC8ABF00484FED /* SVIndefiniteAnimatedView.m in Sources */,
+				3A74834B1BDC8ABF00484FED /* SVProgressHUD.m in Sources */,
+				3A7483521BDC9A9800484FED /* PostDetailViewController.m in Sources */,
 				47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */,
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
 				3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */,
@@ -509,6 +564,7 @@
 				3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */,
 				3ACF11C91BDB3B4C00EDBF4B /* SearchViewController.m in Sources */,
 				47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */,
+				3A74834C1BDC8ABF00484FED /* SVRadialGradientLayer.m in Sources */,
 				658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */,
 				3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */,
 				3ACF11CC1BDB3B5900EDBF4B /* ProfileViewController.m in Sources */,

@@ -76,8 +76,11 @@
         [self presentViewController:picker animated:YES completion:nil];
     }];
 
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
     [alert addAction:takePhotoAction];
     [alert addAction:selectPhotoAction];
+    [alert addAction:cancel];
     [self presentViewController:alert animated:YES completion:nil];
 }
 

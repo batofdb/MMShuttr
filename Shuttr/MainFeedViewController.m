@@ -25,10 +25,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+
     User *user = [User currentUser];
 
+    //[User logOut];
+
     if (!user){
-        [User logInWithUsernameInBackground:@"francis" password:@"pizza" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
+        [User logInWithUsernameInBackground:@"philly" password:@"hen" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
     }
 
 
@@ -129,6 +133,7 @@
 
     // TODO: change current user to user name in header
     vc.user = [User currentUser];
+    vc.sourceVC = self;
 }
 
 

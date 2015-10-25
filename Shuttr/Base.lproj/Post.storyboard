@@ -123,6 +123,9 @@
                                     <constraint firstAttribute="width" constant="48" id="zum-oE-67s"/>
                                 </constraints>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancelButtonPressed:" destination="L6f-nR-VSc" eventType="touchUpInside" id="lPt-RU-gHr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>

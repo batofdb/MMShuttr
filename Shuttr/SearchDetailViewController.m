@@ -7,12 +7,14 @@
 //
 
 #import "SearchDetailViewController.h"
+#import "PostCollectionViewCell.h"
 #import "ImageProcessing.h"
 #import "UIImage+ImageResizing.h"
+#import "PostDetailViewController.h"
 #import "Activity.h"
 #import "Post.h"
 
-@interface SearchDetailViewController ()
+@interface SearchDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
@@ -22,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *likesCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 @property (nonatomic) Activity *followActivity;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) NSMutableArray *rollCoverImages;
+@property (nonatomic) NSArray *userPosts;
 
 @end
 
@@ -30,22 +35,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self populateView];
+    [self.collectionView reloadData];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self checkSender];
 }
 
 - (void)populateView {
     [self getUserProperties];
+    self.rollCoverImages = [NSMutableArray new];
+    self.userPosts = [NSMutableArray new];
 
-    self.followActivity = [Activity new];
+    self.followActivity = [Activity object];
     [self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
     [self.followButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 
     // Get user posts
     PFQuery *queryPosts = [Post query];
-    [queryPosts whereKey:@"user" equalTo:self.user];
+    [queryPosts whereKey:@"author" equalTo:self.user];
     [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         NSArray *userPosts = [NSArray arrayWithArray:objects];
+        self.userPosts = [NSArray arrayWithArray:objects];
         self.postsCountLabel.text = [NSString stringWithFormat:@"Posts: %lu", userPosts.count];
+
+        for (Post *post in self.userPosts) {
+            [self.rollCoverImages addObject:[ImageProcessing getImageFromData:[post.roll firstObject]]];
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView reloadData];
+        });
+
+
     }];
 
     PFQuery *fromQuery = [Activity query];
@@ -69,19 +92,16 @@
             } else if ([activity.activityType  isEqual:@2] && [activity.fromUser isEqual:self.user]) {
                 [userFollowing addObject:activity];
             }
-
             if ([activity.activityType isEqual:@2] && [activity.fromUser isEqual:[User currentUser]] && [activity.toUser isEqual:self.user]) {
                 [self.followButton setTitle:@"Following" forState:UIControlStateNormal];
                 [self.followButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
                 self.followActivity = activity;
             }
         }
-
         self.likesCountLabel.text = [NSString stringWithFormat:@"Likes: %lu", userLikes.count];
         self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
         self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
     }];
-
 }
 
 - (void)getUserProperties {
@@ -96,6 +116,27 @@
     UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:self.user.profilePicture] scaledToSize:CGSizeMake(self.profileImageView.frame.size.width, self.profileImageView.frame.size.height)] ;
 
     self.profileImageView.image = profilePicture;
+}
+
+- (void)checkSender {
+    if (self.sourceVC){
+        UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+        navBar.backgroundColor = [UIColor whiteColor];
+
+        UINavigationItem *navItem = [[UINavigationItem alloc] init];
+        navItem.title = @"User Profile";
+
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onDoneButtonPressed:)];
+        navItem.rightBarButtonItem = rightButton;
+        
+        navBar.items = @[ navItem ];
+        
+        [self.view addSubview:navBar];
+    }
+}
+
+- (void)onDoneButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onFollowButtonPressed:(UIButton *)sender {
@@ -124,6 +165,32 @@
     }
 
 
+}
+
+#pragma mark - UICollectionView Delegate Methods
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+
+    cell.imageView.image = [self.rollCoverImages objectAtIndex:indexPath.row];
+
+    return cell;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.rollCoverImages.count;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    [self performSegueWithIdentifier:@"ToPostDetailSegue" sender:indexPath];
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ToPostDetailSegue"]) {
+        PostDetailViewController *vc = segue.destinationViewController;
+        NSIndexPath *indexPath = sender;
+        vc.post = [self.userPosts objectAtIndex:indexPath.row];
+    }
 }
 
 

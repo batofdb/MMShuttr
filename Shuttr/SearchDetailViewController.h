@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "MainFeedViewController.h"
 
 @interface SearchDetailViewController : UIViewController
 
 @property User *user;
+@property MainFeedViewController *sourceVC;
 
 @end

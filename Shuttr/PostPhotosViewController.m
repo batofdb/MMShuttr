@@ -9,6 +9,7 @@
 #import "PostPhotosViewController.h"
 #import "PostCollectionViewCell.h"
 #import "ImageProcessing.h"
+#import "SVProgressHUD.h"
 #import "User.h"
 #import "Post.h"
 
@@ -94,7 +95,7 @@
 - (IBAction)onPostButtonPressed:(UIButton *)sender {
 
     User *user = [User currentUser];
-    Post *post = [Post new];
+    Post *post = [Post object];
 
     post.author = user;
     post.roll = [ImageProcessing getDataArrayFromImageArray:self.images];
@@ -115,14 +116,36 @@
 //    }];
 
 
+    [SVProgressHUD show];
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"post saved");
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post Uploaded!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alert addAction:okay];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             NSLog(@"unable to save post");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unable to save post." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:dismiss];
+            [self presentViewController:alert animated:YES completion:nil];
         }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
     }];
 
+}
+
+- (IBAction)onCancelButtonPressed:(UIButton *)sender {
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
