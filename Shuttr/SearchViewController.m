@@ -11,6 +11,7 @@
 #import "User.h"
 #import "UIImage+ImageResizing.h"
 #import "ImageProcessing.h"
+#import "Activity.h"
 
 @interface SearchViewController () <UISearchBarDelegate, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate>
 
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *filteredSearchResults;
 @property (nonatomic) NSArray *users;
+@property (nonatomic) NSArray *activityItems;
 
 @end
 
@@ -27,6 +29,8 @@
     [super viewDidLoad];
     [self initializeSearchController];
     self.filteredSearchResults = [NSArray new];
+    self.activityItems = [NSArray new];
+    [self activityItemsQuery];
     [self userQueryAndSave];
 
 }
@@ -51,6 +55,33 @@
     }];
 }
 
+- (void) activityItemsQuery {
+
+    PFQuery *query = [Activity query];
+    // Three days ago = 3 (days) * 24 (hours) * 60 (minutes) * 60 (seconds)
+    NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-259200];
+    [query whereKey:@"toUser" equalTo:[User currentUser]];
+    [query whereKey:@"fromUser" notEqualTo:[User currentUser]];
+    [query includeKey:@"fromUser"]; // for some reason I need this in order to access properties on activity.fromUser
+    [query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        self.activityItems = objects;
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            [self.tableView reloadData];
+        });
+    }];
+}
+
+- (NSArray *)currentArray {
+    if (self.searchController.isActive) {
+        return self.filteredSearchResults;
+    } else {
+        return self.activityItems;
+    }
+}
+
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"username contains [c] %@ AND fullName contains [c] %@", searchController.searchBar.text, searchController.searchBar.text];
@@ -60,21 +91,49 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
-    User *user = [self.filteredSearchResults objectAtIndex:indexPath.row];
-    cell.textLabel.text = user.fullName;
-    cell.imageView.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(cell.imageView.frame.size.width, cell.imageView.frame.size.height)];
+
+    NSArray *target = [self currentArray];
+    if ([[self currentArray] isEqualToArray:self.filteredSearchResults]) {
+        User *user = [target objectAtIndex:indexPath.row];
+
+        cell.textLabel.text = user.username;
+        cell.detailTextLabel.text = user.fullName;
+        cell.imageView.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(cell.imageView.frame.size.width, cell.imageView.frame.size.height)];
+
+    } else {
+        Activity *activity = [target objectAtIndex:indexPath.row];
+        if ([activity.activityType isEqual:@0]){
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ likes one of your rolls", activity.fromUser.username];
+            cell.imageView.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.imageView.frame.size.width, cell.imageView.frame.size.width)];
+
+        } else if ([activity.activityType isEqual:@1]){
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ commented on one of your rolls", activity.fromUser.username];
+            cell.imageView.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.imageView.frame.size.width, cell.imageView.frame.size.width)];
+
+        } else if ([activity.activityType isEqual:@2] ){
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ is following you", activity.fromUser.username];
+            cell.imageView.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.imageView.frame.size.width, cell.imageView.frame.size.width)];
+
+        }
+    }
+
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.filteredSearchResults.count;
+    return [[self currentArray] count];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToSearchDetailSegue"]) {
         SearchDetailViewController *vc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row];
+        if ([[self currentArray] isEqualToArray:self.filteredSearchResults]) {
+            vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row];
+        } else {
+            Activity *activity = [self.activityItems objectAtIndex:indexPath.row];
+            vc.user = activity.fromUser;
+        }
 
     }
 }

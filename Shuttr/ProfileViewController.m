@@ -15,6 +15,7 @@
 #import "UIImage+ImageResizing.h"
 #import "PostCollectionViewCell.h"
 #import "PostDetailViewController.h"
+#import "SVProgressHUD.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -48,10 +49,13 @@
     User *user = [User currentUser];
     self.rollCoverImages = [NSMutableArray new];
     self.userPosts = [NSMutableArray new];
+
     [self getUserProperties];
+
 
     // TODO: possible refactor opportunities here
     // Get user posts
+    [SVProgressHUD show];
     PFQuery *queryPosts = [Post query];
     [queryPosts whereKey:@"author" equalTo:user];
     [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -64,6 +68,7 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
+            [SVProgressHUD dismiss];
         });
 
     }];
@@ -75,6 +80,7 @@
     [toQuery whereKey:@"toUser" equalTo:user];
 
     PFQuery *activityQuery = [PFQuery orQueryWithSubqueries:@[toQuery, fromQuery]];
+
     [activityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
         NSMutableArray *userLikes = [NSMutableArray new];
@@ -90,12 +96,12 @@
                 [userFollowing addObject:activity];
             }
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
 
         self.likesCountLabel.text = [NSString stringWithFormat:@"Likes: %lu", userLikes.count];
         self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
         self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
         });
     }];
@@ -153,7 +159,6 @@
 
     if ([segue.identifier isEqualToString:@"ToEditProfileSegue"]) {
     EditProfileViewController *vc = segue.destinationViewController;
-    vc.user = [User currentUser];
     vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"ToPostDetailSegue"]) {
         PostDetailViewController *vc = segue.destinationViewController;

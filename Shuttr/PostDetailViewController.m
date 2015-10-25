@@ -10,6 +10,7 @@
 #import "PostCollectionViewCell.h"
 #import "ImageProcessing.h"
 #import "Activity.h"
+#import "SVProgressHUD.h"
 
 @interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -26,6 +27,7 @@
 
 @implementation PostDetailViewController
 
+#pragma mark - View Life Cycle Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self extractImages];
@@ -33,10 +35,12 @@
     self.navigationController.navigationItem.title =[NSString stringWithFormat:@"%@'s Post", self.post.author.username];
 }
 
+#pragma mark - Helper methods
 - (void)updateComments {
     PFQuery *commentsQuery = [Activity query];
     [commentsQuery whereKey:@"activityType" equalTo:@1];
     [commentsQuery whereKey:@"post" equalTo:self.post];
+    [SVProgressHUD show];
     [commentsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -46,6 +50,7 @@
             [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
         }
             self.commentsTextView.text = commentsString;
+            [SVProgressHUD dismiss];
         });
     }];
 }
@@ -55,6 +60,7 @@
     self.descriptionTextView.text = self.post.textDescription;
 }
 
+// Might add back later if we want to handle "add comment" differently
 //#pragma mark - UITextField Delegate Methods
 //
 //
@@ -74,34 +80,6 @@
 //
 //    return YES;
 //}
-- (IBAction)onAddCommentButtonPressed:(UIButton *)sender {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Comment" message:nil preferredStyle:UIAlertControllerStyleAlert];
-
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"Add comment here.";
-    }];
-
-
-    UIAlertAction *addAction = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-
-        UITextField *commentTextField = [[alertController textFields] firstObject];
-        Activity *newComment = [Activity new];
-            newComment.content = commentTextField.text;
-            newComment.fromUser = [User currentUser];
-            newComment.toUser = self.post.author;
-            newComment.activityType = @1;
-            newComment.post = self.post;
-            [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                [self updateComments];
-            }];
-
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
-    [alertController addAction:addAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
 
 #pragma mark - UICollectionView Delegate Methods
 
@@ -118,6 +96,36 @@
 }
 
 #pragma mark - IBActions
+
+- (IBAction)onAddCommentButtonPressed:(UIButton *)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New Comment" message:nil preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Add comment here.";
+    }];
+
+
+    UIAlertAction *addAction = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+
+        UITextField *commentTextField = [[alertController textFields] firstObject];
+        Activity *newComment = [Activity new];
+        newComment.content = commentTextField.text;
+        newComment.fromUser = [User currentUser];
+        newComment.toUser = self.post.author;
+        newComment.activityType = @1;
+        newComment.post = self.post;
+        [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            [self updateComments];
+        }];
+
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    [alertController addAction:addAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 - (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender {
 

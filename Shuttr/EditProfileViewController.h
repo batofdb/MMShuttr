@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
 
 @protocol EditProfileDelegate <NSObject>
 
@@ -20,6 +19,5 @@
 
 @property (nonatomic, weak) id<EditProfileDelegate>delegate;
 
-@property User *user;
 
 @end

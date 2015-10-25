@@ -8,18 +8,25 @@
 
 #import "EditProfileViewController.h"
 #import "ImageProcessing.h"
+#import "SVProgressHUD.h"
+#import "User.h"
 
 @interface EditProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *fullNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
+@property (nonatomic) User *user;
+@property BOOL imageChanged;
 @end
 
 @implementation EditProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.user = [User currentUser];
+
     self.fullNameTextField.text = self.user.fullName;
     self.usernameTextField.text = self.user.username;
     self.emailTextField.text = self.user.email;
@@ -34,13 +41,29 @@
 
     // TODO: need to query database here to make sure name/email isn't already taken
 
-    [self.user setObject:self.fullNameTextField.text forKey:@"fullName"];
-    [self.user setObject:self.usernameTextField.text forKey:@"username"];
-    [self.user setObject:self.emailTextField.text forKey:@"email"];
-    [self.user setObject:[ImageProcessing getDataFromImage:self.profilePictureImageView.image] forKey:@"profilePicture"];
 
+    // Only make changes if fields have changed.
+    if (![self.fullNameTextField.text isEqualToString:self.user.fullName]){
+        [self.user setObject:self.fullNameTextField.text forKey:@"fullName"];
+    }
+
+    if (![self.usernameTextField.text isEqualToString:self.user.username]){
+        [self.user setObject:self.usernameTextField.text forKey:@"username"];
+    }
+
+    if (![self.emailTextField.text isEqualToString:self.user.email]){
+        [self.user setObject:self.emailTextField.text forKey:@"email"];
+    }
+
+    if (self.imageChanged){
+        [self.user setObject:[ImageProcessing getDataFromImage:self.profilePictureImageView.image] forKey:@"profilePicture"];
+    }
+
+    [SVProgressHUD show];
     [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
+            [SVProgressHUD dismiss];
+            self.imageChanged = NO;
             [self.delegate profileWasChanged:self];
         } else {
             NSLog(@"Unable to make changes to profile");
@@ -52,6 +75,7 @@
 
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     self.profilePictureImageView.image = image;
+    self.imageChanged = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
