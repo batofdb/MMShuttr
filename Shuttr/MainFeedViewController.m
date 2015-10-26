@@ -30,58 +30,32 @@
     self.feedPosts = [NSArray new];
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
-
+/*
     PFQuery *authorQuery = [User query];
-    [authorQuery whereKey:@"username" equalTo:@"lin"];
+    [authorQuery whereKey:@"username" equalTo:@"philly"];
     [authorQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         User *user = objects.firstObject;
         PFQuery *postQuery = [Post query];
         [postQuery whereKey:@"author" equalTo:user];
         [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             self.feedPosts = objects;
-
-
-
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.feedTableView reloadData];
             });
         }];
     }];
+*/
 
-
-    self.objects = @[ @{ @"description": @"Section A",
-                     @"articles": @[ @{ @"title": @"Article A1" },
-                                     @{ @"title": @"Article A2" },
-                                     @{ @"title": @"Article A3" },
-                                     @{ @"title": @"Article A4" },
-                                     @{ @"title": @"Article A5" }
-                                     ]
-                     },
-                  @{ @"description": @"Section B",
-                     @"articles": @[ @{ @"title": @"Article B1" },
-                                     @{ @"title": @"Article B2" },
-                                     @{ @"title": @"Article B3" },
-                                     @{ @"title": @"Article B4" },
-                                     @{ @"title": @"Article B5" }
-                                     ]
-                     },
-                  @{ @"description": @"Section C",
-                     @"articles": @[ @{ @"title": @"Article C1" },
-                                     @{ @"title": @"Article C2" },
-                                     @{ @"title": @"Article C3" },
-                                     @{ @"title": @"Article C4" },
-                                     @{ @"title": @"Article C5" }
-                                     ]
-                     },
-                  @{ @"description": @"Section D",
-                     @"articles": @[ @{ @"title": @"Article D1" },
-                                     @{ @"title": @"Article D2" },
-                                     @{ @"title": @"Article D3" },
-                                     @{ @"title": @"Article D4" },
-                                     @{ @"title": @"Article D5" }
-                                     ]
-                     }
-                  ];
+    PFQuery *allPosts = [PFQuery queryWithClassName:@"Post"];
+    [allPosts includeKey:@"author"];
+    [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (objects.count > 0) {
+            self.feedPosts = objects;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.feedTableView reloadData];
+            });
+        }
+    }];
 
 }
 
@@ -99,13 +73,9 @@
 
     Post *post = self.feedPosts[indexPath.section];
 
-    if (indexPath.row == 1) {/*
-        [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterCellView" bundle:nil] forCellReuseIdentifier:@"FooterCellView"];
-        cell = [self.feedTableView dequeueReusableCellWithIdentifier:@"FooterCellView"];
-*/
+    if (indexPath.row == 1) {
+
         FeedTableFooterCellView *footerView = [[[NSBundle mainBundle] loadNibNamed:@"FeedTableFooterCellView" owner:self options:nil] firstObject];
-
-
 
         footerView.descriptionLabel.text = post.textDescription;
         NSLog(@"%@ by description>>>>>>>>: %@",post.author.username, post.textDescription);
@@ -135,7 +105,14 @@
 
     [self.feedTableView beginUpdates];
     [headerView.authorButton setTitle:post.author.username forState:UIControlStateNormal];
-    NSLog(@"%@",post.author.username);
+
+    if (post.author.profilePicture) {
+        UIImage *authorImage = [ImageProcessing getImageFromData:post.author.profilePicture];
+        headerView.authorProfilePicture.image = authorImage;
+    }
+
+
+
     [self.feedTableView endUpdates];
 
     headerView.delegate = self;
@@ -163,15 +140,19 @@
 
 #pragma mark - Feed Table Header Delegate Methods
 
--(void)headerAuthorButtonTapped:(id)sender {
-    [self performSegueWithIdentifier:@"ToUserProfileSegue" sender:self];
+-(void)headerAuthorButtonTapped:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"ToUserProfileSegue" sender:sender];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
     SearchDetailViewController *vc = segue.destinationViewController;
 
+    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.feedTableView];
+    NSIndexPath *indexPath = [self.feedTableView indexPathForRowAtPoint:touchPoint];
+    User *selectedUser = [self.feedPosts[indexPath.section] author];
+
     // TODO: change current user to user name in header
-    vc.user = [User currentUser];
+    vc.user = selectedUser;
     vc.sourceVC = self;
 }
 

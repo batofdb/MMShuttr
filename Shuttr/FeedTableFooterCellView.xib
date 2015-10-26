@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -10,33 +10,8 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M94-EG-O1g">
-                    <rect key="frame" x="70" y="0.0" width="315" height="58"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="58" id="3pi-Xe-WxJ"/>
-                        <constraint firstAttribute="width" constant="315" id="8f8-Ab-md1"/>
-                    </constraints>
-                    <string key="text">Lomo small batch heirloom Helvetica. Polaroid readymade beard cronut hella. Keytar stumptown XOXO occupy McSweeney's skateboard typewriter literally, Wes Anderson flannel. Wolf Schlitz YOLO, sartorial Portland McSweeney's pour-over quinoa gentrify flexitarian 90's post-ironic. </string>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="8f8-Ab-md1"/>
-                        </mask>
-                    </variation>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="28u-GD-mxk">
-                    <rect key="frame" x="15" y="15" width="23" height="23"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="23" id="1Kp-AB-sVa"/>
-                        <constraint firstAttribute="width" constant="23" id="7eS-yq-Ogj"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-46-b3q">
-                    <rect key="frame" x="70" y="52" width="94" height="30"/>
+                    <rect key="frame" x="67" y="52" width="94" height="30"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="BOk-SA-Sow"/>
@@ -53,35 +28,66 @@
                         </mask>
                     </variation>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cO-H9-opG">
+                    <rect key="frame" x="15" y="17" width="23" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="Cih-tQ-VUZ"/>
+                        <constraint firstAttribute="width" constant="23" id="YAT-F2-jfW"/>
+                    </constraints>
+                    <state key="normal" image="heart"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-ro-Hd5">
+                    <rect key="frame" x="352" y="17" width="33" height="7"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="33" id="CTT-pN-I3o"/>
+                        <constraint firstAttribute="height" constant="7" id="Um8-CW-sra"/>
+                    </constraints>
+                    <state key="normal" image="more"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M94-EG-O1g">
+                    <rect key="frame" x="67" y="11" width="255" height="36"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="3pi-Xe-WxJ"/>
+                        <constraint firstAttribute="width" constant="315" id="8f8-Ab-md1"/>
+                    </constraints>
+                    <string key="text">Lomo small batch heirloom Helvetica. Polaroid readymade beard cronut hella. Keytar stumptown XOXO occupy McSweeney's skateboard typewriter literally, Wes Anderson flannel. Wolf Schlitz YOLO, sartorial Portland McSweeney's pour-over quinoa gentrify flexitarian 90's post-ironic. </string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="8f8-Ab-md1"/>
+                        </mask>
+                    </variation>
+                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="M94-EG-O1g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Z4-im-AaM"/>
-                <constraint firstItem="M94-EG-O1g" firstAttribute="leading" secondItem="28u-GD-mxk" secondAttribute="trailing" constant="32" id="PRl-7r-j48"/>
-                <constraint firstItem="28u-GD-mxk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Z9R-aV-0mw"/>
-                <constraint firstItem="28u-GD-mxk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="fOA-gb-kgs"/>
-                <constraint firstAttribute="trailing" secondItem="M94-EG-O1g" secondAttribute="trailing" constant="15" id="h7u-f5-c5I"/>
-                <constraint firstAttribute="trailing" secondItem="fP0-46-b3q" secondAttribute="trailing" constant="236" id="iKK-t3-MTH"/>
-                <constraint firstItem="fP0-46-b3q" firstAttribute="top" secondItem="M94-EG-O1g" secondAttribute="bottom" constant="-6" id="j5T-a8-FIS"/>
+                <constraint firstItem="M94-EG-O1g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="11" id="1Z4-im-AaM"/>
+                <constraint firstItem="0cO-H9-opG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="CPR-3k-RVp"/>
+                <constraint firstItem="M94-EG-O1g" firstAttribute="leading" secondItem="0cO-H9-opG" secondAttribute="trailing" constant="29" id="J9z-ga-5PN"/>
+                <constraint firstItem="0cO-H9-opG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="LZj-Dv-gXK"/>
+                <constraint firstAttribute="trailing" secondItem="cKH-ro-Hd5" secondAttribute="trailing" constant="15" id="c0N-Ee-W5Q"/>
+                <constraint firstAttribute="trailing" secondItem="M94-EG-O1g" secondAttribute="trailing" constant="78" id="h7u-f5-c5I"/>
+                <constraint firstAttribute="trailing" secondItem="fP0-46-b3q" secondAttribute="trailing" constant="239" id="iKK-t3-MTH"/>
+                <constraint firstItem="fP0-46-b3q" firstAttribute="top" secondItem="M94-EG-O1g" secondAttribute="bottom" constant="5" id="j5T-a8-FIS"/>
                 <constraint firstItem="fP0-46-b3q" firstAttribute="leading" secondItem="M94-EG-O1g" secondAttribute="leading" id="kON-q7-87w"/>
-                <constraint firstItem="28u-GD-mxk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="qlT-qZ-CcQ"/>
+                <constraint firstItem="cKH-ro-Hd5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="rsh-vS-Hyw"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Z9R-aV-0mw"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="commentButton" destination="fP0-46-b3q" id="Bct-pv-vI9"/>
                 <outlet property="descriptionLabel" destination="M94-EG-O1g" id="WC0-IG-f5C"/>
-                <outlet property="likeImage" destination="28u-GD-mxk" id="o09-lX-FKh"/>
+                <outlet property="likeButton" destination="0cO-H9-opG" id="mH5-ny-YaK"/>
+                <outlet property="moreButton" destination="cKH-ro-Hd5" id="PgN-hu-Jks"/>
             </connections>
         </view>
     </objects>
     <resources>
         <image name="heart" width="64" height="64"/>
+        <image name="more" width="63" height="15"/>
     </resources>
 </document>

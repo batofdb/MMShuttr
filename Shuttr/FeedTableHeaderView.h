@@ -10,11 +10,12 @@
 
 @protocol FeedTableHeaderDelegate <NSObject>
 
-- (void)headerAuthorButtonTapped:(id)sender;
+- (void)headerAuthorButtonTapped:(UIButton *)sender;
 
 @end
 
 @interface FeedTableHeaderView : UITableViewHeaderFooterView
+@property (weak, nonatomic) IBOutlet UIImageView *authorProfilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *authorButton;
 @property (weak,nonatomic) id<FeedTableHeaderDelegate>delegate;
 

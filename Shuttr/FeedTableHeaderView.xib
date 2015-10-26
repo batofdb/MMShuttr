@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -12,37 +12,61 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8vw-5w-fbb">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pzi-h2-X8T">
+                            <rect key="frame" x="15" y="12" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="4Hw-z4-TYj"/>
+                                <constraint firstAttribute="width" constant="25" id="7aW-it-scy"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmG-dU-a2F">
+                            <rect key="frame" x="60" y="14" width="251" height="22"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="2e7-dB-Wj6"/>
+                                <constraint firstAttribute="height" constant="30" id="8Ty-rK-0vf"/>
+                                <constraint firstAttribute="width" constant="251" id="bst-dI-WX4"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="251" id="xbo-BZ-FBf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Author">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="2e7-dB-Wj6"/>
+                                    <exclude reference="xbo-BZ-FBf"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="onAuthorButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="78M-tt-i8A"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmG-dU-a2F">
-                    <rect key="frame" x="8" y="10" width="251" height="30"/>
-                    <animations/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="8Ty-rK-0vf"/>
-                        <constraint firstAttribute="width" constant="251" id="bst-dI-WX4"/>
+                        <constraint firstItem="vmG-dU-a2F" firstAttribute="leading" secondItem="pzi-h2-X8T" secondAttribute="trailing" constant="20" id="Lbz-KH-Qrg"/>
+                        <constraint firstItem="pzi-h2-X8T" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="Qvo-bg-Anx"/>
+                        <constraint firstItem="vmG-dU-a2F" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="vVe-4W-RJ1"/>
+                        <constraint firstItem="pzi-h2-X8T" firstAttribute="leading" secondItem="8vw-5w-fbb" secondAttribute="leading" constant="15" id="xbq-a1-37G"/>
                     </constraints>
-                    <state key="normal" title="Author"/>
-                    <connections>
-                        <action selector="onAuthorButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="78M-tt-i8A"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="vmG-dU-a2F" secondAttribute="bottom" constant="10" id="2Cl-aq-t04"/>
                 <constraint firstAttribute="trailing" secondItem="8vw-5w-fbb" secondAttribute="trailing" id="48g-UW-JWS"/>
-                <constraint firstItem="vmG-dU-a2F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="6XE-wA-R0U"/>
                 <constraint firstAttribute="bottom" secondItem="8vw-5w-fbb" secondAttribute="bottom" id="APV-En-XMs"/>
                 <constraint firstItem="8vw-5w-fbb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OOl-bF-gyF"/>
-                <constraint firstItem="vmG-dU-a2F" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bEQ-q1-eBz"/>
                 <constraint firstItem="8vw-5w-fbb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oQx-lQ-6PE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="authorButton" destination="vmG-dU-a2F" id="j3d-Fl-RUS"/>
+                <outlet property="authorProfilePicture" destination="pzi-h2-X8T" id="kYM-6C-CHl"/>
             </connections>
         </view>
     </objects>
