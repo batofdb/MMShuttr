@@ -12,6 +12,6 @@
 
 - (IBAction)onAuthorButtonTapped:(UIButton *)sender {
 
-    [self.delegate headerAuthorButtonTapped:self];
+    [self.delegate headerAuthorButtonTapped:sender];
 }
 @end
