@@ -14,6 +14,4 @@
 
     [self.delegate headerAuthorButtonTapped:self];
 }
-
-
 @end

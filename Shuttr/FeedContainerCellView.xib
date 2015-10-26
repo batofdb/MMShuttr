@@ -24,15 +24,6 @@
                         <outlet property="delegate" destination="iN0-l3-epB" id="quh-H1-ZKx"/>
                     </connections>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-yp-gCw">
-                    <rect key="frame" x="0.0" y="0.0" width="400" height="76"/>
-                    <animations/>
-                    <color key="backgroundColor" white="0.0" alpha="0.22" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="400" id="Hve-K3-XAC"/>
-                        <constraint firstAttribute="height" constant="76" id="b27-TS-seP"/>
-                    </constraints>
-                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -41,8 +32,6 @@
                 <constraint firstAttribute="bottom" secondItem="pyF-XK-xOb" secondAttribute="bottom" id="56Y-BB-Ada"/>
                 <constraint firstAttribute="trailing" secondItem="pyF-XK-xOb" secondAttribute="trailing" id="BHV-hN-y3k"/>
                 <constraint firstItem="pyF-XK-xOb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IPW-n3-WHI"/>
-                <constraint firstItem="0QI-yp-gCw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Z7g-bt-zk5"/>
-                <constraint firstItem="0QI-yp-gCw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZPr-tK-29j"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

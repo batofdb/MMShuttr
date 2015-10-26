@@ -21,10 +21,12 @@
 
 - (void)setCollectionData:(NSArray *)collectionData {
     _collectionData = collectionData;
-    [_collectionView setContentOffset:CGPointZero animated:NO];
+    //[_collectionView setContentOffset:CGPointZero animated:NO];
     [_collectionView reloadData];
 }
 - (void)awakeFromNib {
+
+    self.collectionData = [NSArray new];
     self.collectionView.backgroundColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -40,12 +42,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FeedPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FeedPhotoCollectionViewCell" forIndexPath:indexPath];
     //NSDictionary *cellData = [self.collectionData objectAtIndex:[indexPath row]];
-    cell.backgroundColor = [UIColor grayColor];
+    cell.feedPhoto.image = [self.collectionData objectAtIndex:[indexPath row]];
        return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return self.collectionData.count;
 }
 
 @end

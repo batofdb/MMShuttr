@@ -1,13 +1,13 @@
 //
-//  FeedTableFooterView.h
+//  FeedTableFooterView.m
 //  Shuttr
 //
 //  Created by Francis Bato on 10/24/15.
 //  Copyright © 2015 MMInstaGroup. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FeedTableFooterCellView.h"
 
-@interface FeedTableFooterView : UITableViewHeaderFooterView
+@implementation FeedTableFooterCellView
 
 @end

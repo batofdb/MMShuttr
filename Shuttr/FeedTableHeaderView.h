@@ -15,7 +15,7 @@
 @end
 
 @interface FeedTableHeaderView : UITableViewHeaderFooterView
-
+@property (weak, nonatomic) IBOutlet UIButton *authorButton;
 @property (weak,nonatomic) id<FeedTableHeaderDelegate>delegate;
 
 @end

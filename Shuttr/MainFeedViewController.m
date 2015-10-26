@@ -11,13 +11,15 @@
 #import "FeedTableViewCell.h"
 #import "ImageProcessing.h"
 #import "Activity.h"
-#import "FeedTableFooterView.h"
+#import "FeedTableFooterCellView.h"
 #import "FeedTableHeaderView.h"
 #import "SearchDetailViewController.h"
+#import "ImageProcessing.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property NSArray *objects;
+@property NSArray *feedPosts;
 @end
 
 @implementation MainFeedViewController
@@ -31,40 +33,31 @@
 //
 //
     User *user = [User currentUser];
-
+    self.feedPosts = [NSArray new];
     if (!user){
         [User logInWithUsernameInBackground:@"philly" password:@"hen" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
 
     }
 
-//    Post *post = [Post object];
-//
-//    NSArray *images = @[[UIImage imageNamed:@"cookie"],
-//                    [UIImage imageNamed:@"cupcake"],
-//                    [UIImage imageNamed:@"strudel"]];
-//
-//    post.author = user;
-//    post.roll = [ImageProcessing getDataArrayFromImageArray:images];
-//    post.textDescription = @"testing array";
-//
-//    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (succeeded) {
-//            NSLog(@"post saved");
-//
-//            } else {
-//            NSLog(@"unable to save post");
-//        }
-//
-//    }];
-
-
-
-
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 
-    [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostFooter"];
+    PFQuery *authorQuery = [User query];
+    [authorQuery whereKey:@"username" equalTo:@"lin"];
+    [authorQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        User *user = objects.firstObject;
+        PFQuery *postQuery = [Post query];
+        [postQuery whereKey:@"author" equalTo:user];
+        [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            self.feedPosts = objects;
 
-    [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"PostHeader"];
+
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.feedTableView reloadData];
+            });
+        }];
+    }];
+
 
     self.objects = @[ @{ @"description": @"Section A",
                      @"articles": @[ @{ @"title": @"Article A1" },
@@ -99,51 +92,83 @@
                                      ]
                      }
                   ];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_objects count]; // Total number of rows in the sample data.
+    return self.feedPosts.count; // Total number of rows in the sample data.
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
-    NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
-    NSArray *articleData = [cellData objectForKey:@"articles"];
-    [cell setCollectionData:articleData];
-    return cell;
+
+    Post *post = self.feedPosts[indexPath.section];
+
+    if (indexPath.row == 1) {/*
+        [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterCellView" bundle:nil] forCellReuseIdentifier:@"FooterCellView"];
+        cell = [self.feedTableView dequeueReusableCellWithIdentifier:@"FooterCellView"];
+*/
+        FeedTableFooterCellView *footerView = [[[NSBundle mainBundle] loadNibNamed:@"FeedTableFooterCellView" owner:self options:nil] firstObject];
+
+
+
+        footerView.descriptionLabel.text = post.textDescription;
+        NSLog(@"%@ by description>>>>>>>>: %@",post.author.username, post.textDescription);
+
+        return footerView;
+
+    } else {
+        FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
+       // NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
+        //NSArray *articleData = [cellData objectForKey:@"articles"];
+       // [cell setCollectionData:articleData];
+
+        NSArray *images = [ImageProcessing getImageArrayFromDataArray:post.roll];
+        [cell setCollectionData:images];
+
+        return cell;
+    }
+
 }
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    static NSString *CellIdentifier = @"PostHeader";
-//    UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    return headerView;
-//}
 
 
 #pragma mark UITableViewDelegate methods
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *footerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostFooter"];
-    return footerView;
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    FeedTableHeaderView *headerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostHeader"];
+    FeedTableHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"FeedTableHeaderView" owner:self options:nil] firstObject];
+
+    Post *post = self.feedPosts[section];
+
+    [self.feedTableView beginUpdates];
+    [headerView.authorButton setTitle:post.author.username forState:UIControlStateNormal];
+    NSLog(@"%@",post.author.username);
+    [self.feedTableView endUpdates];
+
     headerView.delegate = self;
+
+    [headerView setNeedsDisplay];
+    [headerView setNeedsLayout];
+
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 85;
+    return 50;
 }
 
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 400.0;
+    if (indexPath.row == 1)
+#warning match this height with feedtablefootercellview
+        return 90;
+    else
+        return 400.0;
 }
 
 #pragma mark - Feed Table Header Delegate Methods
