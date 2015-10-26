@@ -14,10 +14,12 @@
 #import "FeedTableFooterCellView.h"
 #import "FeedTableHeaderView.h"
 #import "SearchDetailViewController.h"
+#import "ImageProcessing.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property NSArray *objects;
+@property NSArray *feedPosts;
 @end
 
 @implementation MainFeedViewController
@@ -26,17 +28,30 @@
     [super viewDidLoad];
 
     User *user = [User currentUser];
-
+    self.feedPosts = [NSArray new];
     if (!user){
         [User logInWithUsernameInBackground:@"francis" password:@"pizza" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
     }
 
-
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 
-    //[self.feedTableView registerClass:[FeedTableFooterView class] forHeaderFooterViewReuseIdentifier:@"FeedFooter"];
+    PFQuery *authorQuery = [User query];
+    [authorQuery whereKey:@"username" equalTo:@"lin"];
+    [authorQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        User *user = objects.firstObject;
+        PFQuery *postQuery = [Post query];
+        [postQuery whereKey:@"author" equalTo:user];
+        [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            self.feedPosts = objects;
 
-    [self.feedTableView registerClass:[FeedTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"FeedHeader"];
+
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.feedTableView reloadData];
+            });
+        }];
+    }];
+
 
     self.objects = @[ @{ @"description": @"Section A",
                      @"articles": @[ @{ @"title": @"Article A1" },
@@ -80,38 +95,66 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_objects count]; // Total number of rows in the sample data.
+    return self.feedPosts.count; // Total number of rows in the sample data.
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
 
-    if (indexPath.row == 1) {
+    Post *post = self.feedPosts[indexPath.section];
+
+    if (indexPath.row == 1) {/*
         [self.feedTableView registerNib:[UINib nibWithNibName:@"FeedTableFooterCellView" bundle:nil] forCellReuseIdentifier:@"FooterCellView"];
         cell = [self.feedTableView dequeueReusableCellWithIdentifier:@"FooterCellView"];
-    } else {
+*/
+        FeedTableFooterCellView *footerView = [[[NSBundle mainBundle] loadNibNamed:@"FeedTableFooterCellView" owner:self options:nil] firstObject];
 
-        NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
-        NSArray *articleData = [cellData objectForKey:@"articles"];
-        [cell setCollectionData:articleData];
+
+
+        footerView.descriptionLabel.text = post.textDescription;
+        NSLog(@"%@ by description>>>>>>>>: %@",post.author.username, post.textDescription);
+
+        return footerView;
+
+    } else {
+        FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
+       // NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
+        //NSArray *articleData = [cellData objectForKey:@"articles"];
+       // [cell setCollectionData:articleData];
+
+        NSArray *images = [ImageProcessing getImageArrayFromDataArray:post.roll];
+        [cell setCollectionData:images];
+
+        return cell;
     }
-    return cell;
+
 }
 
 
 #pragma mark UITableViewDelegate methods
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    FeedTableHeaderView *headerView = [self.feedTableView dequeueReusableHeaderFooterViewWithIdentifier:@"FeedHeader"];
+    FeedTableHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"FeedTableHeaderView" owner:self options:nil] firstObject];
 
-    headerView.authorButton.titleLabel.text = @"authors";
+    Post *post = self.feedPosts[section];
+
+    [self.feedTableView beginUpdates];
+    headerView.authorButton.titleLabel.text = post.author.username;
+    NSLog(@"%@",post.author.username);
+    [self.feedTableView endUpdates];
+
     headerView.delegate = self;
+
+    [headerView setNeedsDisplay];
+    [headerView setNeedsLayout];
+
     return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
 }
+
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
