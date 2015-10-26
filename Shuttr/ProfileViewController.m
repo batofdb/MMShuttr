@@ -17,7 +17,7 @@
 #import "PostDetailViewController.h"
 #import "SVProgressHUD.h"
 
-@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PostDetailDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -42,6 +42,12 @@
     [self queryAndPopulateView];
     [self.collectionView reloadData];
 }
+
+//- (void)viewDidAppear:(BOOL)animated {
+//    [self queryAndPopulateView];
+//    [self.collectionView reloadData];
+//
+//}
 
 #pragma mark - Helper Methods
 - (void) queryAndPopulateView {
@@ -117,9 +123,9 @@
     self.fullNameLabel.text = user.fullName;
 
     // Get profile pic
-    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(self.profileImageView.frame.size.width, self.profileImageView.frame.size.height)] ;
+    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(150,150)] ;
     
-    self.profileImageView.image = profilePicture;
+    [self.profileImageView setImage:profilePicture];
 }
 
 #pragma mark - UICollectionView Delegate Methods
@@ -146,12 +152,19 @@
 
 #pragma mark - Edit Profile Delegate Method Implementation
 - (void)profileWasChanged:(id)view {
-    [self getUserProperties];
+    [self performSelectorOnMainThread:@selector(getUserProperties) withObject:nil waitUntilDone:YES];
+   // [self getUserProperties];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+- (void)editCancelled:(id)view {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)editCancelled:(id)view {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)postWasDeleted:(id)view {
+    [self queryAndPopulateView];
+
 }
 
 #pragma mark - Navigation
@@ -164,6 +177,7 @@
         PostDetailViewController *vc = segue.destinationViewController;
         NSIndexPath *indexPath = sender;
         vc.post = [self.userPosts objectAtIndex:indexPath.row];
+        vc.delegate = self;
     }
 
 }

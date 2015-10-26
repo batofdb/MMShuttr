@@ -10,6 +10,7 @@
 #import "ImageProcessing.h"
 #import "SVProgressHUD.h"
 #import "User.h"
+#import "UIImage+ImageResizing.h"
 
 @interface EditProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *fullNameTextField;
@@ -30,6 +31,7 @@
     self.fullNameTextField.text = self.user.fullName;
     self.usernameTextField.text = self.user.username;
     self.emailTextField.text = self.user.email;
+    self.imageChanged = NO;
     self.profilePictureImageView.image = [ImageProcessing getImageFromData:self.user.profilePicture];
 }
 
@@ -60,6 +62,7 @@
     }
 
     [SVProgressHUD show];
+
     [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             [SVProgressHUD dismiss];
@@ -74,7 +77,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    self.profilePictureImageView.image = image;
+    [self.profilePictureImageView setImage:image];
     self.imageChanged = YES;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

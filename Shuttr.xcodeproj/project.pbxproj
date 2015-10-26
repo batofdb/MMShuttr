@@ -16,6 +16,7 @@
 		3A74834D1BDC8ABF00484FED /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A7483471BDC8ABF00484FED /* Info.plist */; };
 		3A74834F1BDC9A0F00484FED /* PostDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A74834E1BDC9A0F00484FED /* PostDetail.storyboard */; };
 		3A7483521BDC9A9800484FED /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7483511BDC9A9800484FED /* PostDetailViewController.m */; };
+		3A7483551BDD60C700484FED /* ActivityFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7483541BDD60C700484FED /* ActivityFeedTableViewCell.m */; };
 		3AA7CF591BDC61A000C09601 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
 		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
 		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
@@ -101,6 +102,8 @@
 		3A74834E1BDC9A0F00484FED /* PostDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
 		3A7483501BDC9A9800484FED /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		3A7483511BDC9A9800484FED /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		3A7483531BDD60C700484FED /* ActivityFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedTableViewCell.h; sourceTree = "<group>"; };
+		3A7483541BDD60C700484FED /* ActivityFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedTableViewCell.m; sourceTree = "<group>"; };
 		3ACF11671BD9FB8500EDBF4B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3ACF11681BD9FB8500EDBF4B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3ACF116A1BD9FB9500EDBF4B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				3ACF116B1BD9FB9500EDBF4B /* Post.m */,
 				3ACF11701BDA083C00EDBF4B /* PostCollectionViewCell.h */,
 				3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */,
+				3A7483531BDD60C700484FED /* ActivityFeedTableViewCell.h */,
+				3A7483541BDD60C700484FED /* ActivityFeedTableViewCell.m */,
 				47A4A9181BDB0962006091DA /* Activity.h */,
 				47A4A9191BDB0962006091DA /* Activity.m */,
 				3ACF11C41BDB19FB00EDBF4B /* ImageProcessing.h */,
@@ -548,6 +553,7 @@
 				3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */,
 				47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */,
 				47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */,
+				3A7483551BDD60C700484FED /* ActivityFeedTableViewCell.m in Sources */,
 				6518FC511BDB3707002E0FD5 /* PhotoManager.m in Sources */,
 				658E32401BD9D92300314027 /* CameraViewController.m in Sources */,
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,

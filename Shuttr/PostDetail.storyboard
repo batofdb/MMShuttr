@@ -170,11 +170,36 @@
                                     <action selector="onAddCommentButtonPressed:" destination="QLu-L0-WoQ" eventType="touchUpInside" id="the-Lz-J77"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXx-pG-w4X">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="4sm-Ol-Vjp"/>
+                                    <constraint firstAttribute="width" constant="59" id="yAT-aI-ytY"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="ellipsis"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4sm-Ol-Vjp"/>
+                                        <exclude reference="yAT-aI-ytY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4sm-Ol-Vjp"/>
+                                        <include reference="yAT-aI-ytY"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onDetailButtonPressed:" destination="QLu-L0-WoQ" eventType="touchUpInside" id="05f-aU-Fqy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EOd-U5-mKh" firstAttribute="leading" secondItem="kFS-CC-HVR" secondAttribute="leadingMargin" id="3Zv-cw-czK"/>
+                            <constraint firstItem="xXx-pG-w4X" firstAttribute="leading" secondItem="kFS-CC-HVR" secondAttribute="leadingMargin" id="3w7-Kj-194"/>
                             <constraint firstAttribute="trailing" secondItem="xPO-fj-rnN" secondAttribute="trailing" id="J1a-rR-TXA"/>
                             <constraint firstItem="xPO-fj-rnN" firstAttribute="top" secondItem="e4U-e0-88N" secondAttribute="bottom" id="LQj-Zs-lqI"/>
                             <constraint firstItem="3KI-u6-RVB" firstAttribute="leading" secondItem="kFS-CC-HVR" secondAttribute="leadingMargin" id="RB1-HC-bgV"/>
@@ -189,6 +214,7 @@
                             <constraint firstItem="fkZ-cx-cfB" firstAttribute="trailing" secondItem="kFS-CC-HVR" secondAttribute="trailingMargin" id="thq-Uv-Gjt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e4U-e0-88N" secondAttribute="trailing" constant="-20" id="w8m-Nx-5CF"/>
                             <constraint firstItem="xPO-fj-rnN" firstAttribute="height" secondItem="kFS-CC-HVR" secondAttribute="height" multiplier="0.5" id="wao-FW-ftG"/>
+                            <constraint firstItem="agE-yd-8az" firstAttribute="top" secondItem="xXx-pG-w4X" secondAttribute="bottom" constant="20" id="zG3-ZO-B7f"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -197,6 +223,7 @@
                                 <exclude reference="EOd-U5-mKh"/>
                                 <exclude reference="3KI-u6-RVB"/>
                                 <exclude reference="fkZ-cx-cfB"/>
+                                <exclude reference="xXx-pG-w4X"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="ROo-kv-3SG"/>
@@ -212,7 +239,9 @@
                                 <exclude reference="RB1-HC-bgV"/>
                                 <exclude reference="So2-le-r9p"/>
                                 <exclude reference="cE4-dK-l8A"/>
+                                <exclude reference="3w7-Kj-194"/>
                                 <exclude reference="guA-2Y-whP"/>
+                                <exclude reference="zG3-ZO-B7f"/>
                                 <exclude reference="thq-Uv-Gjt"/>
                             </mask>
                         </variation>
@@ -223,6 +252,7 @@
                                 <include reference="EOd-U5-mKh"/>
                                 <include reference="3KI-u6-RVB"/>
                                 <include reference="fkZ-cx-cfB"/>
+                                <include reference="xXx-pG-w4X"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="ROo-kv-3SG"/>
@@ -238,7 +268,9 @@
                                 <include reference="RB1-HC-bgV"/>
                                 <include reference="So2-le-r9p"/>
                                 <include reference="cE4-dK-l8A"/>
+                                <include reference="3w7-Kj-194"/>
                                 <include reference="guA-2Y-whP"/>
+                                <include reference="zG3-ZO-B7f"/>
                                 <include reference="thq-Uv-Gjt"/>
                             </mask>
                         </variation>
@@ -254,4 +286,7 @@
             <point key="canvasLocation" x="588" y="394"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ellipsis" width="88" height="22"/>
+    </resources>
 </document>

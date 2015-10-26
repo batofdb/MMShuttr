@@ -113,7 +113,7 @@
     self.fullNameLabel.text = self.user.fullName;
 
     // Get profile pic
-    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:self.user.profilePicture] scaledToSize:CGSizeMake(self.profileImageView.frame.size.width, self.profileImageView.frame.size.height)] ;
+    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:self.user.profilePicture] scaledToSize:CGSizeMake(150,150)] ;
 
     self.profileImageView.image = profilePicture;
 }

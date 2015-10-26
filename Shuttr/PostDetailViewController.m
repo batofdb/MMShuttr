@@ -44,11 +44,11 @@
     [commentsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
         dispatch_async(dispatch_get_main_queue(), ^{
-        NSArray *results = [[NSArray alloc] initWithArray:objects];
-        NSMutableString *commentsString = [NSMutableString new];
-        for (Activity *comment in results) {
-            [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
-        }
+            NSArray *results = [[NSArray alloc] initWithArray:objects];
+            NSMutableString *commentsString = [NSMutableString new];
+            for (Activity *comment in results) {
+                [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
+            }
             self.commentsTextView.text = commentsString;
             [SVProgressHUD dismiss];
         });
@@ -125,10 +125,71 @@
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+- (IBAction)onDetailButtonPressed:(UIButton *)sender {
+
+    if ([self.post.author isEqual:[User currentUser]]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Options" message:@"Delete post" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+            UIAlertController *secondAlert = [UIAlertController alertControllerWithTitle:@"Delete Post" message:@"Are you sure you want to delete this post?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                // Remove all activity associated with the post as well
+
+                PFQuery *query = [Activity query];
+                [query whereKey:@"post" equalTo:self.post];
+                [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                    NSArray *activitiesToDelete = objects;
+                    [Activity deleteAllInBackground:activitiesToDelete block:^(BOOL succeeded, NSError * _Nullable error) {
+                        [self.post deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+
+                            // Make sure profile view is updated to no longer show deleted post
+                            [self.delegate postWasDeleted:self];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+
+                        }];
+
+                    }];
+
+                }];
+
+
+            }];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+
+            [secondAlert addAction:yes];
+            [secondAlert addAction:cancel];
+            [self presentViewController:secondAlert animated:YES completion:nil];
+
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:deleteAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+
+    } else  {
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Options" message:@"Report post" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *reportAction = [UIAlertAction actionWithTitle:@"Report" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+            //TODO: Do something with report here
+
+            UIAlertController *secondAlert = [UIAlertController alertControllerWithTitle:@"Post Reported" message:@"We have received you report and will take necessary action." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
+            [secondAlert addAction:okay];
+            [self presentViewController:secondAlert animated:YES completion:nil];
+
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:reportAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+}
 
 
 - (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender {
-
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

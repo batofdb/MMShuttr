@@ -25,15 +25,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
-
-    User *user = [User currentUser];
-
     //[User logOut];
+
+   // [User logInWithUsernameInBackground:@"philly" password:@"hen" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
+//
+//
+    User *user = [User currentUser];
 
     if (!user){
         [User logInWithUsernameInBackground:@"philly" password:@"hen" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
+
     }
+
+//    Post *post = [Post object];
+//
+//    NSArray *images = @[[UIImage imageNamed:@"cookie"],
+//                    [UIImage imageNamed:@"cupcake"],
+//                    [UIImage imageNamed:@"strudel"]];
+//
+//    post.author = user;
+//    post.roll = [ImageProcessing getDataArrayFromImageArray:images];
+//    post.textDescription = @"testing array";
+//
+//    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"post saved");
+//
+//            } else {
+//            NSLog(@"unable to save post");
+//        }
+//
+//    }];
+
+
 
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];

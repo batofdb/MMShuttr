@@ -15,7 +15,7 @@
             </objects>
             <point key="canvasLocation" x="1122.75" y="-287"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--My Profile-->
         <scene sceneID="DbE-Kf-f50">
             <objects>
                 <viewController id="D3z-xX-LMh" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -324,7 +324,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="lou-Gs-kWQ"/>
+                    <tabBarItem key="tabBarItem" title="My Profile" id="lou-Gs-kWQ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="trw-on-cJE" id="lEs-zG-RKz"/>

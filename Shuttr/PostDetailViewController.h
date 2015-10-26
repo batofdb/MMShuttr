@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 
+@protocol PostDetailDelegate <NSObject>
+
+-(void)postWasDeleted:(id)sender;
+
+@end
+
 @interface PostDetailViewController : UIViewController
 
 @property (nonatomic) Post *post;
+
+@property (weak, nonatomic) id<PostDetailDelegate>delegate;
 
 @end
