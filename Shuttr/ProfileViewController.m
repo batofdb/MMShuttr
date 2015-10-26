@@ -16,6 +16,7 @@
 #import "PostCollectionViewCell.h"
 #import "PostDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "PostPhotosViewController.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PostDetailDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -41,13 +42,14 @@
 
     [self queryAndPopulateView];
     [self.collectionView reloadData];
+
+
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//    [self queryAndPopulateView];
-//    [self.collectionView reloadData];
-//
-//}
+- (void) viewWillAppear:(BOOL)animated {
+    [self queryAndPopulateView];
+    [self.collectionView reloadData];
+}
 
 #pragma mark - Helper Methods
 - (void) queryAndPopulateView {
@@ -166,6 +168,8 @@
     [self queryAndPopulateView];
 
 }
+
+#pragma mark - IBActions
 - (IBAction)onLogoutButtonPressed:(UIButton *)sender {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Logging Out" message:@"Are you sure you want to log out?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -177,7 +181,6 @@
         [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
-
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

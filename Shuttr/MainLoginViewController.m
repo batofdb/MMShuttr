@@ -30,4 +30,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ToSignUpSegue"]) {
+        SignUpViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"ToSignInSegue"]) {
+        SignInViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
+    }
+}
+
 @end

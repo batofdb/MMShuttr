@@ -36,6 +36,7 @@
     [super viewDidLoad];
     [self populateView];
     [self.collectionView reloadData];
+    
 
 }
 

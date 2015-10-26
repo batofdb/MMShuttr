@@ -33,7 +33,22 @@
     if ([self.post.author isEqual:[User currentUser]]){
         [self.descriptionTextView setUserInteractionEnabled:YES];
         self.descriptionTextView.editable = YES;
+    } else {
+        [self.descriptionTextView setUserInteractionEnabled:NO];
+        self.descriptionTextView.editable = NO;
     }
+}
+
+#pragma mark - TextView Delegate Methods
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]){
+        [self.post setObject:textView.text forKey:@"textDescription"];
+        [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            [textView resignFirstResponder];
+        }];
+        return NO;
+    }
+    return YES;
 }
 
 
@@ -170,6 +185,7 @@
 }
 
 
+#pragma mark - IBActions
 - (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];

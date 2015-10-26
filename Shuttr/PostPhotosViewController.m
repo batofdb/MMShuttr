@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "User.h"
 #import "Post.h"
+#import "ProfileViewController.h"
 
 @interface PostPhotosViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -135,6 +136,8 @@
             }];
             [alert addAction:okay];
             [self presentViewController:alert animated:YES completion:nil];
+
+
         } else {
             NSLog(@"unable to save post");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unable to save post." preferredStyle:UIAlertControllerStyleAlert];

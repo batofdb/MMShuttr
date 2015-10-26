@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface PostPhotosViewController : UIViewController
 
 @property (nonatomic) NSArray *images;
+
 
 @end
