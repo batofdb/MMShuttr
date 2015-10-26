@@ -138,7 +138,7 @@
     Post *post = self.feedPosts[section];
 
     [self.feedTableView beginUpdates];
-    headerView.authorButton.titleLabel.text = post.author.username;
+    [headerView.authorButton setTitle:post.author.username forState:UIControlStateNormal];
     NSLog(@"%@",post.author.username);
     [self.feedTableView endUpdates];
 
