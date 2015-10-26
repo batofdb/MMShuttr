@@ -18,38 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="select" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-HP-Pc4">
-                                <rect key="frame" x="20" y="11" width="363" height="66"/>
-                                <animations/>
-                                <connections>
-                                    <action selector="selectPhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="6od-Kl-qxk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPt-cH-62A">
-                                <rect key="frame" x="0.0" y="348" width="383" height="195"/>
-                                <animations/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="472" width="383" height="49"/>
-                                </variation>
-                                <connections>
-                                    <action selector="takePhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="hwW-Y9-c4D"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5F-RH-gPh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5F-RH-gPh">
                                 <rect key="frame" x="0.0" y="0.0" width="383" height="600"/>
                                 <animations/>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shutter 1" translatesAutoresizingMaskIntoConstraints="NO" id="L3s-VZ-nf3">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAR-U5-apy">
-                                <rect key="frame" x="0.0" y="0.0" width="383" height="551"/>
-                                <animations/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="551"/>
-                                </variation>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1J-aG-eDL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1J-aG-eDL">
                                 <rect key="frame" x="273" y="14" width="78" height="59"/>
                                 <animations/>
                                 <constraints>
@@ -72,6 +48,16 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="select" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-HP-Pc4">
+                                <rect key="frame" x="20" y="11" width="363" height="66"/>
+                                <animations/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="14" width="363" height="63"/>
+                                </variation>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="6od-Kl-qxk"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdj-b9-WVQ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Skip"/>
@@ -80,6 +66,16 @@
                                 </variation>
                                 <connections>
                                     <action selector="skipButton:" destination="gUa-6O-9b8" eventType="touchUpInside" id="rIY-Xj-1G9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPt-cH-62A">
+                                <rect key="frame" x="0.0" y="348" width="383" height="195"/>
+                                <animations/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="67" width="400" height="484"/>
+                                </variation>
+                                <connections>
+                                    <action selector="takePhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="hwW-Y9-c4D"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -97,16 +93,12 @@
                             <constraint firstAttribute="trailing" secondItem="X5F-RH-gPh" secondAttribute="trailing" id="Ool-T2-VM7"/>
                             <constraint firstItem="zmQ-zB-9vd" firstAttribute="top" secondItem="X5F-RH-gPh" secondAttribute="bottom" id="Uk7-C1-Zy7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u1J-aG-eDL" secondAttribute="trailing" constant="29" id="c92-CL-NZC"/>
-                            <constraint firstAttribute="trailing" secondItem="rAR-U5-apy" secondAttribute="trailing" id="d47-sR-c0N"/>
-                            <constraint firstItem="rAR-U5-apy" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="top" id="fVw-Q4-2SH"/>
                             <constraint firstItem="qgr-HP-Pc4" firstAttribute="leading" secondItem="W39-uj-K97" secondAttribute="leadingMargin" id="hEE-tS-sCt"/>
-                            <constraint firstItem="rAR-U5-apy" firstAttribute="leading" secondItem="W39-uj-K97" secondAttribute="leading" id="jaS-3y-LFf"/>
                             <constraint firstItem="u1J-aG-eDL" firstAttribute="centerY" secondItem="qgr-HP-Pc4" secondAttribute="centerY" id="kRs-yl-iAo"/>
                             <constraint firstAttribute="trailing" secondItem="W39-uj-K97" secondAttribute="trailingMargin" id="nad-7f-gmc"/>
                             <constraint firstItem="L3s-VZ-nf3" firstAttribute="leading" secondItem="W39-uj-K97" secondAttribute="leading" id="r9b-9f-de3"/>
                             <constraint firstItem="X5F-RH-gPh" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="top" id="v8h-py-Brv"/>
                             <constraint firstItem="X5F-RH-gPh" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="top" id="yeY-Mp-WcQ"/>
-                            <constraint firstAttribute="bottom" secondItem="rAR-U5-apy" secondAttribute="bottom" id="yjY-Xb-Mv2"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -121,10 +113,6 @@
                                 <exclude reference="Ool-T2-VM7"/>
                                 <exclude reference="v8h-py-Brv"/>
                                 <exclude reference="yeY-Mp-WcQ"/>
-                                <exclude reference="d47-sR-c0N"/>
-                                <exclude reference="fVw-Q4-2SH"/>
-                                <exclude reference="jaS-3y-LFf"/>
-                                <exclude reference="yjY-Xb-Mv2"/>
                                 <exclude reference="6IU-6H-DlU"/>
                                 <exclude reference="ImC-ZT-I3j"/>
                                 <exclude reference="hEE-tS-sCt"/>
@@ -149,10 +137,6 @@
                                 <include reference="Ool-T2-VM7"/>
                                 <include reference="v8h-py-Brv"/>
                                 <include reference="yeY-Mp-WcQ"/>
-                                <include reference="d47-sR-c0N"/>
-                                <include reference="fVw-Q4-2SH"/>
-                                <include reference="jaS-3y-LFf"/>
-                                <include reference="yjY-Xb-Mv2"/>
                                 <exclude reference="KeI-Oe-OsX"/>
                                 <include reference="6IU-6H-DlU"/>
                                 <include reference="ImC-ZT-I3j"/>
@@ -169,9 +153,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="countLabel" destination="u1J-aG-eDL" id="H8D-QV-tDW"/>
-                        <outlet property="imageView" destination="X5F-RH-gPh" id="xgA-j2-ADu"/>
                         <outlet property="shutterImageView" destination="L3s-VZ-nf3" id="m9g-6J-gHS"/>
-                        <outlet property="wheelImageView" destination="rAR-U5-apy" id="IXf-hY-mkU"/>
                         <segue destination="aUI-cb-kSg" kind="show" identifier="ToPostSegue" id="Swh-NP-0V3"/>
                     </connections>
                 </viewController>
