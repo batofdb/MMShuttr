@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Camera-->
         <scene sceneID="JpM-KC-ypr">
             <objects>
                 <viewController id="gUa-6O-9b8" customClass="CameraViewController" sceneMemberID="viewController">
@@ -149,7 +149,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="qfr-G1-Wzn"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="shutterTabbarIcon" id="qfr-G1-Wzn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="countLabel" destination="u1J-aG-eDL" id="H8D-QV-tDW"/>
@@ -172,5 +172,6 @@
     </scenes>
     <resources>
         <image name="shutter 1" width="1080" height="1920"/>
+        <image name="shutterTabbarIcon" width="20" height="20"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ln-3D-hb4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ln-3D-hb4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="410" y="-543"/>
         </scene>
-        <!--Feed-->
+        <!--Home-->
         <scene sceneID="JEI-WY-KCL">
             <objects>
                 <viewController id="PAA-dQ-cCR" customClass="MainFeedViewController" sceneMemberID="viewController">
@@ -39,17 +39,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-Rg-Dac">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-Rg-Dac">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="vhm-X2-Fri"/>
                                 </constraints>
+                                <color key="tintColor" red="0.96973205240000004" green="0.97171077920000004" blue="0.97083967299999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Shuttr" id="ERM-cF-D6T"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-hm-H9e">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-hm-H9e">
                                 <rect key="frame" x="0.0" y="50" width="600" height="501"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,7 +82,8 @@
                                                             <exclude reference="ZRf-7r-57Y"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="15" y="75" width="168" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="QsA-VO-MNR"/>
                                                             <include reference="ZRf-7r-57Y"/>
@@ -150,7 +156,9 @@
                             <constraint firstItem="n7i-Rg-Dac" firstAttribute="top" secondItem="16z-ka-AoS" secondAttribute="top" id="ut7-24-M91"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" id="eAO-qO-RZA"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="eAO-qO-RZA">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="5" vertical="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="feedTableView" destination="X6c-hm-H9e" id="F1R-Iv-2no"/>
                         <segue destination="Wdk-Pa-WdH" kind="presentation" identifier="ToUserProfileSegue" id="UTR-8x-XIs"/>
@@ -199,4 +207,7 @@
             <point key="canvasLocation" x="-27.5" y="7"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home" width="20" height="20"/>
+    </resources>
 </document>
