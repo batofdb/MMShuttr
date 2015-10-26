@@ -10,6 +10,12 @@
 
 @implementation FeedTableHeaderView
 
+- (void)awakeFromNib {
+    self.authorProfilePicture.layer.cornerRadius = self.authorProfilePicture.frame.size.width/2;
+    self.authorProfilePicture.clipsToBounds = YES;
+}
+
+
 - (IBAction)onAuthorButtonTapped:(UIButton *)sender {
 
     [self.delegate headerAuthorButtonTapped:sender];

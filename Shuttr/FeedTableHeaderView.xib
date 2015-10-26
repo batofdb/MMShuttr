@@ -14,24 +14,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pzi-h2-X8T">
-                            <rect key="frame" x="15" y="12" width="25" height="25"/>
+                            <rect key="frame" x="15" y="9" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="25" id="4Hw-z4-TYj"/>
-                                <constraint firstAttribute="width" constant="25" id="7aW-it-scy"/>
+                                <constraint firstAttribute="height" constant="32" id="4Hw-z4-TYj"/>
+                                <constraint firstAttribute="width" constant="32" id="7aW-it-scy"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmG-dU-a2F">
-                            <rect key="frame" x="60" y="14" width="251" height="22"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vmG-dU-a2F">
+                            <rect key="frame" x="62" y="14" width="251" height="22"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="2e7-dB-Wj6"/>
-                                <constraint firstAttribute="height" constant="30" id="8Ty-rK-0vf"/>
+                                <constraint firstAttribute="height" constant="22" id="8Ty-rK-0vf"/>
                                 <constraint firstAttribute="width" constant="251" id="bst-dI-WX4"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="251" id="xbo-BZ-FBf"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                             <state key="normal" title="Author">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
                                 <mask key="constraints">
@@ -47,7 +47,7 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="vmG-dU-a2F" firstAttribute="leading" secondItem="pzi-h2-X8T" secondAttribute="trailing" constant="20" id="Lbz-KH-Qrg"/>
+                        <constraint firstItem="vmG-dU-a2F" firstAttribute="leading" secondItem="pzi-h2-X8T" secondAttribute="trailing" constant="15" id="Lbz-KH-Qrg"/>
                         <constraint firstItem="pzi-h2-X8T" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="Qvo-bg-Anx"/>
                         <constraint firstItem="vmG-dU-a2F" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="vVe-4W-RJ1"/>
                         <constraint firstItem="pzi-h2-X8T" firstAttribute="leading" secondItem="8vw-5w-fbb" secondAttribute="leading" constant="15" id="xbq-a1-37G"/>

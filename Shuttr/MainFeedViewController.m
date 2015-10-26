@@ -30,22 +30,10 @@
     self.feedPosts = [NSArray new];
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
-/*
-    PFQuery *authorQuery = [User query];
-    [authorQuery whereKey:@"username" equalTo:@"philly"];
-    [authorQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        User *user = objects.firstObject;
-        PFQuery *postQuery = [Post query];
-        [postQuery whereKey:@"author" equalTo:user];
-        [postQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            self.feedPosts = objects;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.feedTableView reloadData];
-            });
-        }];
-    }];
-*/
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     PFQuery *allPosts = [PFQuery queryWithClassName:@"Post"];
     [allPosts includeKey:@"author"];
     [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -56,7 +44,6 @@
             });
         }
     }];
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -42,7 +42,8 @@
 
     [self queryAndPopulateView];
     [self.collectionView reloadData];
-
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
+    self.profileImageView.clipsToBounds = YES;
 
 }
 
@@ -127,6 +128,7 @@
     // Get profile pic
     UIImage *profilePicture =[ImageProcessing getImageFromData:user.profilePicture] ;
     [self.profileImageView setImage:profilePicture];
+
 }
 
 #pragma mark - UICollectionView Delegate Methods
