@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="D3z-xX-LMh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="D3z-xX-LMh">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -7,6 +7,14 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--SignupSignin-->
+        <scene sceneID="oP4-ww-9lg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignupSignin" id="LDC-cP-ekB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vfH-Zw-a9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="-416"/>
+        </scene>
         <!--PostDetail-->
         <scene sceneID="4dl-FI-GRL">
             <objects>
@@ -28,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Lr-ts-Nbl">
-                                <rect key="frame" x="70" y="235" width="81" height="22"/>
+                                <rect key="frame" x="70" y="235" width="82" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kr-KO-nZJ">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="22"/>
@@ -49,7 +57,7 @@
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q5Y-72-0xF">
-                                <rect key="frame" x="70" y="295" width="81" height="22"/>
+                                <rect key="frame" x="70" y="295" width="82" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uau-zM-pb0">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="22"/>
@@ -80,7 +88,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="IQL-MX-SEK" customClass="PostCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                        <rect key="frame" x="0.0" y="3" width="175" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
@@ -182,19 +190,19 @@
                                 </connections>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NwM-dT-f7f">
-                                <rect key="frame" x="125" y="0.0" width="236" height="156"/>
+                                <rect key="frame" x="125" y="0.0" width="237" height="156"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt1-If-Dxp">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mt1-If-Dxp">
                                         <rect key="frame" x="0.0" y="67" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="zfH-M9-fmb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="zfH-M9-fmb">
                                         <rect key="frame" x="41" y="0.0" width="155" height="156"/>
                                         <animations/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-Ra-L5o">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-Ra-L5o">
                                         <rect key="frame" x="196" y="67" width="41" height="22"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
@@ -235,6 +243,17 @@
                                     <segue destination="TG9-5h-9IJ" kind="presentation" identifier="ToEditProfileSegue" id="Gth-VW-sMS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIc-fx-ujA">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="logout">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.17346185519999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLogoutButtonPressed:" destination="D3z-xX-LMh" eventType="touchUpInside" id="HMD-Fk-STw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -259,6 +278,7 @@
                             </constraint>
                             <constraint firstItem="q5Y-72-0xF" firstAttribute="top" secondItem="3Lr-ts-Nbl" secondAttribute="bottom" constant="30" id="c4u-XS-PjU"/>
                             <constraint firstItem="q5Y-72-0xF" firstAttribute="centerX" secondItem="e3T-Ie-qGT" secondAttribute="centerX" id="dpU-81-Esi"/>
+                            <constraint firstItem="jIc-fx-ujA" firstAttribute="leading" secondItem="e3T-Ie-qGT" secondAttribute="leadingMargin" id="fpp-aR-FaX"/>
                             <constraint firstItem="NwM-dT-f7f" firstAttribute="centerX" secondItem="e3T-Ie-qGT" secondAttribute="centerX" id="iBC-yO-796"/>
                             <constraint firstItem="trw-on-cJE" firstAttribute="leading" secondItem="e3T-Ie-qGT" secondAttribute="leadingMargin" constant="-20" id="j2T-XG-fSz"/>
                             <constraint firstItem="4gs-O5-6lm" firstAttribute="top" secondItem="trw-on-cJE" secondAttribute="bottom" id="nvK-HE-e3Y"/>
@@ -266,14 +286,16 @@
                             <constraint firstItem="NwM-dT-f7f" firstAttribute="top" secondItem="emh-Hu-eWT" secondAttribute="bottom" id="w8W-Rr-tw4">
                                 <variation key="widthClass=compact" constant="10"/>
                             </constraint>
+                            <constraint firstItem="jIc-fx-ujA" firstAttribute="top" secondItem="emh-Hu-eWT" secondAttribute="bottom" constant="8" id="xAF-iF-oXT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="WGQ-Bf-ihU"/>
+                                <exclude reference="jIc-fx-ujA"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="LgL-BI-MDE"/>
-                                <exclude reference="qtS-OO-HbX"/>
+                                <exclude reference="fpp-aR-FaX"/>
+                                <exclude reference="xAF-iF-oXT"/>
                                 <exclude reference="D2M-vO-2RT"/>
                                 <exclude reference="aXH-go-vTx"/>
                                 <exclude reference="iBC-yO-796"/>
@@ -284,6 +306,8 @@
                                 <exclude reference="M8h-BA-a2a"/>
                                 <exclude reference="Urd-u8-yWw"/>
                                 <exclude reference="ZkZ-Ob-AjL"/>
+                                <exclude reference="LgL-BI-MDE"/>
+                                <exclude reference="qtS-OO-HbX"/>
                                 <exclude reference="0C5-Gy-Lqw"/>
                                 <exclude reference="2vj-4a-okC"/>
                                 <exclude reference="c4u-XS-PjU"/>
@@ -298,10 +322,11 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="WGQ-Bf-ihU"/>
+                                <include reference="jIc-fx-ujA"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="LgL-BI-MDE"/>
-                                <include reference="qtS-OO-HbX"/>
+                                <include reference="fpp-aR-FaX"/>
+                                <include reference="xAF-iF-oXT"/>
                                 <exclude reference="D2M-vO-2RT"/>
                                 <exclude reference="aXH-go-vTx"/>
                                 <include reference="iBC-yO-796"/>
@@ -312,6 +337,8 @@
                                 <exclude reference="M8h-BA-a2a"/>
                                 <include reference="Urd-u8-yWw"/>
                                 <include reference="ZkZ-Ob-AjL"/>
+                                <include reference="LgL-BI-MDE"/>
+                                <include reference="qtS-OO-HbX"/>
                                 <include reference="0C5-Gy-Lqw"/>
                                 <include reference="2vj-4a-okC"/>
                                 <include reference="c4u-XS-PjU"/>
@@ -336,6 +363,7 @@
                         <outlet property="profileImageView" destination="zfH-M9-fmb" id="17s-iP-5OB"/>
                         <outlet property="usernameLabel" destination="Mt1-If-Dxp" id="e0k-ZI-yYJ"/>
                         <segue destination="gjQ-6n-IZl" kind="presentation" identifier="ToPostDetailSegue" id="BUw-aH-ZDO"/>
+                        <segue destination="LDC-cP-ekB" kind="show" identifier="ToSignupSegue" id="yaL-0j-rqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYU-yy-LGF" userLabel="First Responder" sceneMemberID="firstResponder"/>

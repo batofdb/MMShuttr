@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "User.h"
+#import "MainLoginViewController.h"
+#import "MainFeedViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +24,23 @@
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"PgbbVPSwOXHvaz7Q72D2ffJN6QcEfQj8I2nfCSe3"
                   clientKey:@"nexLXsxJJmHF3d5BDttdKYCktNOzKZrRJKqowsiM"];
+
+
+    if (![User currentUser]) {
+        UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"SignupSignin" bundle:[NSBundle mainBundle]];
+        MainLoginViewController *vc = [loginStoryboard instantiateInitialViewController];
+
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.window.rootViewController = vc;
+        [self.window makeKeyAndVisible];
+    } else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        MainFeedViewController *vc = [mainStoryboard instantiateInitialViewController];
+
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.window.rootViewController = vc;
+        [self.window makeKeyAndVisible];
+    }
 
     return YES;
 }

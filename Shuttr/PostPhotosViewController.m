@@ -94,6 +94,13 @@
 #pragma mark - IBActions
 - (IBAction)onPostButtonPressed:(UIButton *)sender {
 
+
+    for (UIImage *image in self.images) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    }
+
+
+
     User *user = [User currentUser];
     Post *post = [Post object];
 

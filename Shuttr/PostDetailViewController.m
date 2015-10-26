@@ -110,7 +110,7 @@
 - (IBAction)onDetailButtonPressed:(UIButton *)sender {
 
     if ([self.post.author isEqual:[User currentUser]]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Options" message:@"Delete post" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Post" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
             UIAlertController *secondAlert = [UIAlertController alertControllerWithTitle:@"Delete Post" message:@"Are you sure you want to delete this post?" preferredStyle:UIAlertControllerStyleAlert];
@@ -150,7 +150,7 @@
 
     } else  {
 
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Options" message:@"Report post" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Report Post" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *reportAction = [UIAlertAction actionWithTitle:@"Report" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
             //TODO: Do something with report here

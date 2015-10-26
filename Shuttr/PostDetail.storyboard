@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QLu-L0-WoQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -226,23 +227,23 @@
                                 <exclude reference="xXx-pG-w4X"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="guA-2Y-whP"/>
+                                <exclude reference="zG3-ZO-B7f"/>
+                                <exclude reference="thq-Uv-Gjt"/>
+                                <exclude reference="3w7-Kj-194"/>
                                 <exclude reference="ROo-kv-3SG"/>
                                 <exclude reference="b1i-9V-IsF"/>
                                 <exclude reference="w8m-Nx-5CF"/>
+                                <exclude reference="RB1-HC-bgV"/>
+                                <exclude reference="So2-le-r9p"/>
+                                <exclude reference="cE4-dK-l8A"/>
+                                <exclude reference="3Zv-cw-czK"/>
+                                <exclude reference="RmL-FX-1Db"/>
+                                <exclude reference="b6P-BK-cgr"/>
                                 <exclude reference="J1a-rR-TXA"/>
                                 <exclude reference="LQj-Zs-lqI"/>
                                 <exclude reference="g4h-yp-wXk"/>
                                 <exclude reference="wao-FW-ftG"/>
-                                <exclude reference="3Zv-cw-czK"/>
-                                <exclude reference="RmL-FX-1Db"/>
-                                <exclude reference="b6P-BK-cgr"/>
-                                <exclude reference="RB1-HC-bgV"/>
-                                <exclude reference="So2-le-r9p"/>
-                                <exclude reference="cE4-dK-l8A"/>
-                                <exclude reference="3w7-Kj-194"/>
-                                <exclude reference="guA-2Y-whP"/>
-                                <exclude reference="zG3-ZO-B7f"/>
-                                <exclude reference="thq-Uv-Gjt"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -255,23 +256,23 @@
                                 <include reference="xXx-pG-w4X"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="guA-2Y-whP"/>
+                                <include reference="zG3-ZO-B7f"/>
+                                <include reference="thq-Uv-Gjt"/>
+                                <include reference="3w7-Kj-194"/>
                                 <include reference="ROo-kv-3SG"/>
                                 <include reference="b1i-9V-IsF"/>
                                 <include reference="w8m-Nx-5CF"/>
+                                <include reference="RB1-HC-bgV"/>
+                                <include reference="So2-le-r9p"/>
+                                <include reference="cE4-dK-l8A"/>
+                                <include reference="3Zv-cw-czK"/>
+                                <include reference="RmL-FX-1Db"/>
+                                <include reference="b6P-BK-cgr"/>
                                 <include reference="J1a-rR-TXA"/>
                                 <include reference="LQj-Zs-lqI"/>
                                 <include reference="g4h-yp-wXk"/>
                                 <include reference="wao-FW-ftG"/>
-                                <include reference="3Zv-cw-czK"/>
-                                <include reference="RmL-FX-1Db"/>
-                                <include reference="b6P-BK-cgr"/>
-                                <include reference="RB1-HC-bgV"/>
-                                <include reference="So2-le-r9p"/>
-                                <include reference="cE4-dK-l8A"/>
-                                <include reference="3w7-Kj-194"/>
-                                <include reference="guA-2Y-whP"/>
-                                <include reference="zG3-ZO-B7f"/>
-                                <include reference="thq-Uv-Gjt"/>
                             </mask>
                         </variation>
                     </view>

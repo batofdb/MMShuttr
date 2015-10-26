@@ -19,6 +19,10 @@
 		3A7483561BDDB92000484FED /* FeedTableFooterCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9471BDC478F006091DA /* FeedTableFooterCellView.m */; };
 		3AA3745C1BDDBD5800CDAF74 /* FeedTableFooterCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3745A1BDDBD5800CDAF74 /* FeedTableFooterCellView.xib */; };
 		3AA3745D1BDDBD5800CDAF74 /* FeedTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3745B1BDDBD5800CDAF74 /* FeedTableHeaderView.xib */; };
+		3AA3745F1BDDDB6300CDAF74 /* SignupSignin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3745E1BDDDB6300CDAF74 /* SignupSignin.storyboard */; };
+		3AA374621BDDEA9300CDAF74 /* MainLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA374611BDDEA9300CDAF74 /* MainLoginViewController.m */; };
+		3AA374651BDDEAB000CDAF74 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA374641BDDEAB000CDAF74 /* SignInViewController.m */; };
+		3AA374681BDDEABC00CDAF74 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA374671BDDEABC00CDAF74 /* SignUpViewController.m */; };
 		3AA7CF591BDC61A000C09601 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
 		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
 		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
@@ -87,6 +91,13 @@
 		3A7483541BDD60C700484FED /* ActivityFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedTableViewCell.m; sourceTree = "<group>"; };
 		3AA3745A1BDDBD5800CDAF74 /* FeedTableFooterCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableFooterCellView.xib; sourceTree = "<group>"; };
 		3AA3745B1BDDBD5800CDAF74 /* FeedTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableHeaderView.xib; sourceTree = "<group>"; };
+		3AA3745E1BDDDB6300CDAF74 /* SignupSignin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignupSignin.storyboard; sourceTree = "<group>"; };
+		3AA374601BDDEA9300CDAF74 /* MainLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLoginViewController.h; sourceTree = "<group>"; };
+		3AA374611BDDEA9300CDAF74 /* MainLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLoginViewController.m; sourceTree = "<group>"; };
+		3AA374631BDDEAB000CDAF74 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		3AA374641BDDEAB000CDAF74 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		3AA374661BDDEABC00CDAF74 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		3AA374671BDDEABC00CDAF74 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		3ACF11671BD9FB8500EDBF4B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3ACF11681BD9FB8500EDBF4B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3ACF116A1BD9FB9500EDBF4B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -304,6 +315,7 @@
 		47A4A8B31BD9CFFB006091DA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AA3745E1BDDDB6300CDAF74 /* SignupSignin.storyboard */,
 				47A4A8661BD9CF19006091DA /* Main.storyboard */,
 				3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */,
 				3ACF11CD1BDB3BD200EDBF4B /* Profile.storyboard */,
@@ -348,6 +360,12 @@
 				3A7483511BDC9A9800484FED /* PostDetailViewController.m */,
 				3ACF11D21BDB66CF00EDBF4B /* EditProfileViewController.h */,
 				3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */,
+				3AA374601BDDEA9300CDAF74 /* MainLoginViewController.h */,
+				3AA374611BDDEA9300CDAF74 /* MainLoginViewController.m */,
+				3AA374631BDDEAB000CDAF74 /* SignInViewController.h */,
+				3AA374641BDDEAB000CDAF74 /* SignInViewController.m */,
+				3AA374661BDDEABC00CDAF74 /* SignUpViewController.h */,
+				3AA374671BDDEABC00CDAF74 /* SignUpViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -443,6 +461,7 @@
 				3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */,
 				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
 				3A74834A1BDC8ABF00484FED /* SVProgressHUD.bundle in Resources */,
+				3AA3745F1BDDDB6300CDAF74 /* SignupSignin.storyboard in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
 				3A74834D1BDC8ABF00484FED /* Info.plist in Resources */,
@@ -456,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA374651BDDEAB000CDAF74 /* SignInViewController.m in Sources */,
 				3A7483561BDDB92000484FED /* FeedTableFooterCellView.m in Sources */,
 				3AA7CF591BDC61A000C09601 /* Activity.m in Sources */,
 				3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */,
@@ -473,6 +493,8 @@
 				658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */,
 				3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */,
 				3ACF11C61BDB19FC00EDBF4B /* ImageProcessing.m in Sources */,
+				3AA374621BDDEA9300CDAF74 /* MainLoginViewController.m in Sources */,
+				3AA374681BDDEABC00CDAF74 /* SignUpViewController.m in Sources */,
 				3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */,
 				3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */,
 				3ACF11C91BDB3B4C00EDBF4B /* SearchViewController.m in Sources */,

@@ -27,17 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //[User logOut];
-
-   // [User logInWithUsernameInBackground:@"philly" password:@"hen" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
-//
-//
-    User *user = [User currentUser];
     self.feedPosts = [NSArray new];
-    if (!user){
-        [User logInWithUsernameInBackground:@"philly" password:@"hen" block:^(PFUser * _Nullable user, NSError * _Nullable error) {}];
-
-    }
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 

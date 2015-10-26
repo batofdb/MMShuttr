@@ -166,6 +166,18 @@
     [self queryAndPopulateView];
 
 }
+- (IBAction)onLogoutButtonPressed:(UIButton *)sender {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Logging Out" message:@"Are you sure you want to log out?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+            [self performSegueWithIdentifier:@"ToSignupSegue" sender:self];
+        }];
+        UIAlertAction *cancelAction= [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:yesAction];
+        [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -179,7 +191,6 @@
         vc.post = [self.userPosts objectAtIndex:indexPath.row];
         vc.delegate = self;
     }
-
 }
 
 
