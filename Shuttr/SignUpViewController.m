@@ -8,6 +8,7 @@
 
 #import "SignUpViewController.h"
 #import "User.h"
+#import "ImageProcessing.h"
 
 @interface SignUpViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -87,12 +88,11 @@
                         newUser.password = self.passwordTextField.text;
                         newUser.email = self.emailTextField.text;
                         newUser.fullName = self.fullNameTextField.text;
+                        newUser.profilePicture = [ImageProcessing getDataFromImage:[UIImage imageNamed:@"profile_default"]];
                         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-
                             if (succeeded) {
-                                [User logInWithUsernameInBackground:newUser.username password:newUser.username block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+                                [User logInWithUsernameInBackground:newUser.username password:newUser.password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
                                     [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
-
                                 }];
 
                             } else {
@@ -101,9 +101,7 @@
                                 UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
                                 [thirdAlert addAction:okay];
                                 [self presentViewController:thirdAlert animated:YES completion:nil];
-
                             }
-
                         }];
                     }
                 }

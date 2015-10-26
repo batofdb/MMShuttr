@@ -18,15 +18,15 @@
  
 }
 
-@property (weak, nonatomic) IBOutlet UIButton *skip;
-@property (weak, nonatomic) IBOutlet UIImageView *wheelImageView;
+//@property (weak, nonatomic) IBOutlet UIButton *skip;
+//@property (weak, nonatomic) IBOutlet UIImageView *wheelImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+//@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 - (IBAction)takePhoto:  (UIButton *)sender;
-- (IBAction)selectPhoto:(UIButton *)sender;
+//- (IBAction)selectPhoto:(UIButton *)sender;
 
 @property (nonatomic)NSArray *shutterImageArray;
 @property NSMutableArray * photoArray;
@@ -319,16 +319,16 @@
 
 #pragma mark picker delegate method
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-   
-    UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self.photoManager pinInBackground];
-    self.imageView.image = editedImage;
-   //save to photo album
-    UIImageWriteToSavedPhotosAlbum (editedImage, nil, nil , nil);
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//   
+//    UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+//    [self.photoManager pinInBackground];
+//    self.imageView.image = editedImage;
+//   //save to photo album
+//    UIImageWriteToSavedPhotosAlbum (editedImage, nil, nil , nil);
+//    [picker dismissViewControllerAnimated:YES completion:NULL];
+//    
+//}
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     

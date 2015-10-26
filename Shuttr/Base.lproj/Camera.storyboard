@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gUa-6O-9b8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -24,6 +24,7 @@
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shutter 1" translatesAutoresizingMaskIntoConstraints="NO" id="L3s-VZ-nf3">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1J-aG-eDL">
                                 <rect key="frame" x="273" y="14" width="78" height="59"/>
@@ -48,18 +49,9 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" restorationIdentifier="select" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgr-HP-Pc4">
-                                <rect key="frame" x="20" y="11" width="363" height="66"/>
-                                <animations/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="14" width="363" height="63"/>
-                                </variation>
-                                <connections>
-                                    <action selector="selectPhoto:" destination="gUa-6O-9b8" eventType="touchUpInside" id="6od-Kl-qxk"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdj-b9-WVQ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Skip"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="39" y="29" width="42" height="30"/>
@@ -85,16 +77,12 @@
                             <constraint firstItem="L3s-VZ-nf3" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="top" id="1n7-Ai-Xft"/>
                             <constraint firstAttribute="trailing" secondItem="L3s-VZ-nf3" secondAttribute="trailing" id="4pA-y2-1bb"/>
                             <constraint firstItem="zmQ-zB-9vd" firstAttribute="top" secondItem="L3s-VZ-nf3" secondAttribute="bottom" id="5kC-Qt-Oc6"/>
-                            <constraint firstItem="qgr-HP-Pc4" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="topMargin" constant="11" id="6IU-6H-DlU"/>
                             <constraint firstItem="X5F-RH-gPh" firstAttribute="leading" secondItem="W39-uj-K97" secondAttribute="leading" id="Ddn-yx-Hli"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qgr-HP-Pc4" secondAttribute="trailing" constant="-3" id="ImC-ZT-I3j"/>
                             <constraint firstAttribute="top" secondItem="zST-Xx-hZD" secondAttribute="bottom" constant="8" id="KeI-Oe-OsX"/>
                             <constraint firstItem="u1J-aG-eDL" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="topMargin" constant="14" id="OGB-ks-x1W"/>
                             <constraint firstAttribute="trailing" secondItem="X5F-RH-gPh" secondAttribute="trailing" id="Ool-T2-VM7"/>
                             <constraint firstItem="zmQ-zB-9vd" firstAttribute="top" secondItem="X5F-RH-gPh" secondAttribute="bottom" id="Uk7-C1-Zy7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u1J-aG-eDL" secondAttribute="trailing" constant="29" id="c92-CL-NZC"/>
-                            <constraint firstItem="qgr-HP-Pc4" firstAttribute="leading" secondItem="W39-uj-K97" secondAttribute="leadingMargin" id="hEE-tS-sCt"/>
-                            <constraint firstItem="u1J-aG-eDL" firstAttribute="centerY" secondItem="qgr-HP-Pc4" secondAttribute="centerY" id="kRs-yl-iAo"/>
                             <constraint firstAttribute="trailing" secondItem="W39-uj-K97" secondAttribute="trailingMargin" id="nad-7f-gmc"/>
                             <constraint firstItem="L3s-VZ-nf3" firstAttribute="leading" secondItem="W39-uj-K97" secondAttribute="leading" id="r9b-9f-de3"/>
                             <constraint firstItem="X5F-RH-gPh" firstAttribute="top" secondItem="W39-uj-K97" secondAttribute="top" id="v8h-py-Brv"/>
@@ -113,12 +101,8 @@
                                 <exclude reference="Ool-T2-VM7"/>
                                 <exclude reference="v8h-py-Brv"/>
                                 <exclude reference="yeY-Mp-WcQ"/>
-                                <exclude reference="6IU-6H-DlU"/>
-                                <exclude reference="ImC-ZT-I3j"/>
-                                <exclude reference="hEE-tS-sCt"/>
                                 <exclude reference="OGB-ks-x1W"/>
                                 <exclude reference="c92-CL-NZC"/>
-                                <exclude reference="kRs-yl-iAo"/>
                                 <exclude reference="5kC-Qt-Oc6"/>
                                 <exclude reference="Uk7-C1-Zy7"/>
                             </mask>
@@ -138,12 +122,8 @@
                                 <include reference="v8h-py-Brv"/>
                                 <include reference="yeY-Mp-WcQ"/>
                                 <exclude reference="KeI-Oe-OsX"/>
-                                <include reference="6IU-6H-DlU"/>
-                                <include reference="ImC-ZT-I3j"/>
-                                <include reference="hEE-tS-sCt"/>
                                 <include reference="OGB-ks-x1W"/>
                                 <include reference="c92-CL-NZC"/>
-                                <include reference="kRs-yl-iAo"/>
                                 <include reference="5kC-Qt-Oc6"/>
                                 <include reference="Uk7-C1-Zy7"/>
                             </mask>

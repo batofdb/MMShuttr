@@ -12,8 +12,9 @@
 
 +(NSArray *)getDataArrayFromImageArray:(NSArray *)imageArray {
     NSMutableArray *dataArray = [NSMutableArray new];
+
     for (UIImage *image in imageArray) {
-        NSData *data = UIImageJPEGRepresentation(image, 0.0);
+        NSData *data = UIImageJPEGRepresentation(image, 0.6f);
         [dataArray addObject:data];
     }
 
@@ -31,12 +32,14 @@
 }
 
 +(NSData *)getDataFromImage:(UIImage *)image {
-    return UIImageJPEGRepresentation(image, 0.0);
+    return UIImageJPEGRepresentation(image, 0.6f);
 }
 
 +(UIImage *)getImageFromData:(NSData *)data {
     return [UIImage imageWithData:data];
 }
+
+
 
 
 @end
