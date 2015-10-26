@@ -8,15 +8,17 @@
 
 #import "CameraViewController.h"
 #import "PostPhotosViewController.h"
+#import "UIImage+ImageResizing.h"
 @interface CameraViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate>{
    
     AVCaptureSession * session;
     AVCaptureStillImageOutput *stillImageOutput;
-    
+    SystemSoundID soundID;
     BOOL flashlightOn;
  
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *skip;
 @property (weak, nonatomic) IBOutlet UIImageView *wheelImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
@@ -26,7 +28,13 @@
 - (IBAction)takePhoto:  (UIButton *)sender;
 - (IBAction)selectPhoto:(UIButton *)sender;
 
+@property (nonatomic)NSArray *shutterImageArray;
 @property NSMutableArray * photoArray;
+
+
+@property int imageCount;
+
+@property (weak, nonatomic) IBOutlet UIImageView *shutterImageView;
 
 @end
 
@@ -37,9 +45,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+    //music url
     
-    //swipe gesture
+    NSURL *musicUrl=[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"shutterSoundEffect" ofType:@"mp3"]];
+    
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)   musicUrl, &soundID);
+    
+    
+    
+    // shutter image sequence
+    self.shutterImageArray = [NSArray arrayWithObjects: [UIImage imageNamed:@"shutter 1"],
+  [UIImage imageNamed:@"shutter 2"],
+                              [UIImage imageNamed:@"shutter 1"],
+                              [UIImage imageNamed:@"shutter 4"],
+                              [UIImage imageNamed:@"shutter 5"],
+                              [UIImage imageNamed:@"shutter 6"],
+                              [UIImage imageNamed:@"shutter 7"],
+                              [UIImage imageNamed:@"shutter 8"],
+                              [UIImage imageNamed:@"shutter 9"],
+                              [UIImage imageNamed:@"shutter 10"],
+                              [UIImage imageNamed:@"shutter 11"],
+                              [UIImage imageNamed:@"shutter 12"],
+                              
+                              [UIImage imageNamed:@"shutter 13"],nil];
+    
+    self.imageCount =10;
+    
+     //swipe gesture
     self.wheelImageView.userInteractionEnabled = YES;
     UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
     gestureRecognizer.delegate = self;
@@ -79,22 +111,46 @@
     
     [session addOutput:stillImageOutput];
     [session startRunning];
-
  
     
 }
+- (IBAction)skipButton:(UIButton *)sender {
+    
 
+    
+    if (self.photoArray.count == 0) {
+        
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Message" message:@"Need at least one image taken" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alert addAction:action];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    else{
+    [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
+    self.photoArray = [NSMutableArray new];
+    }
+
+}
+
+#pragma mark resize Images
+
+//+ (UIImage*)imageWithImage:(UIImage*)image
+//              scaledToSize:(CGSize)newSize;
+//{
+//    UIGraphicsBeginImageContext( newSize );
+//    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+//    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    return newImage;
+//}
 
 #pragma mark swipeSelector
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
-  
-    
-    NSLog(@"Swipe received.");
-}
-
-
-#pragma mark takePhoto
-- (IBAction)takePhoto:(UIButton *)sender {
     
     AVCaptureConnection *videoConnection = nil;
     for (AVCaptureConnection *connection in stillImageOutput.connections)
@@ -122,22 +178,130 @@
              UIImage *image = [[UIImage alloc] initWithData:imageData];
              self.imageView.image = image;
              
+             //resize image
+             CGSize imageSize = CGSizeMake(400, 400);
+             UIImage *newImage = [UIImage imageWithImage:self.imageView.image scaledToSize:imageSize];
              
-             [self.photoArray addObject: self.imageView.image];
+             
+             [self.photoArray addObject: newImage];
+             //save image to photosAlbum
+             UIImageWriteToSavedPhotosAlbum (self.imageView.image, nil, nil , nil);
+             
+             //segue when image reaches to 10
+             if (self.photoArray.count == self.imageCount) {
+                 
+                 [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
+                 self.photoArray = [NSMutableArray new];
+                 
+    
+                 
+             }
+         }
+     }];
+    
+    self.countLabel.text = [NSString stringWithFormat:@"Count: %lu",(unsigned long)self.photoArray.count+1];
+    //animate shutter
+    self.shutterImageView.animationImages = self.shutterImageArray;
+    self.shutterImageView.animationDuration = 1;
+    self.shutterImageView.animationRepeatCount = 1;
+    [self.shutterImageView startAnimating];
+    
+//    
+//    if (flashlightOn == NO)
+//    {   [self toggleFlashlight];
+//        flashlightOn = YES;
+//        
+//    }
+//    else
+//    {
+//        flashlightOn = NO;
+//        
+//        [self toggleFlashlight];
+//    }
+//    
+//    [self toggleFlashlight];
+        AudioServicesPlaySystemSound(soundID);
+    
+    
+    NSLog(@"Swipe received.");
+}
+
+
+#pragma mark takePhoto
+- (IBAction)takePhoto:(UIButton *)sender {
+    if (flashlightOn == NO)
+    {   [self toggleFlashlight];
+        flashlightOn = YES;
+        
+    }
+    else
+    {
+        flashlightOn = NO;
+        
+        [self toggleFlashlight];
+    }
+    
+    [self toggleFlashlight];
+    
+    AVCaptureConnection *videoConnection = nil;
+    for (AVCaptureConnection *connection in stillImageOutput.connections)
+    {
+        for (AVCaptureInputPort *port in [connection inputPorts])
+        {
+            if ([[port mediaType] isEqual:AVMediaTypeVideo] )
+            {
+                videoConnection = connection;
+                break;
+            }
+        }
+        if (videoConnection) { break;
+        }
+    }
+    
+    NSLog(@"about to request a capture from: %@", stillImageOutput);
+    [stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection
+                                                  completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error)
+     {
+         
+         if (imageSampleBuffer !=NULL)
+         {
+             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+             UIImage *image = [[UIImage alloc] initWithData:imageData];
+             self.imageView.image = image;
+             
+             //resize image
+             CGSize imageSize = CGSizeMake(400, 400);
+             UIImage *newImage = [UIImage imageWithImage:self.imageView.image scaledToSize:imageSize];
+             
+             
+             [self.photoArray addObject: newImage];
               //save image to photosAlbum
              UIImageWriteToSavedPhotosAlbum (self.imageView.image, nil, nil , nil);
              
              //segue when image reaches to 10
-             if (self.photoArray.count == 1) {
+             if (self.photoArray.count == self.imageCount) {
            
              [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
                     self.photoArray = [NSMutableArray new];
+            
+             
+                 
              }
           }
       }];
     
     self.countLabel.text = [NSString stringWithFormat:@"Count: %lu",(unsigned long)self.photoArray.count+1];
+    //animate shutter
     
+    
+    self.shutterImageView.animationImages = self.shutterImageArray;
+    self.shutterImageView.animationDuration = 1;
+    self.shutterImageView.animationRepeatCount = 1;
+    [self.shutterImageView startAnimating];
+    
+    //soundeffect
+    
+//        AudioServicesPlaySystemSound(soundID);
 }
 
 #pragma mark selectPhoto
@@ -155,9 +319,9 @@
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
-
+/*
 #pragma mark shakemMotion
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake) {
         AVCaptureConnection *videoConnection = nil;
         for (AVCaptureConnection *connection in stillImageOutput.connections)
@@ -186,12 +350,16 @@
                  self.imageView.image = image;
                  
                  
-                 [self.photoArray addObject: self.imageView.image];
+                 CGSize imageSize = CGSizeMake(400, 400);
+                 UIImage *newImage = [UIImage imageWithImage:self.imageView.image scaledToSize:imageSize];
+                 
+                 
+                 [self.photoArray addObject: newImage];
                  //save image to photosAlbum
                  UIImageWriteToSavedPhotosAlbum (self.imageView.image, nil, nil , nil);
                  
                  //segue when image reaches to 10
-                 if (self.photoArray.count == 1) {
+                 if (self.photoArray.count == self.imageCount) {
                      
                      
                      [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
@@ -202,24 +370,37 @@
         NSLog(@"I'm shaking!");
         
         //flash
-            if (flashlightOn == NO)
-            {
-                flashlightOn = YES;
-                          }
-            else
-            {
-                flashlightOn = NO;
-             
-            }
         
-           [self toggleFlashlight];
+         [self toggleFlashlight];
+                flashlightOn = YES;
+                
+        
+        
+        
         
          self.countLabel.text = [NSString stringWithFormat:@"Count: %lu",(unsigned long)self.photoArray.count+1];
         
+        //animate shutter
+        
+        
+        self.shutterImageView.animationImages = self.shutterImageArray;
+        self.shutterImageView.animationDuration = 1;
+        self.shutterImageView.animationRepeatCount = 1;
+        [self.shutterImageView startAnimating];
     }
 }
 
-
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    
+    if (motion  ==  UIEventSubtypeMotionShake) {
+          [self toggleFlashlight];
+    }
+    
+    
+  
+    
+}
+*/
 
 #pragma mark flashOnOff switch
 

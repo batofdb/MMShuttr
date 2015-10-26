@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PhotoManager.h"
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 
 @interface CameraViewController : UIViewController
 
