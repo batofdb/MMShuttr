@@ -66,6 +66,7 @@
 		658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E32421BD9DB6300314027 /* PostPhotosViewController.m */; };
 		658E32501BD9DCC200314027 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658E324E1BD9DCC200314027 /* Camera.storyboard */; };
 		658E32531BD9DCDE00314027 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658E32511BD9DCDE00314027 /* Post.storyboard */; };
+		65EB52EB1BDD9FA400263932 /* shutterSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,7 @@
 		658E32421BD9DB6300314027 /* PostPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPhotosViewController.m; sourceTree = "<group>"; };
 		658E324F1BD9DCC200314027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
 		658E32521BD9DCDE00314027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Post.storyboard; sourceTree = "<group>"; };
+		65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shutterSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A4A89F1BD9CF98006091DA /* AudioToolbox.framework in Frameworks */,
 				47A4A9551BDC645B006091DA /* ParseFacebookUtils.framework in Frameworks */,
 				47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */,
 				47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */,
@@ -199,7 +202,6 @@
 				47A4A9521BDC645B006091DA /* Bolts.framework in Frameworks */,
 				47A4A8A11BD9CF9E006091DA /* CFNetwork.framework in Frameworks */,
 				47A4A9531BDC645B006091DA /* Parse.framework in Frameworks */,
-				47A4A89F1BD9CF98006091DA /* AudioToolbox.framework in Frameworks */,
 				47A4A9541BDC645B006091DA /* ParseCrashReporting.framework in Frameworks */,
 				47A4A9561BDC645B006091DA /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
@@ -284,6 +286,7 @@
 				3A74833D1BDC8ABE00484FED /* SVProgressHUD */,
 				3A7483461BDC8ABF00484FED /* SVProgressHUD-Framework */,
 				47A4A8691BD9CF19006091DA /* Assets.xcassets */,
+				65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */,
 				47A4A8601BD9CF19006091DA /* AppDelegate.h */,
 				47A4A8611BD9CF19006091DA /* AppDelegate.m */,
 				47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */,
@@ -517,6 +520,7 @@
 				3A74834F1BDC9A0F00484FED /* PostDetail.storyboard in Resources */,
 				658E32501BD9DCC200314027 /* Camera.storyboard in Resources */,
 				47A4A86A1BD9CF19006091DA /* Assets.xcassets in Resources */,
+				65EB52EB1BDD9FA400263932 /* shutterSoundEffect.mp3 in Resources */,
 				3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */,
 				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
 				3A74834A1BDC8ABF00484FED /* SVProgressHUD.bundle in Resources */,
