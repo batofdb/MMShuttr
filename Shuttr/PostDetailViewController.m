@@ -12,16 +12,12 @@
 #import "Activity.h"
 #import "SVProgressHUD.h"
 
-@interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
+@interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray *postImages;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
 //@property (weak, nonatomic) IBOutlet UITextField *addCommentTextField;
-
-
-
-
 
 @end
 
@@ -33,7 +29,13 @@
     [self extractImages];
     [self updateComments];
     self.navigationController.navigationItem.title =[NSString stringWithFormat:@"%@'s Post", self.post.author.username];
+
+    if ([self.post.author isEqual:[User currentUser]]){
+        [self.descriptionTextView setUserInteractionEnabled:YES];
+        self.descriptionTextView.editable = YES;
+    }
 }
+
 
 #pragma mark - Helper methods
 - (void)updateComments {
@@ -60,26 +62,6 @@
     self.descriptionTextView.text = self.post.textDescription;
 }
 
-// Might add back later if we want to handle "add comment" differently
-//#pragma mark - UITextField Delegate Methods
-//
-//
-//-(BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [self.addCommentTextField resignFirstResponder];
-//
-//    Activity *newComment = [Activity new];
-//    newComment.content = self.addCommentTextField.text;
-//    newComment.fromUser = [User currentUser];
-//    newComment.toUser = self.post.author;
-//    newComment.activityType = @1;
-//    newComment.post = self.post;
-//    [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        [self.addCommentTextField setText:@""];
-//        [self updateComments];
-//    }];
-//
-//    return YES;
-//}
 
 #pragma mark - UICollectionView Delegate Methods
 
@@ -192,6 +174,28 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+// Might add back later if we want to handle "add comment" differently
+//#pragma mark - UITextField Delegate Methods
+//
+//
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    [self.addCommentTextField resignFirstResponder];
+//
+//    Activity *newComment = [Activity new];
+//    newComment.content = self.addCommentTextField.text;
+//    newComment.fromUser = [User currentUser];
+//    newComment.toUser = self.post.author;
+//    newComment.activityType = @1;
+//    newComment.post = self.post;
+//    [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        [self.addCommentTextField setText:@""];
+//        [self updateComments];
+//    }];
+//
+//    return YES;
+//}
 
 
 
