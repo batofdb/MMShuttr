@@ -9,5 +9,13 @@
 #import "FeedTableFooterCellView.h"
 
 @implementation FeedTableFooterCellView
+- (IBAction)onLikeButtonPressed:(UIButton *)sender {
+}
+
+- (IBAction)onMoreButtonPressed:(UIButton *)sender {
+}
+
+- (IBAction)onCommentsButtonPressed:(UIButton *)sender {
+}
 
 @end

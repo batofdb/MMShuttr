@@ -80,6 +80,8 @@
         footerView.descriptionLabel.text = post.textDescription;
         NSLog(@"%@ by description>>>>>>>>: %@",post.author.username, post.textDescription);
 
+        [footerView setUserInteractionEnabled:NO];
+
         return footerView;
 
     } else {
