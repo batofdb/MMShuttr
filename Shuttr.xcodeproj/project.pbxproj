@@ -36,8 +36,6 @@
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
 		47A4A86A1BD9CF19006091DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8691BD9CF19006091DA /* Assets.xcassets */; };
 		47A4A86D1BD9CF19006091DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A86B1BD9CF19006091DA /* LaunchScreen.storyboard */; };
-		47A4A8781BD9CF1A006091DA /* ShuttrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8771BD9CF1A006091DA /* ShuttrTests.m */; };
-		47A4A8831BD9CF1A006091DA /* ShuttrUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8821BD9CF1A006091DA /* ShuttrUITests.m */; };
 		47A4A89F1BD9CF98006091DA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A89E1BD9CF98006091DA /* AudioToolbox.framework */; };
 		47A4A8A11BD9CF9E006091DA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8A01BD9CF9E006091DA /* CFNetwork.framework */; };
 		47A4A8A31BD9CFA4006091DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8A21BD9CFA4006091DA /* CoreGraphics.framework */; };
@@ -68,23 +66,6 @@
 		658E32531BD9DCDE00314027 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658E32511BD9DCDE00314027 /* Post.storyboard */; };
 		65EB52EB1BDD9FA400263932 /* shutterSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		47A4A8741BD9CF1A006091DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47A4A8521BD9CF19006091DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47A4A8591BD9CF19006091DA;
-			remoteInfo = Shuttr;
-		};
-		47A4A87F1BD9CF1A006091DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47A4A8521BD9CF19006091DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47A4A8591BD9CF19006091DA;
-			remoteInfo = Shuttr;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3A74833A1BDC7F3A00484FED /* FeedTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableHeaderView.h; sourceTree = "<group>"; };
@@ -134,10 +115,8 @@
 		47A4A8691BD9CF19006091DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47A4A86C1BD9CF19006091DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47A4A86E1BD9CF19006091DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47A4A8731BD9CF1A006091DA /* ShuttrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShuttrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A8771BD9CF1A006091DA /* ShuttrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuttrTests.m; sourceTree = "<group>"; };
 		47A4A8791BD9CF1A006091DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47A4A87E1BD9CF1A006091DA /* ShuttrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShuttrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A8821BD9CF1A006091DA /* ShuttrUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShuttrUITests.m; sourceTree = "<group>"; };
 		47A4A8841BD9CF1A006091DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47A4A89E1BD9CF98006091DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -207,20 +186,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47A4A8701BD9CF1A006091DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47A4A87B1BD9CF1A006091DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -262,8 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				47A4A85A1BD9CF19006091DA /* Shuttr.app */,
-				47A4A8731BD9CF1A006091DA /* ShuttrTests.xctest */,
-				47A4A87E1BD9CF1A006091DA /* ShuttrUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -431,42 +394,6 @@
 			productReference = 47A4A85A1BD9CF19006091DA /* Shuttr.app */;
 			productType = "com.apple.product-type.application";
 		};
-		47A4A8721BD9CF1A006091DA /* ShuttrTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47A4A88A1BD9CF1A006091DA /* Build configuration list for PBXNativeTarget "ShuttrTests" */;
-			buildPhases = (
-				47A4A86F1BD9CF1A006091DA /* Sources */,
-				47A4A8701BD9CF1A006091DA /* Frameworks */,
-				47A4A8711BD9CF1A006091DA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				47A4A8751BD9CF1A006091DA /* PBXTargetDependency */,
-			);
-			name = ShuttrTests;
-			productName = ShuttrTests;
-			productReference = 47A4A8731BD9CF1A006091DA /* ShuttrTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		47A4A87D1BD9CF1A006091DA /* ShuttrUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47A4A88D1BD9CF1A006091DA /* Build configuration list for PBXNativeTarget "ShuttrUITests" */;
-			buildPhases = (
-				47A4A87A1BD9CF1A006091DA /* Sources */,
-				47A4A87B1BD9CF1A006091DA /* Frameworks */,
-				47A4A87C1BD9CF1A006091DA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				47A4A8801BD9CF1A006091DA /* PBXTargetDependency */,
-			);
-			name = ShuttrUITests;
-			productName = ShuttrUITests;
-			productReference = 47A4A87E1BD9CF1A006091DA /* ShuttrUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -478,14 +405,6 @@
 				TargetAttributes = {
 					47A4A8591BD9CF19006091DA = {
 						CreatedOnToolsVersion = 7.1;
-					};
-					47A4A8721BD9CF1A006091DA = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = 47A4A8591BD9CF19006091DA;
-					};
-					47A4A87D1BD9CF1A006091DA = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = 47A4A8591BD9CF19006091DA;
 					};
 				};
 			};
@@ -503,8 +422,6 @@
 			projectRoot = "";
 			targets = (
 				47A4A8591BD9CF19006091DA /* Shuttr */,
-				47A4A8721BD9CF1A006091DA /* ShuttrTests */,
-				47A4A87D1BD9CF1A006091DA /* ShuttrUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -529,20 +446,6 @@
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
 				3A74834D1BDC8ABF00484FED /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47A4A8711BD9CF1A006091DA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47A4A87C1BD9CF1A006091DA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,36 +485,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47A4A86F1BD9CF1A006091DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				47A4A8781BD9CF1A006091DA /* ShuttrTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47A4A87A1BD9CF1A006091DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				47A4A8831BD9CF1A006091DA /* ShuttrUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		47A4A8751BD9CF1A006091DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47A4A8591BD9CF19006091DA /* Shuttr */;
-			targetProxy = 47A4A8741BD9CF1A006091DA /* PBXContainerItemProxy */;
-		};
-		47A4A8801BD9CF1A006091DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47A4A8591BD9CF19006091DA /* Shuttr */;
-			targetProxy = 47A4A87F1BD9CF1A006091DA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3ACF11CD1BDB3BD200EDBF4B /* Profile.storyboard */ = {
@@ -769,54 +643,6 @@
 			};
 			name = Release;
 		};
-		47A4A88B1BD9CF1A006091DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ShuttrTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MMInstaGroup.ShuttrTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shuttr.app/Shuttr";
-			};
-			name = Debug;
-		};
-		47A4A88C1BD9CF1A006091DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ShuttrTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MMInstaGroup.ShuttrTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shuttr.app/Shuttr";
-			};
-			name = Release;
-		};
-		47A4A88E1BD9CF1A006091DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = ShuttrUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MMInstaGroup.ShuttrUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Shuttr;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		47A4A88F1BD9CF1A006091DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = ShuttrUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MMInstaGroup.ShuttrUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Shuttr;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -834,24 +660,6 @@
 			buildConfigurations = (
 				47A4A8881BD9CF1A006091DA /* Debug */,
 				47A4A8891BD9CF1A006091DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47A4A88A1BD9CF1A006091DA /* Build configuration list for PBXNativeTarget "ShuttrTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47A4A88B1BD9CF1A006091DA /* Debug */,
-				47A4A88C1BD9CF1A006091DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47A4A88D1BD9CF1A006091DA /* Build configuration list for PBXNativeTarget "ShuttrUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47A4A88E1BD9CF1A006091DA /* Debug */,
-				47A4A88F1BD9CF1A006091DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
