@@ -81,9 +81,9 @@
         [likeQuery whereKey:@"fromUser" equalTo:[User currentUser]];
         [likeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects.count>0){
-                [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+                [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
             } else {
-                [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"unlike"] forState:UIControlStateNormal];
+                [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
             }
 
         }];
@@ -187,7 +187,7 @@
             Activity *deleteActivity = objects.firstObject;
             [deleteActivity deleteInBackground];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [sender setBackgroundImage:[UIImage imageNamed:@"unlike"] forState:UIControlStateNormal];
+                [sender setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
             });
         } else {
             Activity *addActivity = [Activity object];
@@ -200,7 +200,7 @@
 
             [addActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [sender setBackgroundImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+                    [sender setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
                 });
             }];
         }

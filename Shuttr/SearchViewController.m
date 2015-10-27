@@ -173,9 +173,9 @@
     if ([segue.identifier isEqualToString:@"ToSearchDetailSegue"]) {
         SearchDetailViewController *vc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        if ([[self currentArray] isEqualToArray:self.filteredSearchResults]) {
+        if (self.searchController.isActive) {
             vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row];
-        } else {
+       } else {
             UIButton *button = sender;
             Activity *activity = [self.activityItems objectAtIndex:button.tag];
             vc.user = activity.fromUser;
