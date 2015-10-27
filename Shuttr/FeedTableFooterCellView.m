@@ -10,12 +10,15 @@
 
 @implementation FeedTableFooterCellView
 - (IBAction)onLikeButtonPressed:(UIButton *)sender {
+    [self.delegate likeButtonWasPressed:sender];
 }
 
 - (IBAction)onMoreButtonPressed:(UIButton *)sender {
+    [self.delegate moreButtonWasPressed:self];
 }
 
 - (IBAction)onCommentsButtonPressed:(UIButton *)sender {
+    [self.delegate commentsButtonWasPressed:self];
 }
 
 @end

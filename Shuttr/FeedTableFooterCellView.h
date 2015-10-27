@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FeedTableFooterCellDelegate <NSObject>
+
+- (void)likeButtonWasPressed:(id)sender;
+- (void)commentsButtonWasPressed:(id)sender;
+- (void)moreButtonWasPressed:(id)sender;
+
+@end
+
 @interface FeedTableFooterCellView : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
-//- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+
+@property (weak, nonatomic) id <FeedTableFooterCellDelegate> delegate;
 @end

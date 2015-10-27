@@ -66,12 +66,13 @@
 
     PFQuery *query = [Activity query];
     // Three days ago = 3 (days) * 24 (hours) * 60 (minutes) * 60 (seconds)
-    NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-259200];
+    //NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-259200];
+    //[query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
     [query whereKey:@"toUser" equalTo:[User currentUser]];
-    [query whereKey:@"fromUser" notEqualTo:[User currentUser]];
+    //[query whereKey:@"fromUser" notEqualTo:[User currentUser]];
     [query includeKey:@"fromUser"]; // for some reason I need this in order to access properties on activity.fromUser
     [query includeKey:@"post"];
-    [query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
+
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
         self.activityItems = objects;
