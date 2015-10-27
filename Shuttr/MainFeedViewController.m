@@ -29,19 +29,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.feedPosts = [NSArray new];
-
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [SVProgressHUD show];
     [self getAllPosts];
 }
 
 - (void)getAllPosts {
     PFQuery *allPosts = [PFQuery queryWithClassName:@"Post"];
     [allPosts includeKey:@"author"];
+    [SVProgressHUD show];
     [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (objects.count > 0) {
             self.feedPosts = objects;

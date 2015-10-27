@@ -24,6 +24,7 @@
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"PgbbVPSwOXHvaz7Q72D2ffJN6QcEfQj8I2nfCSe3"
                   clientKey:@"nexLXsxJJmHF3d5BDttdKYCktNOzKZrRJKqowsiM"];
+    [PFUser enableRevocableSessionInBackground];
 
 
     if (![User currentUser]) {
