@@ -11,6 +11,9 @@
 #import "User.h"
 #import "MainLoginViewController.h"
 #import "MainFeedViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
+
 
 @interface AppDelegate ()
 
@@ -21,13 +24,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    //[[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"PgbbVPSwOXHvaz7Q72D2ffJN6QcEfQj8I2nfCSe3"
                   clientKey:@"nexLXsxJJmHF3d5BDttdKYCktNOzKZrRJKqowsiM"];
-    [PFUser enableRevocableSessionInBackground];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+
+   // [PFUser enableRevocableSessionInBackground];
 
 
-    if (![User currentUser]) {
+    if (![User currentUser] || // Check if user is cached
+        ![PFFacebookUtils isLinkedWithUser:[User currentUser]]) { // Check if user is linked to Facebook
+
         UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"SignupSignin" bundle:[NSBundle mainBundle]];
         MainLoginViewController *vc = [loginStoryboard instantiateInitialViewController];
 
@@ -35,15 +44,32 @@
         self.window.rootViewController = vc;
         [self.window makeKeyAndVisible];
     } else {
+
+        // log in user
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         MainFeedViewController *vc = [mainStoryboard instantiateInitialViewController];
 
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.window.rootViewController = vc;
         [self.window makeKeyAndVisible];
+
     }
 
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -58,10 +84,6 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

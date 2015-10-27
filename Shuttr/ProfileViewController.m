@@ -17,6 +17,8 @@
 #import "PostDetailViewController.h"
 #import "SVProgressHUD.h"
 #import "PostPhotosViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PostDetailDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -175,7 +177,10 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Logging Out" message:@"Are you sure you want to log out?" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-            [self performSegueWithIdentifier:@"ToSignupSegue" sender:self];
+            [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+                [self performSegueWithIdentifier:@"ToSignupSegue" sender:self];
+            }];
+
         }];
         UIAlertAction *cancelAction= [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:yesAction];
