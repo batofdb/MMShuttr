@@ -122,7 +122,12 @@
 
         if ([activity.activityType isEqual:@0]){
 
-            cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ likes one of your rolls", activity.fromUser.username];
+            if ([activity.fromUser isEqual:[User currentUser]]){
+                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You've liked on one of your rolls"];
+            } else {
+
+                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ likes one of your rolls", activity.fromUser.username];
+            }
 
             [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
 
@@ -134,7 +139,11 @@
             cell.toPostButton.tag = indexPath.row;
 
         } else if ([activity.activityType isEqual:@1]){
-            cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ commented on one of your rolls", activity.fromUser.username];
+            if ([activity.fromUser isEqual:[User currentUser]]){
+                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You've commented on one of your rolls"];
+            } else {
+                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ commented on one of your rolls", activity.fromUser.username];
+            }
            [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
             UIImage *postRollCoverImage = [ImageProcessing getImageFromData:[activity.post.roll firstObject]];
             [cell.toPostButton setBackgroundImage:[UIImage imageWithImage:postRollCoverImage scaledToSize:CGSizeMake(cell.toPostButton.frame.size.width, cell.toPostButton.frame.size.width)] forState:UIControlStateNormal];
@@ -177,14 +186,18 @@
             vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row];
        } else {
             UIButton *button = sender;
-            Activity *activity = [self.activityItems objectAtIndex:button.tag];
+           ActivityFeedTableViewCell *cell = (ActivityFeedTableViewCell *)button.superview;
+           NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            Activity *activity = [self.activityItems objectAtIndex:indexPath.row];
             vc.user = activity.fromUser;
         }
 
     } else if ([segue.identifier isEqualToString:@"ToPostDetailSegue"]) {
         PostDetailViewController *vc = segue.destinationViewController;
         UIButton *button = sender;
-        Activity *activity = [self.activityItems objectAtIndex:button.tag];
+        ActivityFeedTableViewCell *cell = (ActivityFeedTableViewCell *)button.superview;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        Activity *activity = [self.activityItems objectAtIndex:indexPath.row];
         vc.post = activity.post;
     }
 }

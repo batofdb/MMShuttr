@@ -36,7 +36,8 @@
     [super viewDidLoad];
     [self populateView];
     [self.collectionView reloadData];
-    
+    self.followButton.layer.cornerRadius = 5;
+    self.followButton.clipsToBounds = YES;
 
 }
 
@@ -59,7 +60,7 @@
     [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         NSArray *userPosts = [NSArray arrayWithArray:objects];
         self.userPosts = [NSArray arrayWithArray:objects];
-        self.postsCountLabel.text = [NSString stringWithFormat:@"Posts: %lu", userPosts.count];
+        self.postsCountLabel.text = [NSString stringWithFormat:@"%lu", userPosts.count];
 
         for (Post *post in self.userPosts) {
             [self.rollCoverImages addObject:[ImageProcessing getImageFromData:[post.roll firstObject]]];
@@ -99,7 +100,7 @@
                 self.followActivity = activity;
             }
         }
-        self.likesCountLabel.text = [NSString stringWithFormat:@"Likes: %lu", userLikes.count];
+        self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
         self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
         self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
     }];

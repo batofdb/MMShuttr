@@ -50,6 +50,8 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+
+    // TODO: optimise navigation so this doesn't have to get called every time the view appears
     [self queryAndPopulateView];
     [self.collectionView reloadData];
 }
@@ -71,7 +73,7 @@
     [queryPosts whereKey:@"author" equalTo:user];
     [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.userPosts = [NSArray arrayWithArray:objects];
-        self.postsCountLabel.text = [NSString stringWithFormat:@"Posts: %lu", self.userPosts.count];
+        self.postsCountLabel.text = [NSString stringWithFormat:@"%lu", self.userPosts.count];
 
         for (Post *post in self.userPosts) {
             [self.rollCoverImages addObject:[ImageProcessing getImageFromData:[post.roll firstObject]]];
@@ -109,11 +111,11 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
 
-        self.likesCountLabel.text = [NSString stringWithFormat:@"Likes: %lu", userLikes.count];
+        self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
         self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
         self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
 
-            [self.collectionView reloadData];
+//            [self.collectionView reloadData];
         });
     }];
 }
@@ -172,21 +174,7 @@
 
 }
 
-#pragma mark - IBActions
-- (IBAction)onLogoutButtonPressed:(UIButton *)sender {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Logging Out" message:@"Are you sure you want to log out?" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-            [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-                [self performSegueWithIdentifier:@"ToSignupSegue" sender:self];
-            }];
-
-        }];
-        UIAlertAction *cancelAction= [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:yesAction];
-        [alert addAction:cancelAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

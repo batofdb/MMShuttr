@@ -47,6 +47,14 @@
     NSArray *permissionsArray = @[ @"user_about_me", @"email", @"user_relationships", @"user_birthday", @"user_location"];
 
     // Login PFUser using Facebook
+    if ([FBSDKAccessToken currentAccessToken]){
+         [PFFacebookUtils logInInBackgroundWithAccessToken:[FBSDKAccessToken currentAccessToken] block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+
+             [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+
+         }];
+    } else {
+
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
@@ -76,6 +84,8 @@
             [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
         }
     }];
+
+    }
 
 }
 
