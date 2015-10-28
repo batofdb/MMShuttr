@@ -14,6 +14,7 @@
 #import "Activity.h"
 #import "ActivityFeedTableViewCell.h"
 #import "PostDetailViewController.h"
+#import "SVProgressHUD.h"
 
 @interface SearchViewController () <UISearchBarDelegate, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate>
 
@@ -27,15 +28,16 @@
 
 @implementation SearchViewController
 
+#pragma mark - View Life Cycle Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeSearchController];
-    [self activityItemsQuery];
     [self userQueryAndSave];
-
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated {
+    // Need to keep activity up to date
+    // TODO: implement pulldown to refresh
     [self activityItemsQuery];
 }
 
@@ -49,37 +51,71 @@
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchResultsUpdater = self;
     self.searchController.searchBar.delegate = self;
-
 }
 
 - (void)userQueryAndSave {
     PFQuery *query = [User query];
     self.filteredSearchResults = [NSArray new];
-
+    query.limit = 20;
+    [SVProgressHUD show];
+    [query orderByDescending:@"username"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.users = [[NSArray alloc] initWithArray:objects];
+        [SVProgressHUD dismiss];
+        [self.tableView reloadData];
     }];
+}
+
+- (void)queryAdditionalUsers {
+    /* Added for scalability. Want to only search for 20 people at first, and the following can be executed in either condition:
+
+     1) the results array is empty so we will need to keep querying people until something is found for the search
+     2) the person the user is searching for isn't in the list, and the user clicks "more" to continue searching
+
+     */
+
+    PFQuery *query = [User query];
+    NSMutableArray *objectIdArray = [NSMutableArray new];
+    for (User *user in self.filteredSearchResults) {
+        [objectIdArray addObject:user.objectId];
+    }
+    query.limit = 20;
+    [SVProgressHUD show];
+
+    [query whereKey:@"objectId" notContainedIn:objectIdArray];
+    [query orderByDescending:@"username"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        [self.users arrayByAddingObjectsFromArray:objects];
+        [SVProgressHUD dismiss];
+        [self.tableView reloadData];
+
+    }];
+
 }
 
 - (void) activityItemsQuery {
     self.activityItems = [NSArray new];
 
     PFQuery *query = [Activity query];
-    // Three days ago = 3 (days) * 24 (hours) * 60 (minutes) * 60 (seconds)
-    //NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-259200];
-    //[query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
+    //One week ago = 7 (days) * 24 (hours) * 60 (minutes) * 60 (seconds)
+    int oneWeekAgo = 7*24*60*60;
+    NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-oneWeekAgo];
+    [query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
     [query whereKey:@"toUser" equalTo:[User currentUser]];
-    //[query whereKey:@"fromUser" notEqualTo:[User currentUser]];
+
+    // Can comment this out again later, but for now it causes more problems than it solves, since we have to check each activity and edit if it's the user who creates the activity. Also, have to check in prepareForSegue and change the destination view controller if the user clicks on their own profile picture.
+
+    [query whereKey:@"fromUser" notEqualTo:[User currentUser]];
+
     [query includeKey:@"fromUser"]; // for some reason I need this in order to access properties on activity.fromUser
     [query includeKey:@"post"];
+    [SVProgressHUD show];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-
         self.activityItems = objects;
-
         dispatch_async(dispatch_get_main_queue(), ^{
-
             [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         });
     }];
 }
@@ -125,10 +161,8 @@
             if ([activity.fromUser isEqual:[User currentUser]]){
                 cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You've liked on one of your rolls"];
             } else {
-
                 cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ likes one of your rolls", activity.fromUser.username];
             }
-
             [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
 
             UIImage *postRollCoverImage = [ImageProcessing getImageFromData:[activity.post.roll firstObject]];
@@ -182,11 +216,11 @@
 
 - (IBAction)onPostButtonPressed:(UIButton *)sender {
     [self performSegueWithIdentifier:@"ToPostDetailSegue" sender:sender];
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToSearchDetailSegue"]) {
+
         SearchDetailViewController *vc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         if (self.searchController.isActive) {

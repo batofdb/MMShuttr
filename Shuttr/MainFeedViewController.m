@@ -81,6 +81,11 @@
 - (void)getAllPosts {
     PFQuery *allPosts = [PFQuery queryWithClassName:@"Post"];
     [allPosts includeKey:@"author"];
+    // Change the following for different feed results
+    allPosts.limit = 10;
+    [allPosts orderByDescending:@"updateAt"];
+
+
     [SVProgressHUD show];
     [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (objects.count > 0) {

@@ -13,6 +13,7 @@
 #import "PostDetailViewController.h"
 #import "Activity.h"
 #import "Post.h"
+#import "SVProgressHUD.h"
 
 @interface SearchDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -56,6 +57,7 @@
 
     // Get user posts
     PFQuery *queryPosts = [Post query];
+    [SVProgressHUD show];
     [queryPosts whereKey:@"author" equalTo:self.user];
     [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         NSArray *userPosts = [NSArray arrayWithArray:objects];
@@ -68,6 +70,7 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView reloadData];
+            [SVProgressHUD dismiss];
         });
 
 
@@ -124,6 +127,7 @@
 }
 
 - (void)checkSender {
+    // Need to put this in profile view mode if we are on the user's page. Need to add Nav bar as well
     if (self.sourceVC){
         UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
         navBar.backgroundColor = [UIColor whiteColor];
@@ -156,20 +160,14 @@
         activity.activityType = @2;
         [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             [self populateView];
-
         }];
-
-
     } else {
         [self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
         [self.followButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self.followActivity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             [self populateView];
         }];
-
     }
-
-
 }
 
 #pragma mark - UICollectionView Delegate Methods

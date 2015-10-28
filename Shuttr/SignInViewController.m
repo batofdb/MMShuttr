@@ -49,10 +49,6 @@
     // Add the button to the view
     [self.view addSubview:myLoginButton];
     [self.view addSubview:twitterLoginButton];
-
-
-    
-
 }
 
 
@@ -102,8 +98,6 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
              }
     }];
 }
-
-
 }
 - (void)loginButtonClicked {
 
@@ -113,9 +107,7 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
     // Login PFUser using Facebook
     if ([FBSDKAccessToken currentAccessToken]){
          [PFFacebookUtils logInInBackgroundWithAccessToken:[FBSDKAccessToken currentAccessToken] block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-
              [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
-
          }];
     } else {
 

@@ -65,7 +65,6 @@
 
     [self getUserProperties];
 
-
     // TODO: possible refactor opportunities here
     // Get user posts
     [SVProgressHUD show];
