@@ -31,46 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadFacebookData];
     self.feedPosts = [NSArray new];
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
-}
-
-- (void)loadFacebookData {
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-        if (!error) {
-            // result is a dictionary with the user's Facebook data
-            NSDictionary *userData = (NSDictionary *)result;
-
-            NSString *facebookID = userData[@"id"];
-            NSString *name = userData[@"name"];
-
-            /* Unused Facebook Parameters
-            NSString *location = userData[@"location"][@"name"];
-            NSString *gender = userData[@"gender"];
-            NSString *birthday = userData[@"birthday"];
-            NSString *relationship = userData[@"relationship_status"];
-            NSString *email = userData[@"email"];
-
-             */
-
-            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-
-            // setUserData
-            User *user = [User currentUser];
-            [user setObject:name forKey:@"fullName"];
-
-
-            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:pictureURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                [user setObject:data forKey:@"profilePicture"];
-            }];
-            [task resume];
-        }
-
-
-
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,8 +45,8 @@
     [allPosts includeKey:@"author"];
     // Change the following for different feed results
     allPosts.limit = 10;
-    [allPosts orderByDescending:@"updateAt"];
-
+    [allPosts includeKey:@"updatedAt"];
+    [allPosts orderByDescending:@"updatedAt"];
 
     [SVProgressHUD show];
     [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -102,7 +64,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.feedPosts.count; // Total number of rows in the sample data.
