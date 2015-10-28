@@ -9,6 +9,8 @@
 #import "MainLoginViewController.h"
 #import "SignInViewController.h"
 #import "SignUpViewController.h"
+#import <ParseUI/ParseUI.h>
+#import "User.h"
 
 @interface MainLoginViewController () <SignInDelegate, SignUpDelegate>
 
@@ -18,7 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    if ([PFUser currentUser]) {
+        [self performSegueWithIdentifier:@"toMainFeedSegueWithoutLogin" sender:self];
+    }
 }
 
 

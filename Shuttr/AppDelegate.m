@@ -13,6 +13,7 @@
 #import "MainFeedViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
+#import <ParseTwitterUtils/ParseTwitterUtils.h>
 
 
 @interface AppDelegate ()
@@ -30,12 +31,12 @@
     [Parse setApplicationId:@"PgbbVPSwOXHvaz7Q72D2ffJN6QcEfQj8I2nfCSe3"
                   clientKey:@"nexLXsxJJmHF3d5BDttdKYCktNOzKZrRJKqowsiM"];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    [PFTwitterUtils initializeWithConsumerKey:@"WKyiOLgjYPuymsknt9hHzfgDA" consumerSecret:@"d7HD65T6zMAL34yUUiiQJUxEZmoICyzhJ1c7jDlCY7thf1dXcF"];
 
    // [PFUser enableRevocableSessionInBackground];
 
 
-    if (![User currentUser] || // Check if user is cached
-        ![PFFacebookUtils isLinkedWithUser:[User currentUser]]) { // Check if user is linked to Facebook
+    if (![User currentUser]) { // Check if user is linked to Facebook
 
         UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"SignupSignin" bundle:[NSBundle mainBundle]];
         MainLoginViewController *vc = [loginStoryboard instantiateInitialViewController];

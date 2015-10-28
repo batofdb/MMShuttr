@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVa-JL-rpi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LVa-JL-rpi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -434,7 +434,7 @@
                                     <outlet property="delegate" destination="dNP-1U-kWm" id="lt8-4k-xa6"/>
                                 </connections>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Msj-ak-cCj">
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msj-ak-cCj">
                                 <rect key="frame" x="70" y="295" width="82" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwe-iG-iWo">
@@ -535,29 +535,29 @@
                                 <exclude reference="9Mr-kd-rKJ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Gk3-UY-hNh"/>
-                                <exclude reference="WZm-VQ-K0y"/>
+                                <exclude reference="t7k-j7-r4j"/>
                                 <exclude reference="3OQ-KY-eCM"/>
                                 <exclude reference="KLG-Sx-5tn"/>
                                 <exclude reference="fFF-ma-Xwf"/>
                                 <exclude reference="mVz-8S-bdi"/>
+                                <exclude reference="Gk3-UY-hNh"/>
+                                <exclude reference="WZm-VQ-K0y"/>
                                 <exclude reference="VXp-dx-cgQ"/>
                                 <exclude reference="ZEh-Kx-qwQ"/>
                                 <exclude reference="lKz-vf-tDm"/>
                                 <exclude reference="ohU-xQ-3Jo"/>
                                 <exclude reference="x0P-1K-Jqn"/>
-                                <exclude reference="1Dy-ri-a7Q"/>
-                                <exclude reference="E9H-hg-a6J"/>
-                                <exclude reference="Oqw-kk-pAc"/>
                                 <exclude reference="1Z5-Dl-LsU"/>
                                 <exclude reference="KLg-Ed-WJq"/>
                                 <exclude reference="cR9-PA-EJd"/>
+                                <exclude reference="1Dy-ri-a7Q"/>
+                                <exclude reference="E9H-hg-a6J"/>
+                                <exclude reference="Oqw-kk-pAc"/>
                                 <exclude reference="1dt-ae-wVh"/>
                                 <exclude reference="2cW-hk-UxU"/>
                                 <exclude reference="TR2-Yd-zLv"/>
                                 <exclude reference="n5M-4V-BqR"/>
                                 <exclude reference="xfD-qy-HPx"/>
-                                <exclude reference="t7k-j7-r4j"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -570,29 +570,29 @@
                                 <include reference="9Mr-kd-rKJ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Gk3-UY-hNh"/>
-                                <include reference="WZm-VQ-K0y"/>
+                                <include reference="t7k-j7-r4j"/>
                                 <exclude reference="3OQ-KY-eCM"/>
                                 <include reference="KLG-Sx-5tn"/>
                                 <exclude reference="fFF-ma-Xwf"/>
                                 <include reference="mVz-8S-bdi"/>
+                                <include reference="Gk3-UY-hNh"/>
+                                <include reference="WZm-VQ-K0y"/>
                                 <exclude reference="VXp-dx-cgQ"/>
                                 <include reference="ZEh-Kx-qwQ"/>
                                 <include reference="lKz-vf-tDm"/>
                                 <exclude reference="ohU-xQ-3Jo"/>
                                 <include reference="x0P-1K-Jqn"/>
-                                <include reference="1Dy-ri-a7Q"/>
-                                <include reference="E9H-hg-a6J"/>
-                                <include reference="Oqw-kk-pAc"/>
                                 <include reference="1Z5-Dl-LsU"/>
                                 <include reference="KLg-Ed-WJq"/>
                                 <include reference="cR9-PA-EJd"/>
+                                <include reference="1Dy-ri-a7Q"/>
+                                <include reference="E9H-hg-a6J"/>
+                                <include reference="Oqw-kk-pAc"/>
                                 <exclude reference="1dt-ae-wVh"/>
                                 <include reference="2cW-hk-UxU"/>
                                 <include reference="TR2-Yd-zLv"/>
                                 <exclude reference="n5M-4V-BqR"/>
                                 <include reference="xfD-qy-HPx"/>
-                                <include reference="t7k-j7-r4j"/>
                             </mask>
                         </variation>
                     </view>

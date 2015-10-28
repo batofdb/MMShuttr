@@ -153,7 +153,14 @@
 
         } else if ([activity.activityType isEqual:@2] ){
             cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ is following you", activity.fromUser.username];
-            [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
+
+            UIImageView* image = [UIImageView new];
+            image.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)];
+
+            image.layer.cornerRadius = image.frame.size.height/2;
+            image.clipsToBounds = YES;
+
+            [cell.fromUserButton setBackgroundImage:image.image forState:UIControlStateNormal];
             [cell.toPostButton setEnabled:NO];
             cell.fromUserButton.tag = indexPath.row;
         }

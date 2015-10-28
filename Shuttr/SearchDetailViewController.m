@@ -118,6 +118,9 @@
     UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:self.user.profilePicture] scaledToSize:CGSizeMake(150,150)] ;
 
     self.profileImageView.image = profilePicture;
+    self.profileImageView.layer.cornerRadius = 75;
+    self.profileImageView.clipsToBounds = YES;
+    self.profileImageView.layer.masksToBounds = YES;
 }
 
 - (void)checkSender {

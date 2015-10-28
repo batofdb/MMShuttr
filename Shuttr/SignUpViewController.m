@@ -40,6 +40,8 @@
 
     // Add the button to the view
     [self.view addSubview:myLoginButton];
+
+    
 }
 
 - (IBAction)onXButtonPressed:(UIButton *)sender {
