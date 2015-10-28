@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePictureImageView;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (nonatomic) User *user;
 @property BOOL imageChanged;
 @end
@@ -31,6 +32,7 @@
     self.fullNameTextField.text = self.user.fullName;
     self.usernameTextField.text = self.user.username;
     self.emailTextField.text = self.user.email;
+    self.passwordTextField.text = self.user.password;
     self.imageChanged = NO;
     self.profilePictureImageView.image = [ImageProcessing getImageFromData:self.user.profilePicture];
 }
@@ -55,6 +57,10 @@
 
     if (![self.emailTextField.text isEqualToString:self.user.email]){
         [self.user setObject:self.emailTextField.text forKey:@"email"];
+    }
+
+    if (![self.passwordTextField.text isEqualToString:self.user.password]){
+        [self.user setObject:self.passwordTextField.text forKey:@"password"];
     }
 
     if (self.imageChanged){

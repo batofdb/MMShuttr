@@ -28,8 +28,11 @@
 
     // Add a custom login button to your app
     UIButton *myLoginButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    myLoginButton.backgroundColor=[UIColor darkGrayColor];
-    myLoginButton.frame=CGRectMake(0,0,180,60);
+    myLoginButton.frame=CGRectMake(0,0,159,40);
+    myLoginButton.layer.cornerRadius = 4;
+    myLoginButton.backgroundColor=UIColorFromRGB(0xD9A39A);
+    [myLoginButton setTitleColor:UIColorFromRGB(0x423C45) forState:UIControlStateNormal];
+    myLoginButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     myLoginButton.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2)+140);
     [myLoginButton setTitle: @"Facebook" forState: UIControlStateNormal];
 

@@ -118,10 +118,11 @@
     self.fullNameLabel.text = self.user.fullName;
 
     // Get profile pic
-    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:self.user.profilePicture] scaledToSize:CGSizeMake(150,150)] ;
+    UIImage *profilePicture =[UIImage imageWithImage:[ImageProcessing getImageFromData:self.user.profilePicture] scaledToSize:CGSizeMake(85,85)] ;
 
     self.profileImageView.image = profilePicture;
-    self.profileImageView.layer.cornerRadius = 75;
+#warning set this to image.height/2
+    self.profileImageView.layer.cornerRadius = 42;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.masksToBounds = YES;
 }
@@ -129,11 +130,12 @@
 - (void)checkSender {
     // Need to put this in profile view mode if we are on the user's page. Need to add Nav bar as well
     if (self.sourceVC){
-        UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+
+        UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
         navBar.backgroundColor = [UIColor whiteColor];
 
         UINavigationItem *navItem = [[UINavigationItem alloc] init];
-        navItem.title = @"User Profile";
+        navItem.title = self.user.username;
 
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onDoneButtonPressed:)];
         navItem.rightBarButtonItem = rightButton;
