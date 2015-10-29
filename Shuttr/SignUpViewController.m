@@ -156,7 +156,19 @@
                                     [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
                                 }];
 
-                            } else {
+                            } else if(![self NSStringIsValidEmail:self.emailTextField.text]){
+                                
+                                
+                                NSLog(@"Email is invalid");
+                                UIAlertController *thirdAlert = [UIAlertController alertControllerWithTitle:@"Invalid Email" message:@"Please enter a valid email" preferredStyle:UIAlertControllerStyleAlert];
+                                UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
+                                [thirdAlert addAction:okay];
+                                [self presentViewController:thirdAlert animated:YES completion:nil];
+
+                                
+                            }  else
+                            
+                            {
                                 NSLog(@"sign up unsuccessful");
                                 UIAlertController *thirdAlert = [UIAlertController alertControllerWithTitle:@"Sign up unsuccessful" message:@"Please try again." preferredStyle:UIAlertControllerStyleAlert];
                                 UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
@@ -170,6 +182,19 @@
             }];
         }
     }];
+}
+
+
+
+#pragma mark EmailValidation
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO;
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
 }
 
 @end
