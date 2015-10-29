@@ -15,7 +15,6 @@
 #import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
 #import <ParseTwitterUtils/ParseTwitterUtils.h>
 
-
 @interface AppDelegate ()
 
 @end
@@ -25,14 +24,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    
     //[[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"PgbbVPSwOXHvaz7Q72D2ffJN6QcEfQj8I2nfCSe3"
                   clientKey:@"nexLXsxJJmHF3d5BDttdKYCktNOzKZrRJKqowsiM"];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     [PFTwitterUtils initializeWithConsumerKey:@"WKyiOLgjYPuymsknt9hHzfgDA" consumerSecret:@"d7HD65T6zMAL34yUUiiQJUxEZmoICyzhJ1c7jDlCY7thf1dXcF"];
+
 
    // [PFUser enableRevocableSessionInBackground];
 

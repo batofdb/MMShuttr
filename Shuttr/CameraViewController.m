@@ -215,7 +215,7 @@
                     self.photoArray = [NSMutableArray new];
               self.countLabel.text = [NSString stringWithFormat:@"Count: 0" ];
              
-                 
+
              }
           }
       }];

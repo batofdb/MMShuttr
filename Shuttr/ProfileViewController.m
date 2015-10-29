@@ -78,45 +78,43 @@
             [self.rollCoverImages addObject:[ImageProcessing getImageFromData:[post.roll firstObject]]];
         }
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView reloadData];
-            [SVProgressHUD dismiss];
-        });
+        PFQuery *fromQuery = [Activity query];
+        [fromQuery whereKey:@"fromUser" equalTo:user];
 
-    }];
+        PFQuery *toQuery = [Activity query];
+        [toQuery whereKey:@"toUser" equalTo:user];
 
-    PFQuery *fromQuery = [Activity query];
-    [fromQuery whereKey:@"fromUser" equalTo:user];
+        PFQuery *activityQuery = [PFQuery orQueryWithSubqueries:@[toQuery, fromQuery]];
 
-    PFQuery *toQuery = [Activity query];
-    [toQuery whereKey:@"toUser" equalTo:user];
+        [activityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
-    PFQuery *activityQuery = [PFQuery orQueryWithSubqueries:@[toQuery, fromQuery]];
+            NSMutableArray *userLikes = [NSMutableArray new];
+            NSMutableArray *userFollowers = [NSMutableArray new];
+            NSMutableArray *userFollowing = [NSMutableArray new];
 
-    [activityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-
-        NSMutableArray *userLikes = [NSMutableArray new];
-        NSMutableArray *userFollowers = [NSMutableArray new];
-        NSMutableArray *userFollowing = [NSMutableArray new];
-
-        for (Activity *activity in objects){
-            if ([activity.activityType  isEqual:@0] && [activity.toUser isEqual:user]){
-                [userLikes addObject:activity];
-            } else if ([activity.activityType  isEqual:@2] && [activity.toUser isEqual:user]) {
-                [userFollowers addObject:activity];
-            }else if ([activity.activityType  isEqual:@2] && [activity.fromUser isEqual:user]) {
-                [userFollowing addObject:activity];
+            for (Activity *activity in objects){
+                if ([activity.activityType  isEqual:@0] && [activity.toUser isEqual:user]){
+                    [userLikes addObject:activity];
+                } else if ([activity.activityType  isEqual:@2] && [activity.toUser isEqual:user]) {
+                    [userFollowers addObject:activity];
+                }else if ([activity.activityType  isEqual:@2] && [activity.fromUser isEqual:user]) {
+                    [userFollowing addObject:activity];
+                }
             }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
 
-        self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
-        self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
-        self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
+                self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
+                self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
+                self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
+                [SVProgressHUD dismiss];
 
-//            [self.collectionView reloadData];
-        });
+                [self.collectionView reloadData];
+            });
+        }];
+
     }];
+
+
 }
 
 - (void)getUserProperties {
@@ -151,9 +149,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
     [self performSegueWithIdentifier:@"ToPostDetailSegue" sender:indexPath];
-    
 }
 
 #pragma mark - Edit Profile Delegate Method Implementation
@@ -170,7 +166,6 @@
 
 - (void)postWasDeleted:(id)view {
     [self queryAndPopulateView];
-
 }
 
 

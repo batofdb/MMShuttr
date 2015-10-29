@@ -272,12 +272,31 @@
 }
 
 - (IBAction)onFromUserButtonPressed:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"ToSearchDetailSegue" sender:sender];
+    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+
+    if (self.searchController.isActive) {
+        if ([[self.filteredSearchResults objectAtIndex:indexPath.row] isEqual:[User currentUser]]) {
+            [self.tabBarController setSelectedIndex:2];
+        } else {
+            [self performSegueWithIdentifier:@"ToSearchDetailSegue" sender:sender];
+
+        }
+    } else {
+        Activity *activity = [self.exploreItems objectAtIndex:indexPath.row];
+        if ([activity.fromUser isEqual:[User currentUser]]) {
+            [self.tabBarController setSelectedIndex:2];
+        } else {
+            [self performSegueWithIdentifier:@"ToSearchDetailSegue" sender:sender];
+        }
+    }
+
 }
 
 - (IBAction)onPostButtonPressed:(UIButton *)sender {
     [self performSegueWithIdentifier:@"ToPostDetailSegue" sender:sender];
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToSearchDetailSegue"]) {
