@@ -44,12 +44,24 @@
                                 <action selector="onAuthorButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="78M-tt-i8A"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SfD-Yy-cvk">
+                            <rect key="frame" x="362" y="14" width="30" height="22"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="HLA-SA-ABm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                            <color key="textColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.25882352941176467" green="0.23529411764705882" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="SfD-Yy-cvk" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="6S7-Xl-vBJ"/>
                         <constraint firstItem="vmG-dU-a2F" firstAttribute="leading" secondItem="pzi-h2-X8T" secondAttribute="trailing" constant="15" id="Lbz-KH-Qrg"/>
                         <constraint firstItem="pzi-h2-X8T" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="Qvo-bg-Anx"/>
+                        <constraint firstAttribute="trailing" secondItem="SfD-Yy-cvk" secondAttribute="trailing" constant="8" id="Ulc-5q-ftC"/>
                         <constraint firstItem="vmG-dU-a2F" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="vVe-4W-RJ1"/>
                         <constraint firstItem="pzi-h2-X8T" firstAttribute="leading" secondItem="8vw-5w-fbb" secondAttribute="leading" constant="15" id="xbq-a1-37G"/>
                     </constraints>
@@ -68,6 +80,7 @@
             <connections>
                 <outlet property="authorButton" destination="vmG-dU-a2F" id="j3d-Fl-RUS"/>
                 <outlet property="authorProfilePicture" destination="pzi-h2-X8T" id="kYM-6C-CHl"/>
+                <outlet property="timeStampLabel" destination="SfD-Yy-cvk" id="YJc-hV-PhH"/>
             </connections>
             <point key="canvasLocation" x="286" y="239"/>
         </view>

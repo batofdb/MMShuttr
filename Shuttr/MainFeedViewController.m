@@ -192,6 +192,8 @@
         NSArray *images = [ImageProcessing getImageArrayFromDataArray:post.roll];
         [cell setCollectionData:images];
 
+
+
         return cell;
     }
 
@@ -213,6 +215,24 @@
     }
 
 
+    NSString *timeStamp;
+    NSCalendar *c = [NSCalendar currentCalendar];
+    NSDate *d1 = [NSDate date];
+    NSDate *d2 = post.createdAt;
+
+    NSDateComponents *components = [c components:NSCalendarUnitHour fromDate:d2 toDate:d1 options:0];
+    NSInteger diff = components.hour;
+
+
+    if (diff < 1) {
+        NSDateComponents *components = [c components:NSCalendarUnitMinute fromDate:d2 toDate:d1 options:0];
+        NSInteger diff = components.minute;
+        timeStamp = [NSString stringWithFormat:@"%lum", diff];
+    } else {
+        timeStamp = [NSString stringWithFormat:@"%luh", diff];
+    }
+
+    headerView.timeStampLabel.text = timeStamp;
 
     [self.feedTableView endUpdates];
 
