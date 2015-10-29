@@ -18,6 +18,7 @@
 @interface FeedTableHeaderView : UITableViewHeaderFooterView
 @property (weak, nonatomic) IBOutlet UIImageView *authorProfilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *authorButton;
+@property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
 @property (weak,nonatomic) id<FeedTableHeaderDelegate>delegate;
 
 @end
