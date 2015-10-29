@@ -32,7 +32,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                             <state key="normal" title="Author">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.85098039215686272" green="0.63921568627450975" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <variation key="default">
                                 <mask key="constraints">
@@ -46,7 +46,7 @@
                         </button>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.25882352941176467" green="0.23529411764705882" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="vmG-dU-a2F" firstAttribute="leading" secondItem="pzi-h2-X8T" secondAttribute="trailing" constant="15" id="Lbz-KH-Qrg"/>
                         <constraint firstItem="pzi-h2-X8T" firstAttribute="centerY" secondItem="8vw-5w-fbb" secondAttribute="centerY" id="Qvo-bg-Anx"/>

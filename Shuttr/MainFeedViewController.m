@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tabBarController.tabBar.tintColor = UIColorFromRGB(0x533E54);
 
 }
 
@@ -168,9 +169,9 @@
 
 
         if ([self.likesArray[indexPath.section] isEqual:@1]) {
-            [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
+            [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
         } else if ([self.likesArray[indexPath.section] isEqual:@0]){
-            [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
+            [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"semi-heart-on"] forState:UIControlStateNormal];
         }
 
         return footerView;
@@ -278,7 +279,7 @@
             [tempLikesArray setObject:@0 atIndexedSubscript:indexPath.section];
             self.likesArray = [NSArray arrayWithArray:tempLikesArray];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [sender setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
+                [sender setBackgroundImage:[UIImage imageNamed:@"semi-heart-on"] forState:UIControlStateNormal];
             });
         } else {
             Activity *addActivity = [Activity object];
@@ -291,7 +292,7 @@
 
             [addActivity saveInBackground];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [sender setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
+                    [sender setBackgroundImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
                 });
         }
     }];

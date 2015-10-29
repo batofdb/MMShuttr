@@ -13,90 +13,93 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0A4-Lt-Xls">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="90"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M94-EG-O1g">
+                            <rect key="frame" x="66" y="12" width="255" height="36"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="3pi-Xe-WxJ"/>
+                                <constraint firstAttribute="width" constant="315" id="8f8-Ab-md1"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="BQA-cX-Vgg"/>
+                                <constraint firstAttribute="width" constant="255" id="Buq-cU-iao"/>
+                            </constraints>
+                            <string key="text">Lomo small batch heirloom Helvetica. Polaroid readymade beard cronut hella. Keytar stumptown XOXO occupy McSweeney's skateboard typewriter literally, Wes Anderson flannel. Wolf Schlitz YOLO, sartorial Portland McSweeney's pour-over quinoa gentrify flexitarian 90's post-ironic. </string>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                            <color key="textColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="8f8-Ab-md1"/>
+                                </mask>
+                            </variation>
+                        </label>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzk-7i-kCZ">
                             <rect key="frame" x="17" y="13" width="34" height="34"/>
                             <animations/>
-                            <color key="backgroundColor" red="0.96973205240000004" green="0.97171077920000004" blue="0.97083967299999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="34" id="L5d-HJ-o1J"/>
                             </constraints>
-                            <state key="normal" backgroundImage="unlike-1"/>
+                            <state key="normal" backgroundImage="heart"/>
                             <connections>
                                 <action selector="onLikeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="gUL-1H-1eh"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-ro-Hd5">
+                            <rect key="frame" x="348" y="13" width="37" height="37"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="AMt-dB-fKe"/>
+                                <constraint firstAttribute="width" constant="37" id="sIE-1D-Nhj"/>
+                            </constraints>
+                            <state key="normal" image="more"/>
+                            <connections>
+                                <action selector="onMoreButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="OCf-DO-rCs"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-46-b3q">
+                            <rect key="frame" x="66" y="52" width="94" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="BOk-SA-Sow"/>
+                                <constraint firstAttribute="width" constant="75" id="OFz-xL-Ufs"/>
+                                <constraint firstAttribute="width" constant="94" id="TTO-Qd-F5q"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="h96-hh-bzU"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="94" id="nL5-lB-3Mp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                            <state key="normal" title="Comments">
+                                <color key="titleColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="OFz-xL-Ufs"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="onCommentsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RM3-je-tfe"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.96973205240149252" green="0.97171077916496673" blue="0.97083967296700724" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.18039215689999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="cKH-ro-Hd5" secondAttribute="trailing" constant="15" id="31N-m8-bvi"/>
+                        <constraint firstItem="M94-EG-O1g" firstAttribute="centerY" secondItem="Fzk-7i-kCZ" secondAttribute="centerY" id="41s-eO-sUY"/>
+                        <constraint firstAttribute="bottom" secondItem="fP0-46-b3q" secondAttribute="bottom" constant="8" id="7zi-tw-z07"/>
                         <constraint firstItem="Fzk-7i-kCZ" firstAttribute="leading" secondItem="0A4-Lt-Xls" secondAttribute="leading" constant="17" id="EHb-V7-G1D"/>
+                        <constraint firstItem="cKH-ro-Hd5" firstAttribute="top" secondItem="0A4-Lt-Xls" secondAttribute="top" constant="13" id="GM2-lw-yMG"/>
                         <constraint firstAttribute="bottom" secondItem="Fzk-7i-kCZ" secondAttribute="bottom" constant="43" id="iCW-Yr-X6k"/>
+                        <constraint firstItem="M94-EG-O1g" firstAttribute="leading" secondItem="Fzk-7i-kCZ" secondAttribute="trailing" constant="15" id="u27-8g-gbl"/>
+                        <constraint firstItem="fP0-46-b3q" firstAttribute="leading" secondItem="M94-EG-O1g" secondAttribute="leading" id="uAe-0n-VmR"/>
                         <constraint firstItem="Fzk-7i-kCZ" firstAttribute="top" secondItem="0A4-Lt-Xls" secondAttribute="top" constant="13" id="yVK-0l-YLE"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-46-b3q">
-                    <rect key="frame" x="67" y="52" width="94" height="30"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="BOk-SA-Sow"/>
-                        <constraint firstAttribute="width" constant="75" id="OFz-xL-Ufs"/>
-                        <constraint firstAttribute="width" constant="94" id="TTO-Qd-F5q"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                    <state key="normal" title="Comments">
-                        <color key="titleColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="OFz-xL-Ufs"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="onCommentsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RM3-je-tfe"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-ro-Hd5">
-                    <rect key="frame" x="344" y="17" width="41" height="10"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="41" id="CTT-pN-I3o"/>
-                        <constraint firstAttribute="height" constant="10" id="Um8-CW-sra"/>
-                    </constraints>
-                    <state key="normal" image="more"/>
-                    <connections>
-                        <action selector="onMoreButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="OCf-DO-rCs"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M94-EG-O1g">
-                    <rect key="frame" x="67" y="11" width="255" height="36"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="3pi-Xe-WxJ"/>
-                        <constraint firstAttribute="width" constant="315" id="8f8-Ab-md1"/>
-                    </constraints>
-                    <string key="text">Lomo small batch heirloom Helvetica. Polaroid readymade beard cronut hella. Keytar stumptown XOXO occupy McSweeney's skateboard typewriter literally, Wes Anderson flannel. Wolf Schlitz YOLO, sartorial Portland McSweeney's pour-over quinoa gentrify flexitarian 90's post-ironic. </string>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="8f8-Ab-md1"/>
-                        </mask>
-                    </variation>
-                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="M94-EG-O1g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="11" id="1Z4-im-AaM"/>
                 <constraint firstAttribute="bottom" secondItem="0A4-Lt-Xls" secondAttribute="bottom" id="W7K-Av-wxP"/>
-                <constraint firstAttribute="trailing" secondItem="cKH-ro-Hd5" secondAttribute="trailing" constant="15" id="c0N-Ee-W5Q"/>
-                <constraint firstAttribute="trailing" secondItem="M94-EG-O1g" secondAttribute="trailing" constant="78" id="h7u-f5-c5I"/>
                 <constraint firstAttribute="trailing" secondItem="0A4-Lt-Xls" secondAttribute="trailing" id="hhY-dy-BLb"/>
-                <constraint firstAttribute="trailing" secondItem="fP0-46-b3q" secondAttribute="trailing" constant="239" id="iKK-t3-MTH"/>
-                <constraint firstItem="fP0-46-b3q" firstAttribute="top" secondItem="M94-EG-O1g" secondAttribute="bottom" constant="5" id="j5T-a8-FIS"/>
-                <constraint firstItem="fP0-46-b3q" firstAttribute="leading" secondItem="M94-EG-O1g" secondAttribute="leading" id="kON-q7-87w"/>
-                <constraint firstItem="cKH-ro-Hd5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="rsh-vS-Hyw"/>
                 <constraint firstItem="0A4-Lt-Xls" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wBa-Jr-vWa"/>
                 <constraint firstItem="0A4-Lt-Xls" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zPo-24-xit"/>
             </constraints>
@@ -111,7 +114,7 @@
         </view>
     </objects>
     <resources>
-        <image name="more" width="114" height="27"/>
-        <image name="unlike-1" width="25" height="25"/>
+        <image name="heart" width="64" height="64"/>
+        <image name="more" width="64" height="64"/>
     </resources>
 </document>
