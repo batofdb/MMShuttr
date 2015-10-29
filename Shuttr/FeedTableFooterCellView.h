@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @protocol FeedTableFooterCellDelegate <NSObject>
-
 - (void)likeButtonWasPressed:(id)sender;
+
 - (void)commentsButtonWasPressed:(id)sender;
 - (void)moreButtonWasPressed:(id)sender;
 

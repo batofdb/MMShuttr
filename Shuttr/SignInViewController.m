@@ -125,7 +125,7 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
         } else {
             NSLog(@"User logged in through Facebook!");
             NSLog(@"existing user - username: %@", user.username);
-            [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+            [self loadFacebookData];
         }
     }];
 
@@ -146,7 +146,7 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSString *enteredUsername = usernameTextField.text;
         [user setObject:enteredUsername forKey:@"username"];
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+            [self loadFacebookData];
         }];
 
 
@@ -157,6 +157,34 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
     [alert addAction:action];
     [alert addAction:cancel];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)loadFacebookData {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            // result is a dictionary with the user's Facebook data
+            NSDictionary *userData = (NSDictionary *)result;
+            NSString *facebookID = userData[@"id"];
+            NSString *name = userData[@"name"];
+            /* Unused Facebook Parameters
+             NSString *location = userData[@"location"][@"name"];
+             NSString *gender = userData[@"gender"];
+             NSString *birthday = userData[@"birthday"];
+             NSString *relationship = userData[@"relationship_status"];
+             NSString *email = userData[@"email"];
+             */
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            // setUserData
+            User *user = [User currentUser];
+            [user setObject:name forKey:@"fullName"];
+            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:pictureURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                [user setObject:data forKey:@"profilePicture"];
+                [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+            }];
+            [task resume];
+        }
+    }];
 }
 
 - (IBAction)onXButtonPressed:(UIButton *)sender {

@@ -49,6 +49,8 @@
 
 }
 
+
+
 -(void)updateSearchWithQuery {
     if (self.activityUserSegmentedControl.selectedSegmentIndex == 0)
         [self activityItemsQuery];
@@ -158,7 +160,9 @@
 
     [queryToUser whereKey:@"toUser" equalTo:[User currentUser]];
 
+
     // Can comment this out again later, but for now it causes more problems than it solves, since we have to check each activity and edit if it's the user who creates the activity. Also, have to check in prepareForSegue and change the destination view controller if the user clicks on their own profile picture.
+
     PFQuery *queryFromUser = [Activity query];
     [queryFromUser whereKey:@"fromUser" equalTo:[User currentUser]];
     [SVProgressHUD show];
@@ -217,6 +221,7 @@
             if ([activity.fromUser isEqual:[User currentUser]]){
                 cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You've liked on one of your rolls"];
             } else {
+
                 cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ likes one of your rolls", activity.fromUser.username];
             }
             [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
@@ -278,23 +283,22 @@
     if ([segue.identifier isEqualToString:@"ToSearchDetailSegue"]) {
 
         SearchDetailViewController *vc = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+
+        CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+
         if (self.searchController.isActive) {
-            vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row];
+            vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row] ;
        } else {
-            UIButton *button = sender;
-           ActivityFeedTableViewCell *cell = (ActivityFeedTableViewCell *)button.superview;
-           NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            Activity *activity = [self.activityItems objectAtIndex:indexPath.row];
+            Activity *activity = [self.exploreItems objectAtIndex:indexPath.row] ;
             vc.user = activity.fromUser;
         }
 
     } else if ([segue.identifier isEqualToString:@"ToPostDetailSegue"]) {
         PostDetailViewController *vc = segue.destinationViewController;
-        UIButton *button = sender;
-        ActivityFeedTableViewCell *cell = (ActivityFeedTableViewCell *)button.superview;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        Activity *activity = [self.activityItems objectAtIndex:indexPath.row];
+        CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:touchPoint];
+        Activity *activity = [self.exploreItems objectAtIndex:indexPath.row];
         vc.post = activity.post;
     }
 }

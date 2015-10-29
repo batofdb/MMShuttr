@@ -23,86 +23,131 @@
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate, FeedTableFooterCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
-@property NSArray *objects;
-@property NSArray *feedPosts;
+@property (nonatomic) NSArray *objects;
+@property (nonatomic) NSArray *feedPosts;
+@property (nonatomic) NSArray *likesArray;
 @end
 
 @implementation MainFeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadFacebookData];
-    self.feedPosts = [NSArray new];
-    [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
-}
 
-- (void)loadFacebookData {
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-        if (!error) {
-            // result is a dictionary with the user's Facebook data
-            NSDictionary *userData = (NSDictionary *)result;
-
-            NSString *facebookID = userData[@"id"];
-            NSString *name = userData[@"name"];
-
-            /* Unused Facebook Parameters
-            NSString *location = userData[@"location"][@"name"];
-            NSString *gender = userData[@"gender"];
-            NSString *birthday = userData[@"birthday"];
-            NSString *relationship = userData[@"relationship_status"];
-            NSString *email = userData[@"email"];
-
-             */
-
-            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-
-            // setUserData
-            User *user = [User currentUser];
-            [user setObject:name forKey:@"fullName"];
-
-
-            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:pictureURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                [user setObject:data forKey:@"profilePicture"];
-            }];
-            [task resume];
-        }
-
-
-
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     [self getAllPosts];
+
 }
 
 - (void)getAllPosts {
-    PFQuery *allPosts = [PFQuery queryWithClassName:@"Post"];
-    [allPosts includeKey:@"author"];
-    // Change the following for different feed results
-    allPosts.limit = 10;
-    [allPosts orderByDescending:@"updateAt"];
+    PFQuery *query = [self queryForPosts];
+    PFQuery *likesActivityQuery = [self queryForUserLikeActivity];
+    self.feedPosts = [NSArray new];
+    self.likesArray = [NSArray new];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+        self.feedPosts = [[NSArray alloc] initWithArray:objects];
+
+        [likesActivityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+            NSArray *allUserLikesActivity= [[NSArray alloc] initWithArray:objects];
+            NSMutableArray *allUserLikedPosts = [NSMutableArray new];
+            for (Activity *activity in allUserLikesActivity){
+                [allUserLikedPosts addObject:activity.post];
+            }
+            NSMutableArray *resultLikes = [[NSMutableArray alloc]initWithCapacity:[self.feedPosts count]];
+
+            for (Post *post in self.feedPosts){
+                if ([allUserLikedPosts containsObject:post]) {
+                    [resultLikes addObject:@1];
+                    NSLog(@"like");
+                } else {
+                    [resultLikes addObject:@0];
+                    NSLog(@"no like");
+
+                }
+            }
+
+            self.likesArray = [[NSArray alloc] initWithArray:resultLikes];
 
 
-    [SVProgressHUD show];
-    [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (objects.count > 0) {
-            self.feedPosts = objects;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [SVProgressHUD dismiss];
                 [self.feedTableView reloadData];
-
             });
-        }
+            
+        }];
+        
     }];
 }
+
+- (PFQuery *)queryForPosts {
+
+    // Get activity from followers
+    PFQuery *followingActivityQuery = [Activity query];
+    [followingActivityQuery whereKey:@"activityType" equalTo:@2];
+    [followingActivityQuery whereKey:@"fromUser" equalTo:[User currentUser]];
+
+    // Get posts from those activities
+    PFQuery *photosFromFollowedUsersQuery = [Post query];
+    [photosFromFollowedUsersQuery whereKey:@"author" matchesKey:@"toUser" inQuery:followingActivityQuery];
+    [photosFromFollowedUsersQuery whereKeyExists:@"roll"];
+
+    // Also want user's photos
+    PFQuery *photosFromCurrentUserQuery = [Post query];
+    [photosFromFollowedUsersQuery whereKey:@"author" equalTo:[User currentUser]];
+    [photosFromCurrentUserQuery whereKeyExists:@"roll"];
+
+    // Combine queries
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[photosFromFollowedUsersQuery, photosFromCurrentUserQuery]];
+    [query includeKey:@"author"];
+    [query orderByDescending:@"createdAt"];
+
+    return query;
+
+}
+
+- (PFQuery *)queryForUserLikeActivity {
+    // Get user likes
+    PFQuery *userLikesQuery = [Activity query];
+    [userLikesQuery whereKey:@"activityType" equalTo:@0];
+    [userLikesQuery whereKey:@"fromUser" equalTo:[User currentUser]];
+    [userLikesQuery whereKeyExists:@"post"];
+    [userLikesQuery whereKeyExists:@"toUser"];
+
+    return userLikesQuery;
+}
+
+
+
+// ORIGINAL getAllPosts
+//- (void)getAllPosts {
+//    PFQuery *allPosts = [PFQuery queryWithClassName:@"Post"];
+//    [allPosts includeKey:@"author"];
+//    // Change the following for different feed results
+//    allPosts.limit = 10;
+//    [allPosts includeKey:@"updatedAt"];
+//    [allPosts orderByDescending:@"updatedAt"];
+//
+//    [SVProgressHUD show];
+//    [allPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (objects.count > 0) {
+//            self.feedPosts = objects;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [SVProgressHUD dismiss];
+//                [self.feedTableView reloadData];
+//
+//            });
+//        }
+//    }];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.feedPosts.count; // Total number of rows in the sample data.
@@ -121,25 +166,20 @@
         NSLog(@"%@ by description>>>>>>>>: %@",post.author.username, post.textDescription);
         [footerView.contentView setUserInteractionEnabled:NO];
 
-        PFQuery *likeQuery = [Activity query];
-        [likeQuery whereKey:@"post" equalTo:post];
-        [likeQuery whereKey:@"fromUser" equalTo:[User currentUser]];
-        [likeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            if (objects.count>0){
-                [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
-            } else {
-                [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
-            }
 
-        }];
+        if ([self.likesArray[indexPath.section] isEqual:@1]) {
+            [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
+        } else if ([self.likesArray[indexPath.section] isEqual:@0]){
+            [footerView.likeButton setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
+        }
 
         return footerView;
 
     } else {
         FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedTableViewCell"];
-       // NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
+        // NSDictionary *cellData = [_objects objectAtIndex:[indexPath section]];  // Note we're using section, not row here
         //NSArray *articleData = [cellData objectForKey:@"articles"];
-       // [cell setCollectionData:articleData];
+        // [cell setCollectionData:articleData];
 
         NSArray *images = [ImageProcessing getImageArrayFromDataArray:post.roll];
         [cell setCollectionData:images];
@@ -224,13 +264,19 @@
     NSIndexPath *indexPath = [self.feedTableView indexPathForCell:cell];
     Post *selectedPost = self.feedPosts[indexPath.section];
 
+    NSMutableArray *tempLikesArray = [[NSMutableArray alloc] initWithArray:self.likesArray];
+
     PFQuery *dislikeQuery = [Activity query];
     [dislikeQuery whereKey:@"post" equalTo:selectedPost];
     [dislikeQuery whereKey:@"fromUser" equalTo:[User currentUser]];
+    [dislikeQuery whereKey:@"activityType" equalTo:@0];
+
     [dislikeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (objects.count>0) {
             Activity *deleteActivity = objects.firstObject;
             [deleteActivity deleteInBackground];
+            [tempLikesArray setObject:@0 atIndexedSubscript:indexPath.section];
+            self.likesArray = [NSArray arrayWithArray:tempLikesArray];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [sender setBackgroundImage:[UIImage imageNamed:@"unlike-1"] forState:UIControlStateNormal];
             });
@@ -238,16 +284,15 @@
             Activity *addActivity = [Activity object];
             addActivity.activityType = @0;
             addActivity.fromUser = [User currentUser];
-
-
             addActivity.toUser = selectedPost.author;
             addActivity.post = selectedPost;
+            [tempLikesArray setObject:@1 atIndexedSubscript:indexPath.section];
+            self.likesArray = [NSArray arrayWithArray:tempLikesArray];
 
-            [addActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            [addActivity saveInBackground];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [sender setBackgroundImage:[UIImage imageNamed:@"like-1"] forState:UIControlStateNormal];
                 });
-            }];
         }
     }];
 }
@@ -307,7 +352,7 @@
             UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
             [secondAlert addAction:okay];
             [self presentViewController:secondAlert animated:YES completion:nil];
-
+            
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:reportAction];
@@ -315,7 +360,7 @@
         [self presentViewController:alert animated:YES completion:nil];
         
     }
-
+    
 }
 
 - (void)commentsButtonWasPressed:(id)sender {

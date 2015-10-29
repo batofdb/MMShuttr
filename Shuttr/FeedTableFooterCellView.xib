@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -12,8 +12,27 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0A4-Lt-Xls">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="90"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzk-7i-kCZ">
+                            <rect key="frame" x="17" y="13" width="34" height="34"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.96973205240000004" green="0.97171077920000004" blue="0.97083967299999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="34" id="L5d-HJ-o1J"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="unlike-1"/>
+                            <connections>
+                                <action selector="onLikeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="gUL-1H-1eh"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.96973205240149252" green="0.97171077916496673" blue="0.97083967296700724" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Fzk-7i-kCZ" firstAttribute="leading" secondItem="0A4-Lt-Xls" secondAttribute="leading" constant="17" id="EHb-V7-G1D"/>
+                        <constraint firstAttribute="bottom" secondItem="Fzk-7i-kCZ" secondAttribute="bottom" constant="43" id="iCW-Yr-X6k"/>
+                        <constraint firstItem="Fzk-7i-kCZ" firstAttribute="top" secondItem="0A4-Lt-Xls" secondAttribute="top" constant="13" id="yVK-0l-YLE"/>
+                    </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-46-b3q">
                     <rect key="frame" x="67" y="52" width="94" height="30"/>
@@ -34,19 +53,6 @@
                     </variation>
                     <connections>
                         <action selector="onCommentsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RM3-je-tfe"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0cO-H9-opG">
-                    <rect key="frame" x="15" y="17" width="23" height="23"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.96973205240149252" green="0.97171077916496673" blue="0.97083967296700724" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="23" id="Cih-tQ-VUZ"/>
-                        <constraint firstAttribute="width" constant="23" id="YAT-F2-jfW"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="unlike-1"/>
-                    <connections>
-                        <action selector="onLikeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="rDf-o2-iqC"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-ro-Hd5">
@@ -83,9 +89,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="M94-EG-O1g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="11" id="1Z4-im-AaM"/>
-                <constraint firstItem="0cO-H9-opG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="CPR-3k-RVp"/>
-                <constraint firstItem="M94-EG-O1g" firstAttribute="leading" secondItem="0cO-H9-opG" secondAttribute="trailing" constant="29" id="J9z-ga-5PN"/>
-                <constraint firstItem="0cO-H9-opG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="LZj-Dv-gXK"/>
                 <constraint firstAttribute="bottom" secondItem="0A4-Lt-Xls" secondAttribute="bottom" id="W7K-Av-wxP"/>
                 <constraint firstAttribute="trailing" secondItem="cKH-ro-Hd5" secondAttribute="trailing" constant="15" id="c0N-Ee-W5Q"/>
                 <constraint firstAttribute="trailing" secondItem="M94-EG-O1g" secondAttribute="trailing" constant="78" id="h7u-f5-c5I"/>
@@ -102,7 +105,7 @@
             <connections>
                 <outlet property="commentButton" destination="fP0-46-b3q" id="Bct-pv-vI9"/>
                 <outlet property="descriptionLabel" destination="M94-EG-O1g" id="WC0-IG-f5C"/>
-                <outlet property="likeButton" destination="0cO-H9-opG" id="mH5-ny-YaK"/>
+                <outlet property="likeButton" destination="Fzk-7i-kCZ" id="uYg-yr-giZ"/>
                 <outlet property="moreButton" destination="cKH-ro-Hd5" id="PgN-hu-Jks"/>
             </connections>
         </view>

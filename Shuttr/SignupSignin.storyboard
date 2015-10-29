@@ -82,6 +82,7 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Shutter" translatesAutoresizingMaskIntoConstraints="NO" id="Hxq-IT-18L">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="158" id="ZyO-kn-4jw"/>
                                     <constraint firstAttribute="height" constant="158" id="uyO-d9-gSq"/>
@@ -101,6 +102,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shuttr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tr5-oL-0VJ">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="7mM-gu-xHp"/>
                                     <constraint firstAttribute="height" constant="32" id="eee-8E-UBe"/>
@@ -635,6 +637,7 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Shutter" translatesAutoresizingMaskIntoConstraints="NO" id="MN8-aX-Pqp">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="158" id="4FV-gw-Q4i"/>
                                     <constraint firstAttribute="width" constant="158" id="Qs1-tS-SJZ"/>
@@ -654,6 +657,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shuttr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcW-DD-8rQ">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VE9-GO-NVT">
                                         <variation key="widthClass=compact" constant="28"/>
