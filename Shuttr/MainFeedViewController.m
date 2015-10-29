@@ -32,15 +32,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
+    [self getAllPosts];
     self.tabBarController.tabBar.tintColor = UIColorFromRGB(0x533E54);
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
-    [self getAllPosts];
-
+    // TODO: add code here to requery under cetrain conditions
 }
 
 - (void)getAllPosts {
@@ -261,8 +261,8 @@
 #pragma mark - Feed Table Footer Cell View delegate methods
 
 - (void)likeButtonWasPressed:(UIButton *)sender {
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
-    NSIndexPath *indexPath = [self.feedTableView indexPathForCell:cell];
+    CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.feedTableView];
+    NSIndexPath *indexPath = [self.feedTableView indexPathForRowAtPoint:touchPoint];
     Post *selectedPost = self.feedPosts[indexPath.section];
 
     NSMutableArray *tempLikesArray = [[NSMutableArray alloc] initWithArray:self.likesArray];
