@@ -42,6 +42,8 @@
 		3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */; };
 		3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */; };
 		3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */; };
+		475A38491BE2812400991F7D /* RefreshControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475A38481BE2812400991F7D /* RefreshControlView.xib */; };
+		475A384C1BE286F300991F7D /* RefreshControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 475A384B1BE286F300991F7D /* RefreshControlView.m */; };
 		47A4A85F1BD9CF19006091DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A85E1BD9CF19006091DA /* main.m */; };
 		47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8611BD9CF19006091DA /* AppDelegate.m */; };
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
@@ -132,6 +134,9 @@
 		3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageResizing.m"; sourceTree = "<group>"; };
 		3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailViewController.h; sourceTree = "<group>"; };
 		3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailViewController.m; sourceTree = "<group>"; };
+		475A38481BE2812400991F7D /* RefreshControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshControlView.xib; sourceTree = "<group>"; };
+		475A384A1BE286F300991F7D /* RefreshControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControlView.h; sourceTree = "<group>"; };
+		475A384B1BE286F300991F7D /* RefreshControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControlView.m; sourceTree = "<group>"; };
 		47A4A85A1BD9CF19006091DA /* Shuttr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A85E1BD9CF19006091DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A4A8601BD9CF19006091DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -357,6 +362,9 @@
 				3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */,
 				3A2277DC1BE06FFF00B05BFA /* CustomMovieView.h */,
 				3A2277DD1BE06FFF00B05BFA /* CustomMovieView.m */,
+				475A38481BE2812400991F7D /* RefreshControlView.xib */,
+				475A384A1BE286F300991F7D /* RefreshControlView.h */,
+				475A384B1BE286F300991F7D /* RefreshControlView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -489,6 +497,7 @@
 				3AA3745F1BDDDB6300CDAF74 /* SignupSignin.storyboard in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
+				475A38491BE2812400991F7D /* RefreshControlView.xib in Resources */,
 				3A74834D1BDC8ABF00484FED /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +521,7 @@
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
 				3A7483491BDC8ABF00484FED /* SVIndefiniteAnimatedView.m in Sources */,
+				475A384C1BE286F300991F7D /* RefreshControlView.m in Sources */,
 				3A74834B1BDC8ABF00484FED /* SVProgressHUD.m in Sources */,
 				3A7483521BDC9A9800484FED /* PostDetailViewController.m in Sources */,
 				47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */,
