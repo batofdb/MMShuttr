@@ -61,6 +61,10 @@
 
     if (![self.passwordTextField.text isEqualToString:self.user.password]){
         [self.user setObject:self.passwordTextField.text forKey:@"password"];
+
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            NSLog(@"password saved");
+        }];
     }
 
     if (self.imageChanged){

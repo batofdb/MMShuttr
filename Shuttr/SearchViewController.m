@@ -16,6 +16,7 @@
 #import "PostDetailViewController.h"
 #import "SVProgressHUD.h"
 
+
 @interface SearchViewController () <UISearchBarDelegate, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UISearchController *searchController;
@@ -23,8 +24,13 @@
 @property (nonatomic) NSArray *filteredSearchResults;
 @property (nonatomic) NSArray *users;
 @property (nonatomic) NSArray *activityItems;
+@property (nonatomic) NSArray *userItems;
+@property (nonatomic) NSMutableArray *friends;
+@property (nonatomic) NSArray *exploreItems;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *activityUserSegmentedControl;
 
 @end
+
 
 @implementation SearchViewController
 
@@ -32,21 +38,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeSearchController];
-    [self userQueryAndSave];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     // Need to keep activity up to date
     // TODO: implement pulldown to refresh
     [self activityItemsQuery];
+
+
+
 }
+
+-(void)updateSearchWithQuery {
+    if (self.activityUserSegmentedControl.selectedSegmentIndex == 0)
+        [self activityItemsQuery];
+
+    if (self.activityUserSegmentedControl.selectedSegmentIndex == 1)
+        [self friendsQuery];
+
+    if (self.activityUserSegmentedControl.selectedSegmentIndex == 2)
+        [self userQueryAndSave];
+}
+
 
 - (void) initializeSearchController {
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.definesPresentationContext = YES;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     [self.searchController.searchBar sizeToFit];
-    self.searchController.searchBar.placeholder = @"Search for people.";
+    self.searchController.searchBar.placeholder = @"Search for people";
     self.searchController.searchBar.tintColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchResultsUpdater = self;
@@ -62,6 +82,37 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.users = [[NSArray alloc] initWithArray:objects];
         [SVProgressHUD dismiss];
+        self.exploreItems = self.users;
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)friendsQuery {
+    PFQuery *fromUserQuery = [PFQuery queryWithClassName:@"Activity"];
+    [fromUserQuery whereKey:@"activityType" equalTo:@2];
+    [fromUserQuery whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+
+    PFQuery *toUserQuery = [PFQuery queryWithClassName:@"Activity"];
+    [toUserQuery whereKey:@"activityType" equalTo:@2];
+    [toUserQuery whereKey:@"toUser" equalTo:[PFUser currentUser]];
+
+    PFQuery *friendQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:fromUserQuery, toUserQuery,nil]];
+
+
+
+    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        self.friends = [NSMutableArray new];
+
+        for (Activity *activity in objects) {
+            if ([activity.fromUser isEqual:[PFUser currentUser]]) {
+                [self.friends addObject:activity.toUser];
+            } else {
+                [self.friends addObject:activity.fromUser];
+            }
+        }
+
+        [SVProgressHUD dismiss];
+        self.exploreItems = self.friends;
         [self.tableView reloadData];
     }];
 }
@@ -92,28 +143,32 @@
     }];
 
 }
+- (IBAction)onActivityUserSelected:(UISegmentedControl *)sender {
+    [self updateSearchWithQuery];
+}
 
 - (void) activityItemsQuery {
     self.activityItems = [NSArray new];
 
-    PFQuery *query = [Activity query];
+    PFQuery *queryToUser = [Activity query];
     //One week ago = 7 (days) * 24 (hours) * 60 (minutes) * 60 (seconds)
-    int oneWeekAgo = 7*24*60*60;
-    NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-oneWeekAgo];
-    [query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
-    [query whereKey:@"toUser" equalTo:[User currentUser]];
+    //int oneWeekAgo = 7*24*60*60;
+    //NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-oneWeekAgo];
+    //[query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
+
+    [queryToUser whereKey:@"toUser" equalTo:[User currentUser]];
 
     // Can comment this out again later, but for now it causes more problems than it solves, since we have to check each activity and edit if it's the user who creates the activity. Also, have to check in prepareForSegue and change the destination view controller if the user clicks on their own profile picture.
-
-    [query whereKey:@"fromUser" notEqualTo:[User currentUser]];
-
-    [query includeKey:@"fromUser"]; // for some reason I need this in order to access properties on activity.fromUser
-    [query includeKey:@"post"];
+    PFQuery *queryFromUser = [Activity query];
+    [queryFromUser whereKey:@"fromUser" equalTo:[User currentUser]];
     [SVProgressHUD show];
 
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    PFQuery *queryAllRelatedActivities = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryFromUser, queryToUser, nil]];
+
+    [queryAllRelatedActivities findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.activityItems = objects;
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.exploreItems = self.activityItems;
             [self.tableView reloadData];
             [SVProgressHUD dismiss];
         });
@@ -126,21 +181,22 @@
         return self.filteredSearchResults;
     } else {
         self.tableView.allowsSelection = NO;
-        return self.activityItems;
+        //return self.activityItems;
+        return self.exploreItems;
     }
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"username contains [c] %@ AND fullName contains [c] %@", searchController.searchBar.text, searchController.searchBar.text];
-    self.filteredSearchResults = [self.users filteredArrayUsingPredicate:resultPredicate];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"username contains [c] %@ OR fullName contains [c] %@", searchController.searchBar.text, searchController.searchBar.text];
+    self.filteredSearchResults = [self.exploreItems filteredArrayUsingPredicate:resultPredicate];
     [self.tableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     NSArray *target = [self currentArray];
-    if ([[self currentArray] isEqualToArray:self.filteredSearchResults]) {
+    if (self.activityUserSegmentedControl.selectedSegmentIndex != 0) {
 
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
 
