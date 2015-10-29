@@ -12,6 +12,7 @@
 
 - (void)headerAuthorButtonTapped:(UIButton *)sender;
 
+
 @end
 
 @interface FeedTableHeaderView : UITableViewHeaderFooterView
