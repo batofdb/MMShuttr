@@ -11,13 +11,18 @@
 #import "ImageProcessing.h"
 #import "Activity.h"
 #import "SVProgressHUD.h"
-
-@interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate>
+#import "CommentTableViewCell.h"
+@interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray *postImages;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
 //@property (weak, nonatomic) IBOutlet UITextField *addCommentTextField;
+
+@property (nonatomic)NSMutableArray *commentAddArray;
+@property (weak, nonatomic) IBOutlet UITableView *commentTableView;
+
+
 
 @end
 
@@ -37,6 +42,11 @@
         [self.descriptionTextView setUserInteractionEnabled:NO];
         self.descriptionTextView.editable = NO;
     }
+    self.commentAddArray = [NSMutableArray new];
+    self.commentTableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    self.commentTableView.estimatedRowHeight = 112;
+    self.commentTableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 #pragma mark - TextView Delegate Methods
@@ -57,19 +67,36 @@
     PFQuery *commentsQuery = [Activity query];
     [commentsQuery whereKey:@"activityType" equalTo:@1];
     [commentsQuery whereKey:@"post" equalTo:self.post];
+    [commentsQuery orderByDescending:@"createdAt"];
     [SVProgressHUD show];
     [commentsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (objects) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray *results = [[NSArray alloc] initWithArray:objects];
+                NSMutableString *commentsString = [NSMutableString new];
+                for (Activity *comment in results) {
+                    [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
+                    
+                }
+                self.commentsTextView.text = commentsString;
+            
+                self.commentAddArray =(NSMutableArray*) results;
+                NSLog(@"%@", self.commentAddArray);
+                [self.commentTableView reloadData];
+                [SVProgressHUD dismiss];
+            });
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSArray *results = [[NSArray alloc] initWithArray:objects];
-            NSMutableString *commentsString = [NSMutableString new];
-            for (Activity *comment in results) {
-                [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
-            }
-            self.commentsTextView.text = commentsString;
-            [SVProgressHUD dismiss];
-        });
-    }];
+        }else{
+        
+        
+        [SVProgressHUD dismiss];
+        
+        
+        }
+        
+        
+        
+            }];
 }
 
 - (void)extractImages {
@@ -103,7 +130,7 @@
 
 
     UIAlertAction *addAction = [UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-
+//add comment
         UITextField *commentTextField = [[alertController textFields] firstObject];
         Activity *newComment = [Activity new];
         newComment.content = commentTextField.text;
@@ -113,6 +140,7 @@
         newComment.post = self.post;
         [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             [self updateComments];
+            [self.commentTableView reloadData];
         }];
 
     }];
@@ -212,7 +240,82 @@
 //
 //    return YES;
 //}
+//-(NSMutableArray *)commentAddArray{
+//    if (!_commentAddArray) {
+//        _commentAddArray =[NSMutableArray new];
+//    }
+//    
+//    return _commentAddArray;
+//}
+#pragma mark table Delegate
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.commentAddArray.count;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CommentTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    Activity * active =self.commentAddArray[indexPath.row];
+//    NSString *content = [NSString stringWithFormat:@"%@: %@",active.fromUser.username,active.content];
+    cell.commentLabel.text =active.content;
+    cell.nameLabel.text = active.fromUser.username;
+    
+    
+    NSString *timeStamp;
+    NSCalendar *c = [NSCalendar currentCalendar];
+    NSDate *d1 = [NSDate date];
+    NSDate *d2 = active.createdAt;
+    NSDateComponents *components = [c components:NSCalendarUnitHour fromDate:d2 toDate:d1 options:0];
+    NSInteger diff = components.hour;
+    if (diff < 1) {
+        NSDateComponents *components = [c components:NSCalendarUnitMinute fromDate:d2 toDate:d1 options:0];
+        NSInteger diff = components.minute;
+        timeStamp = [NSString stringWithFormat:@"%lum", diff];
+    } else {
+        timeStamp = [NSString stringWithFormat:@"%luh", diff];
+    }
+    
+    cell.timeLabel.text = timeStamp;
+    
+    
+    
+    return cell;
+    
+    
+}
+
+#pragma mark delete Comments from tabel cells
+
+
+
+
+
+// Override to support conditional editing of the table view.
+// This only needs to be implemented if you are going to be returning NO
+// for some items. By default, all items are editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    
+    if ([[self.commentAddArray[indexPath.row] fromUser] isEqual:[User currentUser]]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        Activity* activity =  [self.commentAddArray objectAtIndex:indexPath.row];
+        //add code here for when you hit delete
+  
+        [activity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            [self updateComments];
+        }];
+    }
+}
 
 
 @end
