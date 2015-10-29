@@ -9,7 +9,7 @@
 #import "CameraViewController.h"
 #import "PostPhotosViewController.h"
 #import "UIImage+ImageResizing.h"
-@interface CameraViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate>{
+@interface CameraViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, PostPhotosDelegate>{
    
     AVCaptureSession * session;
     AVCaptureStillImageOutput *stillImageOutput;
@@ -335,11 +335,18 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+-(void)postButtonWasPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.tabBarController setSelectedIndex:0];
+    [self.delegate updateFeedForNewPost:self];
+}
+
 #pragma mark segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
     PostPhotosViewController * postPhotoViewcontroller = segue.destinationViewController;
     postPhotoViewcontroller.images = self.photoArray;
+    postPhotoViewcontroller.delegate = self;
     NSLog(@"%lu",(unsigned long)postPhotoViewcontroller.images.count);
     self.countLabel.text = [NSString stringWithFormat:@"Count: 0" ];
 }

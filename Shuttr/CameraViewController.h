@@ -11,9 +11,16 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+@protocol CameraViewDelegate <NSObject>
+
+- (void)updateFeedForNewPost:(id)sender;
+
+@end
 
 @interface CameraViewController : UIViewController
 
 @property PhotoManager *photoManager;
+
+@property (weak, nonatomic) id<CameraViewDelegate>delegate;
 
 @end

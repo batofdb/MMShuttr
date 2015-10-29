@@ -61,8 +61,50 @@
     Post *post = [Post object];
 
     post.author = user;
-    post.roll = [ImageProcessing getDataArrayFromImageArray:self.images];
     post.textDescription = self.descriptionTextField.text;
+
+    post.roll = [NSArray arrayWithObject: [ImageProcessing getDataFromImage:[self.images firstObject]]];
+
+    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+
+        if (succeeded) {
+            for (int i=1; i<[self.images count]; i++){
+                [post.roll arrayByAddingObject:[ImageProcessing getDataFromImage:self.images[i]]];
+                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+
+                    if (succeeded) {
+                        NSLog(@"additional photo saved");
+                    } else {
+                        NSLog(@"error saving additional photo");
+                    }
+                }];
+            }
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post Uploaded!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+                [self.delegate postButtonWasPressed:self];
+            }];
+            [alert addAction:okay];
+            [self presentViewController:alert animated:YES completion:nil];
+
+
+        } else {
+            NSLog(@"unable to save post");
+            NSLog(@"unable to save post");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unable to save post." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:dismiss];
+            [self presentViewController:alert animated:YES completion:nil];
+
+        }
+
+    }];
+
+
+/*
+
+    post.roll = [ImageProcessing getDataArrayFromImageArray:self.images];
 
     [SVProgressHUD show];
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -90,6 +132,8 @@
             [SVProgressHUD dismiss];
         });
     }];
+
+    */
 
 }
 

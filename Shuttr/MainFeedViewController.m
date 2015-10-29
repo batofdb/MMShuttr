@@ -17,11 +17,12 @@
 #import "ImageProcessing.h"
 #import "SVProgressHUD.h"
 #import "PostDetailViewController.h"
+#import "CameraViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-@interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate, FeedTableFooterCellDelegate>
+@interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate, FeedTableFooterCellDelegate, CameraViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (nonatomic) NSArray *objects;
 @property (nonatomic) NSArray *feedPosts;
@@ -34,6 +35,8 @@
     [super viewDidLoad];
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     [self getAllPosts];
+    CameraViewController *vc = [self.tabBarController.viewControllers objectAtIndex:1];
+    vc.delegate = self;
     self.tabBarController.tabBar.tintColor = UIColorFromRGB(0x533E54);
 
 }
@@ -41,6 +44,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // TODO: add code here to requery under cetrain conditions
+}
+
+-(void)updateFeedForNewPost:(id)sender {
+    [self getAllPosts];
 }
 
 - (void)getAllPosts {

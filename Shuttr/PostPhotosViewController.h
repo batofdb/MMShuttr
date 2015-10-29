@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PostPhotosDelegate <NSObject>
+
+- (void)postButtonWasPressed:(id)sender;
+
+@end
+
 
 @interface PostPhotosViewController : UIViewController
 
 @property (nonatomic) NSArray *images;
+@property (weak, nonatomic) id<PostPhotosDelegate> delegate;
 
 
 @end
