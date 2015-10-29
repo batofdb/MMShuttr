@@ -74,6 +74,7 @@
 		658E32431BD9DB6300314027 /* PostPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E32421BD9DB6300314027 /* PostPhotosViewController.m */; };
 		658E32501BD9DCC200314027 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658E324E1BD9DCC200314027 /* Camera.storyboard */; };
 		658E32531BD9DCDE00314027 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658E32511BD9DCDE00314027 /* Post.storyboard */; };
+		65D544611BE2C777004CD50B /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D544601BE2C777004CD50B /* CommentTableViewCell.m */; };
 		65EB52EB1BDD9FA400263932 /* shutterSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -182,6 +183,8 @@
 		658E32421BD9DB6300314027 /* PostPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPhotosViewController.m; sourceTree = "<group>"; };
 		658E324F1BD9DCC200314027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Camera.storyboard; sourceTree = "<group>"; };
 		658E32521BD9DCDE00314027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Post.storyboard; sourceTree = "<group>"; };
+		65D5445F1BE2C777004CD50B /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		65D544601BE2C777004CD50B /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shutterSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -333,6 +336,8 @@
 		47A4A8B31BD9CFFB006091DA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				65D5445F1BE2C777004CD50B /* CommentTableViewCell.h */,
+				65D544601BE2C777004CD50B /* CommentTableViewCell.m */,
 				3AA3745E1BDDDB6300CDAF74 /* SignupSignin.storyboard */,
 				47A4A8661BD9CF19006091DA /* Main.storyboard */,
 				3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */,
@@ -524,6 +529,7 @@
 				3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */,
 				3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */,
 				3ACF11C91BDB3B4C00EDBF4B /* SearchViewController.m in Sources */,
+				65D544611BE2C777004CD50B /* CommentTableViewCell.m in Sources */,
 				47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */,
 				3A74834C1BDC8ABF00484FED /* SVRadialGradientLayer.m in Sources */,
 				658E323D1BD9D90900314027 /* MainFeedViewController.m in Sources */,
