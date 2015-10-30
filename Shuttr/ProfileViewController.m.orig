@@ -102,16 +102,28 @@
                 }
             }
             dispatch_async(dispatch_get_main_queue(), ^{
+
+                self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
+                self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
+                self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
                 [SVProgressHUD dismiss];
+
+<<<<<<< HEAD
+                [self.collectionView reloadData];
+            });
+        }];
+
+=======
         self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
         self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
         self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
             [self.view setUserInteractionEnabled:YES];
-            [self.collectionView reloadData];
+//            [self.collectionView reloadData];
         });
+>>>>>>> refreshControl
     }];
 
-    }];
+
 }
 
 - (void)getUserProperties {

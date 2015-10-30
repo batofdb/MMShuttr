@@ -21,25 +21,52 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import "RefreshControlView.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate, FeedTableFooterCellDelegate, CameraViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (nonatomic) NSArray *objects;
 @property (nonatomic) NSArray *feedPosts;
 @property (nonatomic) NSArray *likesArray;
+@property (nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic) UIImageView *logoSpinner;
+@property (nonatomic) NSMutableArray *imageB;
 @end
 
 @implementation MainFeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self setNeedsStatusBarAppearanceUpdate];
+    self.imageB = [NSMutableArray new];
+    for (int i = 1; i <37; i++) {
+
+        NSString *imageName = [NSString stringWithFormat:@"LogoLoginStart%d",i];
+
+        [self.imageB addObject:[UIImage imageNamed:imageName]];
+
+    }
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
+    self.refreshControl.tintColor = [UIColor clearColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(pullToRefreshAction)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.feedTableView addSubview:self.refreshControl];
+    [self loadCustomRefreshContents];
+
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     [self getAllPosts];
     CameraViewController *vc = [self.tabBarController.viewControllers objectAtIndex:1];
     vc.delegate = self;
-    self.tabBarController.tabBar.tintColor = UIColorFromRGB(0x533E54);
+    self.view.backgroundColor = UIColorFromRGB(0x533E54);
+    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0x533E54);
 
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -50,7 +77,14 @@
     [self getAllPosts];
 }
 
+- (void)pullToRefreshAction {
+    [self startAnimatingLogo];
+    [self getAllPosts];
+
+}
+
 - (void)getAllPosts {
+    [self.view setUserInteractionEnabled:NO];
     PFQuery *query = [self queryForPosts];
     PFQuery *likesActivityQuery = [self queryForUserLikeActivity];
     self.feedPosts = [NSArray new];
@@ -76,20 +110,36 @@
                 } else {
                     [resultLikes addObject:@0];
                     NSLog(@"no like");
-
                 }
             }
-
             self.likesArray = [[NSArray alloc] initWithArray:resultLikes];
-
-
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.feedTableView reloadData];
+                [self.logoSpinner stopAnimating];
+                [self.view setUserInteractionEnabled:YES];
+                [self.refreshControl endRefreshing];
             });
             
         }];
         
     }];
+
+}
+
+- (void)startAnimatingLogo{
+    self.logoSpinner.animationImages = self.imageB;
+    self.logoSpinner.animationDuration = 1;
+    self.logoSpinner.animationRepeatCount = 0;
+    [self.logoSpinner startAnimating];
+}
+
+
+- (void)loadCustomRefreshContents {
+    RefreshControlView *refreshView = [[NSBundle mainBundle] loadNibNamed:@"RefreshControlView" owner:self options:nil].firstObject;
+    self.logoSpinner = refreshView.logoSpinner;
+    refreshView.frame = self.refreshControl.bounds;
+    //self.logoSpinner.image = (UIImage *)[refreshView viewWithTag:0];
+    [self.refreshControl addSubview:refreshView];
 }
 
 - (PFQuery *)queryForPosts {
@@ -199,7 +249,6 @@
 
 }
 
-
 #pragma mark UITableViewDelegate methods
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     FeedTableHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"FeedTableHeaderView" owner:self options:nil] firstObject];
@@ -285,14 +334,31 @@
 
 }
 
+
 #pragma mark - Feed Table Footer Cell View delegate methods
 
 - (void)likeButtonWasPressed:(UIButton *)sender {
+    [sender setEnabled:NO];
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.feedTableView];
     NSIndexPath *indexPath = [self.feedTableView indexPathForRowAtPoint:touchPoint];
     Post *selectedPost = self.feedPosts[indexPath.section];
 
     NSMutableArray *tempLikesArray = [[NSMutableArray alloc] initWithArray:self.likesArray];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        if ([[self.likesArray objectAtIndex:indexPath.section] isEqual:@1]){
+            [tempLikesArray setObject:@0 atIndexedSubscript:indexPath.section];
+            self.likesArray = [NSArray arrayWithArray:tempLikesArray];
+            [sender setBackgroundImage:[UIImage imageNamed:@"semi-heart-on"] forState:UIControlStateNormal];
+
+        } else {
+            [tempLikesArray setObject:@1 atIndexedSubscript:indexPath.section];
+            self.likesArray = [NSArray arrayWithArray:tempLikesArray];
+            [sender setBackgroundImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
+
+        }
+    });
 
     PFQuery *dislikeQuery = [Activity query];
     [dislikeQuery whereKey:@"post" equalTo:selectedPost];
@@ -300,27 +366,25 @@
     [dislikeQuery whereKey:@"activityType" equalTo:@0];
 
     [dislikeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error){
         if (objects.count>0) {
             Activity *deleteActivity = objects.firstObject;
-            [deleteActivity deleteInBackground];
-            [tempLikesArray setObject:@0 atIndexedSubscript:indexPath.section];
-            self.likesArray = [NSArray arrayWithArray:tempLikesArray];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [sender setBackgroundImage:[UIImage imageNamed:@"semi-heart-on"] forState:UIControlStateNormal];
-            });
+            [deleteActivity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                [sender setEnabled:YES];
+            }];
         } else {
             Activity *addActivity = [Activity object];
             addActivity.activityType = @0;
             addActivity.fromUser = [User currentUser];
             addActivity.toUser = selectedPost.author;
             addActivity.post = selectedPost;
-            [tempLikesArray setObject:@1 atIndexedSubscript:indexPath.section];
-            self.likesArray = [NSArray arrayWithArray:tempLikesArray];
+            [addActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                [sender setEnabled:YES];
+            }];
+        }
+        } else {
+            [sender setEnabled:YES];
 
-            [addActivity saveInBackground];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [sender setBackgroundImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
-                });
         }
     }];
 }
@@ -335,7 +399,7 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Post" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
-            UIAlertController *secondAlert = [UIAlertController alertControllerWithTitle:@"Delete Post" message:@"Are you sure you want to delete this post?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *secondAlert = [UIAlertController alertControllerWithTitle:@"Delete Post" message:@"Are you sure?" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 // Remove all activity associated with the post as well
 
@@ -352,10 +416,7 @@
                         }];
 
                     }];
-
                 }];
-
-
             }];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
 
@@ -380,15 +441,12 @@
             UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
             [secondAlert addAction:okay];
             [self presentViewController:secondAlert animated:YES completion:nil];
-            
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:reportAction];
         [alert addAction:cancelAction];
         [self presentViewController:alert animated:YES completion:nil];
-        
     }
-    
 }
 
 - (void)commentsButtonWasPressed:(id)sender {

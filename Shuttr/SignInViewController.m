@@ -78,6 +78,8 @@
     }];
 }
 
+
+
 #warning does not work - must authenticate json request
 - (void)getTwitterProfilePicture {
 if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
@@ -152,7 +154,7 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
 
     }];
 
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
     [alert addAction:action];
     [alert addAction:cancel];
@@ -194,12 +196,13 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self signInAction];
     [textField resignFirstResponder];
     return YES;
 }
 
-- (IBAction)onSignInButtonPressed:(UIButton *)sender {
 
+- (void)signInAction {
     [User logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
 
         if (!error) {
@@ -210,8 +213,13 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
             [alert addAction:tryAgain];
             [self presentViewController:alert animated:YES completion:nil];
         }
-
+        
     }];
+}
+
+- (IBAction)onSignInButtonPressed:(UIButton *)sender {
+
+    [self signInAction];
 }
 
 @end

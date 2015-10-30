@@ -42,6 +42,10 @@
 		3ACF11D41BDB66CF00EDBF4B /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D31BDB66CF00EDBF4B /* EditProfileViewController.m */; };
 		3ACF11D71BDB6FF900EDBF4B /* UIImage+ImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */; };
 		3ACF11DA1BDC36ED00EDBF4B /* SearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */; };
+		475A38491BE2812400991F7D /* RefreshControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475A38481BE2812400991F7D /* RefreshControlView.xib */; };
+		475A384C1BE286F300991F7D /* RefreshControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 475A384B1BE286F300991F7D /* RefreshControlView.m */; };
+		475A38551BE3052200991F7D /* FeedContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475A38541BE3052200991F7D /* FeedContainerCellView.xib */; };
+		475A38571BE3056000991F7D /* FeedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 475A38561BE3056000991F7D /* FeedPhotoCollectionViewCell.xib */; };
 		47A4A85F1BD9CF19006091DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A85E1BD9CF19006091DA /* main.m */; };
 		47A4A8621BD9CF19006091DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A8611BD9CF19006091DA /* AppDelegate.m */; };
 		47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A8661BD9CF19006091DA /* Main.storyboard */; };
@@ -57,9 +61,7 @@
 		47A4A8AD1BD9CFC3006091DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AC1BD9CFC3006091DA /* SystemConfiguration.framework */; };
 		47A4A8AF1BD9CFCB006091DA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8AE1BD9CFCB006091DA /* libz.tbd */; };
 		47A4A8B11BD9CFD5006091DA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */; };
-		47A4A9361BDB638B006091DA /* FeedContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A9351BDB638B006091DA /* FeedContainerCellView.xib */; };
 		47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */; };
-		47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */; };
 		47A4A9401BDB68FA006091DA /* FeedPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */; };
 		47A4A9451BDB7070006091DA /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9441BDB7070006091DA /* FeedTableViewCell.m */; };
 		47A4A9521BDC645B006091DA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A4A94B1BDC645B006091DA /* Bolts.framework */; };
@@ -133,6 +135,11 @@
 		3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageResizing.m"; sourceTree = "<group>"; };
 		3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailViewController.h; sourceTree = "<group>"; };
 		3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailViewController.m; sourceTree = "<group>"; };
+		475A38481BE2812400991F7D /* RefreshControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshControlView.xib; sourceTree = "<group>"; };
+		475A384A1BE286F300991F7D /* RefreshControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControlView.h; sourceTree = "<group>"; };
+		475A384B1BE286F300991F7D /* RefreshControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControlView.m; sourceTree = "<group>"; };
+		475A38541BE3052200991F7D /* FeedContainerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedContainerCellView.xib; sourceTree = "<group>"; };
+		475A38561BE3056000991F7D /* FeedPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		47A4A85A1BD9CF19006091DA /* Shuttr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuttr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A85E1BD9CF19006091DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		47A4A8601BD9CF19006091DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,10 +164,8 @@
 		47A4A8B01BD9CFD5006091DA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		47A4A9181BDB0962006091DA /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
 		47A4A9191BDB0962006091DA /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
-		47A4A9351BDB638B006091DA /* FeedContainerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedContainerCellView.xib; sourceTree = "<group>"; };
 		47A4A9371BDB63A4006091DA /* FeedContainerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedContainerCellView.h; sourceTree = "<group>"; };
 		47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedContainerCellView.m; sourceTree = "<group>"; };
-		47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		47A4A93E1BDB68FA006091DA /* FeedPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedPhotoCollectionViewCell.h; sourceTree = "<group>"; };
 		47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		47A4A9431BDB7070006091DA /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
@@ -346,12 +351,12 @@
 				658E324E1BD9DCC200314027 /* Camera.storyboard */,
 				658E32511BD9DCDE00314027 /* Post.storyboard */,
 				47A4A86B1BD9CF19006091DA /* LaunchScreen.storyboard */,
-				47A4A9351BDB638B006091DA /* FeedContainerCellView.xib */,
 				47A4A9371BDB63A4006091DA /* FeedContainerCellView.h */,
 				47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */,
-				47A4A93C1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib */,
+				475A38561BE3056000991F7D /* FeedPhotoCollectionViewCell.xib */,
 				47A4A93E1BDB68FA006091DA /* FeedPhotoCollectionViewCell.h */,
 				47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */,
+				475A38541BE3052200991F7D /* FeedContainerCellView.xib */,
 				47A4A9431BDB7070006091DA /* FeedTableViewCell.h */,
 				47A4A9441BDB7070006091DA /* FeedTableViewCell.m */,
 				47A4A9461BDC478F006091DA /* FeedTableFooterCellView.h */,
@@ -362,6 +367,9 @@
 				3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */,
 				3A2277DC1BE06FFF00B05BFA /* CustomMovieView.h */,
 				3A2277DD1BE06FFF00B05BFA /* CustomMovieView.m */,
+				475A38481BE2812400991F7D /* RefreshControlView.xib */,
+				475A384A1BE286F300991F7D /* RefreshControlView.h */,
+				475A384B1BE286F300991F7D /* RefreshControlView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -480,7 +488,6 @@
 			files = (
 				3A2277DB1BE06E3000B05BFA /* filmSceneb.mp4 in Resources */,
 				3ACF11CF1BDB3BD200EDBF4B /* Profile.storyboard in Resources */,
-				47A4A9361BDB638B006091DA /* FeedContainerCellView.xib in Resources */,
 				47A4A86D1BD9CF19006091DA /* LaunchScreen.storyboard in Resources */,
 				3A74834F1BDC9A0F00484FED /* PostDetail.storyboard in Resources */,
 				3AA3745C1BDDBD5800CDAF74 /* FeedTableFooterCellView.xib in Resources */,
@@ -489,11 +496,13 @@
 				3AA3745D1BDDBD5800CDAF74 /* FeedTableHeaderView.xib in Resources */,
 				65EB52EB1BDD9FA400263932 /* shutterSoundEffect.mp3 in Resources */,
 				3ACF11D11BDB3BE000EDBF4B /* Search.storyboard in Resources */,
-				47A4A93D1BDB68DC006091DA /* FeedPhotoCollectionViewCell.xib in Resources */,
 				3A74834A1BDC8ABF00484FED /* SVProgressHUD.bundle in Resources */,
+				475A38571BE3056000991F7D /* FeedPhotoCollectionViewCell.xib in Resources */,
+				475A38551BE3052200991F7D /* FeedContainerCellView.xib in Resources */,
 				3AA3745F1BDDDB6300CDAF74 /* SignupSignin.storyboard in Resources */,
 				658E32531BD9DCDE00314027 /* Post.storyboard in Resources */,
 				47A4A8681BD9CF19006091DA /* Main.storyboard in Resources */,
+				475A38491BE2812400991F7D /* RefreshControlView.xib in Resources */,
 				3A74834D1BDC8ABF00484FED /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +526,7 @@
 				3ACF11691BD9FB8500EDBF4B /* User.m in Sources */,
 				47A4A85F1BD9CF19006091DA /* main.m in Sources */,
 				3A7483491BDC8ABF00484FED /* SVIndefiniteAnimatedView.m in Sources */,
+				475A384C1BE286F300991F7D /* RefreshControlView.m in Sources */,
 				3A74834B1BDC8ABF00484FED /* SVProgressHUD.m in Sources */,
 				3A7483521BDC9A9800484FED /* PostDetailViewController.m in Sources */,
 				47A4A9391BDB63A4006091DA /* FeedContainerCellView.m in Sources */,
