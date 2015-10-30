@@ -177,6 +177,8 @@
     [SVProgressHUD show];
 
     PFQuery *queryAllRelatedActivities = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryFromUser, queryToUser, nil]];
+    [queryAllRelatedActivities includeKey:@"fromUser"];
+    [queryAllRelatedActivities includeKey:@"toUser"];
 
     [queryAllRelatedActivities findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.activityItems = objects;
@@ -262,12 +264,23 @@
             cell.toPostButton.tag = indexPath.row;
 
         } else if ([activity.activityType isEqual:@2] ){
-            if (![activity.fromUser.username isEqual:[User currentUser]]) {
+
+            if (![activity.fromUser isEqual:[User currentUser]]) {
                 cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ is following you", activity.fromUser.username];
+            } else {
+                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You are following %@", activity.toUser.username];
             }
+
 
             UIImageView* image = [UIImageView new];
             image.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)];
+
+//            if (!image) {
+//                image.image = image.image;
+//            } else {
+//                image.image = [UIImage imageNamed:@"defaultProfilePicture"];
+//            }
+
 
             image.layer.cornerRadius = image.frame.size.height/2;
             image.clipsToBounds = YES;
@@ -276,6 +289,7 @@
             [cell.toPostButton setEnabled:NO];
             cell.fromUserButton.tag = indexPath.row;
         }
+
         return cell;
     }
 }
