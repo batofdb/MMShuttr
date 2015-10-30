@@ -42,7 +42,7 @@
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAe-7A-dMe">
                                                     <rect key="frame" x="0.0" y="0.0" width="210" height="210"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gK-kM-pO5">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gK-kM-pO5">
                                                             <rect key="frame" x="0.0" y="0.0" width="210" height="210"/>
                                                             <animations/>
                                                         </imageView>

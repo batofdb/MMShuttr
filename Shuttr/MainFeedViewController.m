@@ -86,6 +86,7 @@
 
 -(void)updateFeedForNewPost:(id)sender {
   //  [self getAllPosts];
+    [self.delegate postWasChanged:self];
 }
 
 - (void)pullToRefreshAction {
