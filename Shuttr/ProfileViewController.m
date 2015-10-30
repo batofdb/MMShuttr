@@ -42,28 +42,53 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self queryAndPopulateView];
-    [self.collectionView reloadData];
+    //[self queryAndPopulateView];
+    //[self.collectionView reloadData];
+    [self getUserProperties];
+
+    self.rollCoverImages = [NSMutableArray new];
+    self.userPosts = [NSMutableArray new];
+
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
     self.profileImageView.clipsToBounds = YES;
 
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-
     // TODO: optimise navigation so this doesn't have to get called every time the view appears
-    [self queryAndPopulateView];
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
+
+    [self postsChanged];
+}
+
+- (void)postsChanged {
+
+    PFQuery *queryPosts = [Post query];
+    [queryPosts whereKey:@"author" equalTo:[User currentUser]];
+    [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (objects){
+            if (!(self.userPosts.count == objects.count)){
+                [self queryAndPopulateView];
+            } else {
+                NSSet *set1=[NSSet setWithArray:objects];
+                NSSet *set2=[NSSet setWithArray:self.userPosts];
+                    if (![set1 isEqualToSet:set2]) {
+                        [self queryAndPopulateView];
+                    }
+            }
+        }
+    }];
+
 }
 
 #pragma mark - Helper Methods
 - (void) queryAndPopulateView {
     [self.view setUserInteractionEnabled:NO];
     User *user = [User currentUser];
+    
+    [self getUserProperties];
     self.rollCoverImages = [NSMutableArray new];
     self.userPosts = [NSMutableArray new];
-
-    [self getUserProperties];
 
     // TODO: possible refactor opportunities here
     // Get user posts
@@ -151,8 +176,8 @@
 
 #pragma mark - Edit Profile Delegate Method Implementation
 - (void)profileWasChanged:(id)view {
-    [self performSelectorOnMainThread:@selector(getUserProperties) withObject:nil waitUntilDone:YES];
-   // [self getUserProperties];
+    //[self performSelectorOnMainThread:@selector(getUserProperties) withObject:nil waitUntilDone:YES];
+    [self getUserProperties];
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }

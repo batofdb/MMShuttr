@@ -98,7 +98,9 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Log out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
+        [SVProgressHUD showWithStatus:@"Logging out..."];
         [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+            [SVProgressHUD dismiss];
             [self performSegueWithIdentifier:@"ToSignupSegue" sender:self];
         }];
 

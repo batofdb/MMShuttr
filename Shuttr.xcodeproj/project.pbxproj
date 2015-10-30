@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A2277DB1BE06E3000B05BFA /* filmSceneb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3A2277DA1BE06E1500B05BFA /* filmSceneb.mp4 */; };
 		3A2277DE1BE06FFF00B05BFA /* CustomMovieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2277DD1BE06FFF00B05BFA /* CustomMovieView.m */; };
 		3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */; };
 		3A7483491BDC8ABF00484FED /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A74833F1BDC8ABE00484FED /* SVIndefiniteAnimatedView.m */; };
@@ -26,6 +25,7 @@
 		3AA374651BDDEAB000CDAF74 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA374641BDDEAB000CDAF74 /* SignInViewController.m */; };
 		3AA374681BDDEABC00CDAF74 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA374671BDDEABC00CDAF74 /* SignUpViewController.m */; };
 		3AA7CF591BDC61A000C09601 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A9191BDB0962006091DA /* Activity.m */; };
+		3AAB0AD71BE32B8F00CD42B1 /* filmSceneb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3AE87C951BE31B89007DE1B0 /* filmSceneb.mp4 */; };
 		3AB5CF031BDF918F00128EA5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5CF001BDF918F00128EA5 /* FBSDKCoreKit.framework */; };
 		3AB5CF041BDF918F00128EA5 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5CF011BDF918F00128EA5 /* FBSDKLoginKit.framework */; };
 		3AB5CF051BDF918F00128EA5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5CF021BDF918F00128EA5 /* FBSDKShareKit.framework */; };
@@ -81,7 +81,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A2277DA1BE06E1500B05BFA /* filmSceneb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = filmSceneb.mp4; sourceTree = "<group>"; };
 		3A2277DC1BE06FFF00B05BFA /* CustomMovieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMovieView.h; sourceTree = "<group>"; };
 		3A2277DD1BE06FFF00B05BFA /* CustomMovieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMovieView.m; sourceTree = "<group>"; };
 		3A74833A1BDC7F3A00484FED /* FeedTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableHeaderView.h; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		3ACF11D61BDB6FF900EDBF4B /* UIImage+ImageResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageResizing.m"; sourceTree = "<group>"; };
 		3ACF11D81BDC36ED00EDBF4B /* SearchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailViewController.h; sourceTree = "<group>"; };
 		3ACF11D91BDC36ED00EDBF4B /* SearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailViewController.m; sourceTree = "<group>"; };
+		3AE87C951BE31B89007DE1B0 /* filmSceneb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = filmSceneb.mp4; sourceTree = "<group>"; };
 		475A38481BE2812400991F7D /* RefreshControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshControlView.xib; sourceTree = "<group>"; };
 		475A384A1BE286F300991F7D /* RefreshControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshControlView.h; sourceTree = "<group>"; };
 		475A384B1BE286F300991F7D /* RefreshControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshControlView.m; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 				3A74833D1BDC8ABE00484FED /* SVProgressHUD */,
 				3A7483461BDC8ABF00484FED /* SVProgressHUD-Framework */,
 				47A4A8691BD9CF19006091DA /* Assets.xcassets */,
-				3A2277DA1BE06E1500B05BFA /* filmSceneb.mp4 */,
+				3AE87C951BE31B89007DE1B0 /* filmSceneb.mp4 */,
 				65EB52EA1BDD9FA400263932 /* shutterSoundEffect.mp3 */,
 				47A4A8601BD9CF19006091DA /* AppDelegate.h */,
 				47A4A8611BD9CF19006091DA /* AppDelegate.m */,
@@ -486,7 +486,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A2277DB1BE06E3000B05BFA /* filmSceneb.mp4 in Resources */,
+				3AAB0AD71BE32B8F00CD42B1 /* filmSceneb.mp4 in Resources */,
 				3ACF11CF1BDB3BD200EDBF4B /* Profile.storyboard in Resources */,
 				47A4A86D1BD9CF19006091DA /* LaunchScreen.storyboard in Resources */,
 				3A74834F1BDC9A0F00484FED /* PostDetail.storyboard in Resources */,

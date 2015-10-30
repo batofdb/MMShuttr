@@ -38,7 +38,7 @@
     self.avPlayer = [AVPlayer playerWithURL:fileURL];
     self.avLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
     self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    [self.customMovieView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.customMovieView setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(playerItemDidReachEnd:)
                                                  name:AVPlayerItemDidPlayToEndTimeNotification

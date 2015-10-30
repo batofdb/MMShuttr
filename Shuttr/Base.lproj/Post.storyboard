@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L6f-nR-VSc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L6f-nR-VSc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,30 +18,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cVj-w9-CZJ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cVj-w9-CZJ">
                                 <rect key="frame" x="0.0" y="20" width="600" height="300"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.32549019610000002" green="0.24313725489999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="223" id="lDH-xp-67h"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dXI-ne-rh4">
-                                    <size key="itemSize" width="210" height="210"/>
+                                    <size key="itemSize" width="401" height="339"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="0VB-bA-qPF" customClass="PostCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="21" width="210" height="210"/>
+                                        <rect key="frame" x="0.0" y="-44" width="401" height="339"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="210" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="401" height="339"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAe-7A-dMe">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAe-7A-dMe">
                                                     <rect key="frame" x="0.0" y="0.0" width="210" height="210"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8gK-kM-pO5">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gK-kM-pO5">
                                                             <rect key="frame" x="0.0" y="0.0" width="210" height="210"/>
                                                             <animations/>
                                                         </imageView>
@@ -81,13 +82,15 @@
                                     <outlet property="delegate" destination="L6f-nR-VSc" id="gU7-nn-BsH"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Describe your photo reel!" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="w9l-kn-OKg">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Describe your photo reel!" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="w9l-kn-OKg">
                                 <rect key="frame" x="40" y="328" width="520" height="30"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.18039215689999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="RfA-vn-efn"/>
                                     <constraint firstAttribute="width" constant="300" id="Y5C-hP-Ckx"/>
                                 </constraints>
+                                <color key="textColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
@@ -102,15 +105,28 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-DK-VFF">
                                 <rect key="frame" x="469" y="499" width="111" height="44"/>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="0.84680750380910408" blue="0.081185733376116342" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="Ig2-a7-CaK"/>
+                                    <constraint firstAttribute="width" constant="147" id="LT1-6D-Ap2"/>
+                                    <constraint firstAttribute="height" constant="79" id="U7q-l1-Wj8"/>
                                     <constraint firstAttribute="height" constant="44" id="n4S-xB-0rD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
-                                <state key="normal" title="Post">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" backgroundImage="PostButton"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LT1-6D-Ap2"/>
+                                        <exclude reference="U7q-l1-Wj8"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Ig2-a7-CaK"/>
+                                        <include reference="LT1-6D-Ap2"/>
+                                        <include reference="U7q-l1-Wj8"/>
+                                        <exclude reference="n4S-xB-0rD"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="onPostButtonPressed:" destination="L6f-nR-VSc" eventType="touchUpInside" id="ItE-Df-XbK"/>
                                 </connections>
@@ -120,34 +136,70 @@
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7yZ-6P-odZ"/>
+                                    <constraint firstAttribute="height" constant="24" id="I3g-sP-Jdj"/>
+                                    <constraint firstAttribute="width" constant="50" id="plA-IZ-NoV"/>
                                     <constraint firstAttribute="width" constant="48" id="zum-oE-67s"/>
                                 </constraints>
-                                <state key="normal" title="Cancel"/>
+                                <state key="normal" backgroundImage="CancelButton"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="I3g-sP-Jdj"/>
+                                        <exclude reference="plA-IZ-NoV"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="7yZ-6P-odZ"/>
+                                        <include reference="I3g-sP-Jdj"/>
+                                        <include reference="plA-IZ-NoV"/>
+                                        <exclude reference="zum-oE-67s"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="onCancelButtonPressed:" destination="L6f-nR-VSc" eventType="touchUpInside" id="lPt-RU-gHr"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32549019610000002" green="0.24313725489999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xFQ-rS-cYb" firstAttribute="leading" secondItem="5bk-dC-5Kc" secondAttribute="leadingMargin" id="2bK-Yc-DGj"/>
+                            <constraint firstItem="V7O-DK-VFF" firstAttribute="centerX" secondItem="5bk-dC-5Kc" secondAttribute="centerX" id="4sd-jj-rJf"/>
                             <constraint firstItem="V7O-DK-VFF" firstAttribute="trailing" secondItem="5bk-dC-5Kc" secondAttribute="trailingMargin" id="BWM-1T-BnQ"/>
-                            <constraint firstItem="cVj-w9-CZJ" firstAttribute="height" secondItem="5bk-dC-5Kc" secondAttribute="height" multiplier="0.5" id="CbS-gJ-hPr"/>
+                            <constraint firstItem="cVj-w9-CZJ" firstAttribute="height" secondItem="5bk-dC-5Kc" secondAttribute="height" multiplier="0.55" id="CbS-gJ-hPr"/>
+                            <constraint firstItem="xFQ-rS-cYb" firstAttribute="centerX" secondItem="5bk-dC-5Kc" secondAttribute="centerX" id="HJP-d2-sMW"/>
                             <constraint firstItem="dk8-Dx-FXb" firstAttribute="top" secondItem="xFQ-rS-cYb" secondAttribute="bottom" constant="8" id="JJp-1T-MCB"/>
                             <constraint firstItem="w9l-kn-OKg" firstAttribute="leading" secondItem="5bk-dC-5Kc" secondAttribute="leadingMargin" constant="20" id="MWi-f9-fys"/>
                             <constraint firstItem="dk8-Dx-FXb" firstAttribute="top" secondItem="V7O-DK-VFF" secondAttribute="bottom" constant="8" id="N4U-9K-Ncy"/>
                             <constraint firstItem="cVj-w9-CZJ" firstAttribute="top" secondItem="LUv-pT-hCU" secondAttribute="bottom" id="UzL-oN-Kel"/>
                             <constraint firstItem="w9l-kn-OKg" firstAttribute="top" secondItem="cVj-w9-CZJ" secondAttribute="bottom" constant="8" id="ZEc-jg-eEK"/>
+                            <constraint firstItem="dk8-Dx-FXb" firstAttribute="top" secondItem="xFQ-rS-cYb" secondAttribute="bottom" constant="14" id="ZGl-8N-Fps"/>
                             <constraint firstItem="cVj-w9-CZJ" firstAttribute="height" secondItem="5bk-dC-5Kc" secondAttribute="height" multiplier="0.5" id="bOR-8M-fif"/>
                             <constraint firstItem="cVj-w9-CZJ" firstAttribute="leading" secondItem="5bk-dC-5Kc" secondAttribute="leading" id="cH5-fo-ok3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w9l-kn-OKg" secondAttribute="trailing" constant="20" id="esH-fj-pYe"/>
                             <constraint firstItem="w9l-kn-OKg" firstAttribute="centerX" secondItem="5bk-dC-5Kc" secondAttribute="centerX" id="gdS-ng-2o6"/>
                             <constraint firstAttribute="trailing" secondItem="cVj-w9-CZJ" secondAttribute="trailing" id="oe9-hM-8wf"/>
+                            <constraint firstItem="xFQ-rS-cYb" firstAttribute="top" secondItem="V7O-DK-VFF" secondAttribute="bottom" constant="8" id="xhe-kN-Pdn"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="bOR-8M-fif"/>
+                                <exclude reference="HJP-d2-sMW"/>
+                                <exclude reference="xhe-kN-Pdn"/>
+                                <exclude reference="ZGl-8N-Fps"/>
+                                <exclude reference="4sd-jj-rJf"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="2bK-Yc-DGj"/>
+                                <include reference="HJP-d2-sMW"/>
+                                <include reference="xhe-kN-Pdn"/>
+                                <exclude reference="JJp-1T-MCB"/>
+                                <exclude reference="N4U-9K-Ncy"/>
+                                <include reference="ZGl-8N-Fps"/>
+                                <include reference="4sd-jj-rJf"/>
+                                <exclude reference="BWM-1T-BnQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -159,7 +211,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixj-R2-Fx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021" y="704"/>
+            <point key="canvasLocation" x="2020.5" y="704"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CancelButton" width="195" height="91"/>
+        <image name="PostButton" width="140" height="35"/>
+    </resources>
 </document>

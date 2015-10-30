@@ -90,6 +90,8 @@
     self.feedPosts = [NSArray new];
     self.likesArray = [NSArray new];
 
+    [SVProgressHUD show];
+
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
         self.feedPosts = [[NSArray alloc] initWithArray:objects];
@@ -118,6 +120,7 @@
                 [self.logoSpinner stopAnimating];
                 [self.view setUserInteractionEnabled:YES];
                 [self.refreshControl endRefreshing];
+                [SVProgressHUD dismiss];
             });
             
         }];
@@ -403,19 +406,21 @@
             UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 // Remove all activity associated with the post as well
 
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.feedPosts];
+                    [tempArray removeObjectAtIndex:indexPath.section];
+                    self.feedPosts = [NSArray arrayWithArray:tempArray];
+                    [self.feedTableView reloadData];
+//                    [self dismissViewControllerAnimated:YES completion:nil];
+                   // [self getAllPosts];
+                });
+
                 PFQuery *query = [Activity query];
                 [query whereKey:@"post" equalTo:selectedPost];
                 [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                     NSArray *activitiesToDelete = objects;
-                    [Activity deleteAllInBackground:activitiesToDelete block:^(BOOL succeeded, NSError * _Nullable error) {
-                        [selectedPost deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                            [self dismissViewControllerAnimated:YES completion:nil];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self getAllPosts];
-                            });
-                        }];
-
-                    }];
+                    [Activity deleteAllInBackground:activitiesToDelete];
+                    [selectedPost deleteInBackground];
                 }];
             }];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];

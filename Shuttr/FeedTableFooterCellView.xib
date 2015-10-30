@@ -44,18 +44,6 @@
                                 <action selector="onLikeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="gUL-1H-1eh"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-ro-Hd5">
-                            <rect key="frame" x="348" y="13" width="37" height="37"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="37" id="AMt-dB-fKe"/>
-                                <constraint firstAttribute="width" constant="37" id="sIE-1D-Nhj"/>
-                            </constraints>
-                            <state key="normal" image="more"/>
-                            <connections>
-                                <action selector="onMoreButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="OCf-DO-rCs"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fP0-46-b3q">
                             <rect key="frame" x="66" y="52" width="94" height="30"/>
                             <animations/>
@@ -79,16 +67,28 @@
                                 <action selector="onCommentsButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="RM3-je-tfe"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-ro-Hd5">
+                            <rect key="frame" x="329" y="21" width="49" height="18"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="49" id="T0m-wC-u0d"/>
+                                <constraint firstAttribute="height" constant="18" id="qs0-pZ-D2s"/>
+                            </constraints>
+                            <state key="normal" image="more"/>
+                            <connections>
+                                <action selector="onMoreButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="OCf-DO-rCs"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.18039215689999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="cKH-ro-Hd5" secondAttribute="trailing" constant="15" id="31N-m8-bvi"/>
                         <constraint firstItem="M94-EG-O1g" firstAttribute="centerY" secondItem="Fzk-7i-kCZ" secondAttribute="centerY" id="41s-eO-sUY"/>
                         <constraint firstAttribute="bottom" secondItem="fP0-46-b3q" secondAttribute="bottom" constant="8" id="7zi-tw-z07"/>
                         <constraint firstItem="Fzk-7i-kCZ" firstAttribute="leading" secondItem="0A4-Lt-Xls" secondAttribute="leading" constant="17" id="EHb-V7-G1D"/>
-                        <constraint firstItem="cKH-ro-Hd5" firstAttribute="top" secondItem="0A4-Lt-Xls" secondAttribute="top" constant="13" id="GM2-lw-yMG"/>
+                        <constraint firstItem="cKH-ro-Hd5" firstAttribute="top" secondItem="0A4-Lt-Xls" secondAttribute="top" constant="21" id="Mbe-T0-o1Z"/>
                         <constraint firstAttribute="bottom" secondItem="Fzk-7i-kCZ" secondAttribute="bottom" constant="43" id="iCW-Yr-X6k"/>
+                        <constraint firstAttribute="trailing" secondItem="cKH-ro-Hd5" secondAttribute="trailing" constant="22" id="joL-zR-6lA"/>
                         <constraint firstItem="M94-EG-O1g" firstAttribute="leading" secondItem="Fzk-7i-kCZ" secondAttribute="trailing" constant="15" id="u27-8g-gbl"/>
                         <constraint firstItem="fP0-46-b3q" firstAttribute="leading" secondItem="M94-EG-O1g" secondAttribute="leading" id="uAe-0n-VmR"/>
                         <constraint firstItem="Fzk-7i-kCZ" firstAttribute="top" secondItem="0A4-Lt-Xls" secondAttribute="top" constant="13" id="yVK-0l-YLE"/>
@@ -115,6 +115,6 @@
     </objects>
     <resources>
         <image name="heart" width="64" height="64"/>
-        <image name="more" width="64" height="64"/>
+        <image name="more" width="65" height="21"/>
     </resources>
 </document>

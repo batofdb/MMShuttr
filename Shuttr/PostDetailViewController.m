@@ -34,6 +34,9 @@
     [self extractImages];
     [self updateComments];
     self.navigationController.navigationItem.title =[NSString stringWithFormat:@"%@'s Post", self.post.author.username];
+    self.commentTableView.tableFooterView = [UIView new];
+    [self.commentTableView setSeparatorColor:UIColorFromRGB(0x332E35)];
+    self.descriptionTextView.textColor = UIColorFromRGB(0xD9A39A);
 
     if ([self.post.author isEqual:[User currentUser]]){
         [self.descriptionTextView setUserInteractionEnabled:YES];

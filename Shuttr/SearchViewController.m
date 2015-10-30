@@ -70,7 +70,7 @@
     self.searchController.dimsBackgroundDuringPresentation = NO;
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.placeholder = @"Search for people";
-    self.searchController.searchBar.tintColor = UIColorFromRGB(0x4C374C);
+    self.searchController.searchBar.tintColor = UIColorFromRGB(0xD9A39A);
     self.searchController.searchBar.barTintColor = UIColorFromRGB(0x4C374C);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchResultsUpdater = self;
