@@ -213,14 +213,14 @@
            
              [self performSegueWithIdentifier:@"ToPostSegue" sender:self];
                     self.photoArray = [NSMutableArray new];
-              self.countLabel.text = [NSString stringWithFormat:@"Count: 0" ];
+              self.countLabel.text = [NSString stringWithFormat:@"Photos remaining: 0" ];
              
 
              }
           }
       }];
     
-    self.countLabel.text = [NSString stringWithFormat:@"Count: %lu",(unsigned long)self.photoArray.count+1];
+    self.countLabel.text = [NSString stringWithFormat:@"Photos remaining: %lu",self.imageCount -(unsigned long)self.photoArray.count-1];
     //animate shutter
     
     
@@ -348,7 +348,7 @@
     postPhotoViewcontroller.images = self.photoArray;
     postPhotoViewcontroller.delegate = self;
     NSLog(@"%lu",(unsigned long)postPhotoViewcontroller.images.count);
-    self.countLabel.text = [NSString stringWithFormat:@"Count: 0" ];
+    self.countLabel.text = [NSString stringWithFormat:@"Photos remaining: 0" ];
 }
 
 

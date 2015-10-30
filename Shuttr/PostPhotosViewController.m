@@ -51,7 +51,7 @@
 
 #pragma mark - IBActions
 - (IBAction)onPostButtonPressed:(UIButton *)sender {
-
+    sender.enabled = NO;
     // Uncomment to save photos to user's photo library
 //    for (UIImage *image in self.images) {
 //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
@@ -61,30 +61,13 @@
     Post *post = [Post object];
     post.author = user;
     post.textDescription = self.descriptionTextField.text;
-    post.roll = [NSArray arrayWithObject: [ImageProcessing getDataFromImage:[self.images firstObject]]];
+    post.roll = [NSArray arrayWithArray:[ImageProcessing getDataArrayFromImageArray:self.images]];
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 
-        if (succeeded) {
-            for (int i=1; i<[self.images count]; i++){
-                PFQuery *query = [Post query];
-                [query whereKey:@"objectId" equalTo:post.objectId];
-                [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                    if (!error) {
-                        Post *postToEdit = (Post *)object;
-                    NSArray *posts = [postToEdit.roll arrayByAddingObject:[ImageProcessing getDataFromImage:self.images[i]]];
-                    [postToEdit setObject:posts forKey:@"roll"];
-                        [postToEdit saveInBackground];
-                    } else {
-                        NSLog(@"error saving additional photo");
-                    }
-
-                }];
-
-            }
-
+        if (!error) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post Uploaded!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okay = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
+                
                 [self.delegate postButtonWasPressed:self];
             }];
             [alert addAction:okay];
@@ -93,13 +76,13 @@
 
         } else {
             NSLog(@"unable to save post");
-            NSLog(@"unable to save post");
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Unable to save post." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:dismiss];
             [self presentViewController:alert animated:YES completion:nil];
 
         }
+        sender.enabled = YES;
 
     }];
 
