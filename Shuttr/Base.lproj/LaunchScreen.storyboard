@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -15,13 +15,138 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Shutter" translatesAutoresizingMaskIntoConstraints="NO" id="Tnx-O7-kVj">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="158" id="Cxa-n7-k9p"/>
+                                    <constraint firstAttribute="width" constant="158" id="eCQ-9U-exL"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Cxa-n7-k9p"/>
+                                        <exclude reference="eCQ-9U-exL"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Cxa-n7-k9p"/>
+                                        <include reference="eCQ-9U-exL"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shuttr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbn-xV-N3B">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="NRz-I6-BO4">
+                                        <variation key="widthClass=compact" constant="28"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="48" id="QdP-wQ-aql">
+                                        <variation key="widthClass=compact" constant="61"/>
+                                    </constraint>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NRz-I6-BO4"/>
+                                        <exclude reference="QdP-wQ-aql"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="NRz-I6-BO4"/>
+                                        <include reference="QdP-wQ-aql"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.37254901959999998" green="0.28627450980000002" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Tnx-O7-kVj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GHA-3k-j8Z"/>
+                            <constraint firstItem="Fbn-xV-N3B" firstAttribute="top" secondItem="Tnx-O7-kVj" secondAttribute="bottom" constant="8" id="auQ-N8-Jb1"/>
+                            <constraint firstItem="Fbn-xV-N3B" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gbs-AS-j1A"/>
+                            <constraint firstItem="Tnx-O7-kVj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uHy-zG-jq3"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Tnx-O7-kVj"/>
+                                <exclude reference="Fbn-xV-N3B"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="GHA-3k-j8Z"/>
+                                <exclude reference="uHy-zG-jq3"/>
+                                <exclude reference="auQ-N8-Jb1"/>
+                                <exclude reference="gbs-AS-j1A"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Tnx-O7-kVj"/>
+                                <include reference="Fbn-xV-N3B"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="GHA-3k-j8Z"/>
+                                <include reference="uHy-zG-jq3"/>
+                                <include reference="auQ-N8-Jb1"/>
+                                <include reference="gbs-AS-j1A"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Shutter" translatesAutoresizingMaskIntoConstraints="NO" id="E7u-dL-lIg">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="158" id="lDZ-1r-5Tc"/>
+                        <constraint firstAttribute="height" constant="158" id="s2D-Df-TcB"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="s2D-Df-TcB"/>
+                            <exclude reference="lDZ-1r-5Tc"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="s2D-Df-TcB"/>
+                            <include reference="lDZ-1r-5Tc"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shuttr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv7-Oi-fF1">
+                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="cZ1-Rr-22T">
+                            <variation key="widthClass=compact" constant="28"/>
+                        </constraint>
+                        <constraint firstAttribute="width" constant="48" id="oW2-3W-Lhb">
+                            <variation key="widthClass=compact" constant="61"/>
+                        </constraint>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                    <color key="textColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="cZ1-Rr-22T"/>
+                            <exclude reference="oW2-3W-Lhb"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="cZ1-Rr-22T"/>
+                            <include reference="oW2-3W-Lhb"/>
+                        </mask>
+                    </variation>
+                </label>
             </objects>
             <point key="canvasLocation" x="52.5" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Login_Shutter" width="510" height="500"/>
+    </resources>
 </document>

@@ -214,7 +214,11 @@
         cell.textLabel.text = user.username;
         cell.detailTextLabel.text = user.fullName;
        // cell.imageView.image =[UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(50, 50)] ;
-        cell.imageView.image =[ImageProcessing getImageFromData:user.profilePicture];
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:[ImageProcessing getImageFromData:user.profilePicture]];
+        imageView.layer.cornerRadius = imageView.frame.size.height/2;
+        imageView.clipsToBounds = YES;
+
+        cell.imageView.image =imageView.image;
         return cell;
 
     } else {
