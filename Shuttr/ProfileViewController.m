@@ -16,11 +16,12 @@
 #import "PostCollectionViewCell.h"
 #import "PostDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "MainFeedViewController.h"
 #import "PostPhotosViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PostDetailDelegate>
+@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PostDetailDelegate, MainFeedDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -42,43 +43,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // Set the delegate so can update when main feed is updated
+    MainFeedViewController *vc = [self.tabBarController.viewControllers objectAtIndex:0];
+    vc.delegate = self;
+
     //[self queryAndPopulateView];
     //[self.collectionView reloadData];
-    [self getUserProperties];
-
-    self.rollCoverImages = [NSMutableArray new];
-    self.userPosts = [NSMutableArray new];
-
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2;
     self.profileImageView.clipsToBounds = YES;
+    [self queryAndPopulateView];
 
 }
+
+
 
 - (void) viewWillAppear:(BOOL)animated {
     // TODO: optimise navigation so this doesn't have to get called every time the view appears
     //[self.collectionView reloadData];
 
-    [self postsChanged];
+    //[self postsChanged];
 }
 
-- (void)postsChanged {
+//- (void)postsChanged {
+//
+//    PFQuery *queryPosts = [Post query];
+//    [queryPosts whereKey:@"author" equalTo:[User currentUser]];
+//    [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+//        if (objects){
+//            if (!(self.userPosts.count == objects.count)){
+//                [self queryAndPopulateView];
+//            } else {
+//                NSSet *set1=[NSSet setWithArray:objects];
+//                NSSet *set2=[NSSet setWithArray:self.userPosts];
+//                    if (![set1 isEqualToSet:set2]) {
+//                        [self queryAndPopulateView];
+//                    }
+//            }
+//        }
+//    }];
+//
+//}
 
-    PFQuery *queryPosts = [Post query];
-    [queryPosts whereKey:@"author" equalTo:[User currentUser]];
-    [queryPosts findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (objects){
-            if (!(self.userPosts.count == objects.count)){
-                [self queryAndPopulateView];
-            } else {
-                NSSet *set1=[NSSet setWithArray:objects];
-                NSSet *set2=[NSSet setWithArray:self.userPosts];
-                    if (![set1 isEqualToSet:set2]) {
-                        [self queryAndPopulateView];
-                    }
-            }
-        }
-    }];
-
+#pragma mark - Main Feed Delegate Methods
+-(void)postWasChanged:(id)sender {
+    [self queryAndPopulateView];
 }
 
 #pragma mark - Helper Methods
@@ -186,7 +194,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Post Detail Delegate Methods
 - (void)postWasDeleted:(id)view {
+    [self queryAndPopulateView];
+}
+
+- (void)postWasChangedOnDetail:(id)sender {
     [self queryAndPopulateView];
 }
 

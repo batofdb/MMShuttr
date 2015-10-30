@@ -12,6 +12,7 @@
 #import "User.h"
 #import "UIImage+ImageResizing.h"
 
+
 @interface EditProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *fullNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;

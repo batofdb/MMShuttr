@@ -80,7 +80,7 @@
                               
                               [UIImage imageNamed:@"shutter13"],nil];
     
-    self.imageCount =5;
+    self.imageCount =4;
     
    
  

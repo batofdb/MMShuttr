@@ -216,6 +216,6 @@
     </scenes>
     <resources>
         <image name="CancelButton" width="195" height="91"/>
-        <image name="PostButton" width="140" height="35"/>
+        <image name="PostButton" width="164" height="91"/>
     </resources>
 </document>

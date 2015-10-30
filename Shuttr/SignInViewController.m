@@ -114,9 +114,11 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
 
     // Login PFUser using Facebook
     if ([FBSDKAccessToken currentAccessToken]){
-         [PFFacebookUtils logInInBackgroundWithAccessToken:[FBSDKAccessToken currentAccessToken] block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-             [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
-         }];
+        [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+//
+//         [PFFacebookUtils logInInBackgroundWithAccessToken:[FBSDKAccessToken currentAccessToken] block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+//             [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+//         }];
     } else {
 
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
@@ -148,7 +150,11 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSString *enteredUsername = usernameTextField.text;
         [user setObject:enteredUsername forKey:@"username"];
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (!error){
             [self loadFacebookData];
+            } else {
+                NSLog(@"error getting user namefrom login");
+            }
         }];
 
 
@@ -181,8 +187,13 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
             User *user = [User currentUser];
             [user setObject:name forKey:@"fullName"];
             NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:pictureURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+
+                if (!error) {
                 [user setObject:data forKey:@"profilePicture"];
                 [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+                } else {
+                    NSLog(@"error loading facebook data");
+                }
             }];
             [task resume];
         }

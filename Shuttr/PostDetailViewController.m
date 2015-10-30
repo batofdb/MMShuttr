@@ -12,17 +12,19 @@
 #import "Activity.h"
 #import "SVProgressHUD.h"
 #import "CommentTableViewCell.h"
+#import "MainFeedViewController.h"
 @interface PostDetailViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray *postImages;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
+//@property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
 //@property (weak, nonatomic) IBOutlet UITextField *addCommentTextField;
-
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (nonatomic)NSMutableArray *commentAddArray;
 @property (weak, nonatomic) IBOutlet UITableView *commentTableView;
-
-
+@property (weak, nonatomic) IBOutlet UIButton *heartButton;
+@property BOOL isLiked;
+@property BOOL somethingChanged;
 
 @end
 
@@ -33,10 +35,27 @@
     [super viewDidLoad];
     [self extractImages];
     [self updateComments];
-    self.navigationController.navigationItem.title =[NSString stringWithFormat:@"%@'s Post", self.post.author.username];
+    self.navBar.topItem.title =[NSString stringWithFormat:@"%@'s Post", self.post.author.username];
     self.commentTableView.tableFooterView = [UIView new];
     [self.commentTableView setSeparatorColor:UIColorFromRGB(0x332E35)];
     self.descriptionTextView.textColor = UIColorFromRGB(0xD9A39A);
+    self.isLiked = NO;
+    self.somethingChanged = NO;
+
+    PFQuery *likeQuery = [Activity query];
+    [likeQuery whereKey:@"post" equalTo:self.post];
+    [likeQuery whereKey:@"fromUser" equalTo:[User currentUser]];
+    [likeQuery whereKey:@"activityType" equalTo:@0];
+    [likeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+        if (objects){
+            [self.heartButton setImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
+            self.isLiked = YES;
+        } else {
+            [self.heartButton setImage:[UIImage imageNamed:@"semi-heart-on"] forState:UIControlStateNormal];
+            self.isLiked = NO;
+        }
+    }];
 
     if ([self.post.author isEqual:[User currentUser]]){
         [self.descriptionTextView setUserInteractionEnabled:YES];
@@ -76,12 +95,14 @@
         if (objects) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSArray *results = [[NSArray alloc] initWithArray:objects];
-                NSMutableString *commentsString = [NSMutableString new];
-                for (Activity *comment in results) {
-                    [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
-                    
-                }
-                self.commentsTextView.text = commentsString;
+
+
+//                NSMutableString *commentsString = [NSMutableString new];
+//                for (Activity *comment in results) {
+//                    [commentsString appendFormat:@"%@: %@\n", comment.fromUser.username, comment.content];
+//                    
+//                }
+               // self.commentsTextView.text = commentsString;
             
                 self.commentAddArray =(NSMutableArray*) results;
                 NSLog(@"%@", self.commentAddArray);
@@ -153,6 +174,7 @@
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 - (IBAction)onDetailButtonPressed:(UIButton *)sender {
 
     if ([self.post.author isEqual:[User currentUser]]) {
@@ -218,9 +240,65 @@
 
 #pragma mark - IBActions
 - (IBAction)onDoneButtonPressed:(UIBarButtonItem *)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)onHeartButtonPressed:(UIButton *)sender {
+    sender.adjustsImageWhenDisabled = NO;
+    [sender setEnabled:NO];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        if (self.isLiked){
+            [sender setImage:[UIImage imageNamed:@"semi-heart-on"] forState:UIControlStateNormal];
+            self.isLiked = NO;
+
+        } else {
+            [sender setImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
+            self.isLiked = YES;
+        }
+        [sender setNeedsLayout];
+    });
+
+    PFQuery *dislikeQuery = [Activity query];
+    [dislikeQuery whereKey:@"post" equalTo:self.post];
+    [dislikeQuery whereKey:@"fromUser" equalTo:[User currentUser]];
+    [dislikeQuery whereKey:@"activityType" equalTo:@0];
+
+    [dislikeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error){
+            if (objects.count>0) {
+                Activity *deleteActivity = objects.firstObject;
+                if ([deleteActivity.toUser isEqual:[User currentUser]]){
+                    [self.delegate postWasChangedOnDetail:self];
+                }
+                [deleteActivity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    [sender setEnabled:YES];
+                    self.somethingChanged = YES;
+                }];
+            } else {
+                Activity *addActivity = [Activity object];
+                addActivity.activityType = @0;
+                addActivity.fromUser = [User currentUser];
+                addActivity.toUser = self.post.author;
+                if ([addActivity.toUser isEqual:[User currentUser]]){
+                    [self.delegate postWasChangedOnDetail:self];
+                }
+                addActivity.post = self.post;
+                [addActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    [sender setEnabled:YES];
+                    self.somethingChanged = YES;
+                }];
+            }
+        } else {
+            [sender setEnabled:YES];
+            
+        }
+    }];
+
+
+}
+
 
 
 // Might add back later if we want to handle "add comment" differently
@@ -287,6 +365,7 @@
     
     
 }
+
 
 #pragma mark delete Comments from table cells
 

@@ -38,16 +38,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.somethingChanged = NO;
+
     [self.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [self setNeedsStatusBarAppearanceUpdate];
     self.imageB = [NSMutableArray new];
+
     for (int i = 1; i <37; i++) {
-
         NSString *imageName = [NSString stringWithFormat:@"LogoLoginStart%d",i];
-
         [self.imageB addObject:[UIImage imageNamed:imageName]];
-
     }
+
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor clearColor];
@@ -59,11 +60,13 @@
     [self loadCustomRefreshContents];
 
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
-    [self getAllPosts];
+
     CameraViewController *vc = [self.tabBarController.viewControllers objectAtIndex:1];
     vc.delegate = self;
     self.view.backgroundColor = UIColorFromRGB(0x533E54);
     self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0x533E54);
+
+    //[self getAllPosts];
 
 }
 
@@ -71,10 +74,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // TODO: add code here to requery under cetrain conditions
+
+    [self getAllPosts];
+
+//    if (self.somethingChanged){
+//        self.somethingChanged = NO;
+//        [self getAllPosts];
+//    }
 }
 
+
 -(void)updateFeedForNewPost:(id)sender {
-    [self getAllPosts];
+  //  [self getAllPosts];
 }
 
 - (void)pullToRefreshAction {
@@ -89,8 +100,6 @@
     PFQuery *likesActivityQuery = [self queryForUserLikeActivity];
     self.feedPosts = [NSArray new];
     self.likesArray = [NSArray new];
-
-    [SVProgressHUD show];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
@@ -108,10 +117,8 @@
             for (Post *post in self.feedPosts){
                 if ([allUserLikedPosts containsObject:post]) {
                     [resultLikes addObject:@1];
-                    NSLog(@"like");
                 } else {
                     [resultLikes addObject:@0];
-                    NSLog(@"no like");
                 }
             }
             self.likesArray = [[NSArray alloc] initWithArray:resultLikes];
@@ -245,8 +252,6 @@
         NSArray *images = [ImageProcessing getImageArrayFromDataArray:post.roll];
         [cell setCollectionData:images];
 
-
-
         return cell;
     }
 
@@ -275,7 +280,6 @@
     NSDateComponents *components = [c components:NSCalendarUnitHour fromDate:d2 toDate:d1 options:0];
     NSInteger diff = components.hour;
 
-
     if (diff < 1) {
         NSDateComponents *components = [c components:NSCalendarUnitMinute fromDate:d2 toDate:d1 options:0];
         NSInteger diff = components.minute;
@@ -287,9 +291,7 @@
     headerView.timeStampLabel.text = timeStamp;
 
     [self.feedTableView endUpdates];
-
     headerView.delegate = self;
-
     [headerView setNeedsDisplay];
     [headerView setNeedsLayout];
 
@@ -299,9 +301,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
 }
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 1)
@@ -341,6 +340,7 @@
 #pragma mark - Feed Table Footer Cell View delegate methods
 
 - (void)likeButtonWasPressed:(UIButton *)sender {
+    sender.adjustsImageWhenDisabled = NO;
     [sender setEnabled:NO];
     CGPoint touchPoint = [sender convertPoint:CGPointZero toView:self.feedTableView];
     NSIndexPath *indexPath = [self.feedTableView indexPathForRowAtPoint:touchPoint];
@@ -372,6 +372,9 @@
         if (!error){
         if (objects.count>0) {
             Activity *deleteActivity = objects.firstObject;
+            if ([deleteActivity.toUser isEqual:[User currentUser]]){
+                [self.delegate postWasChanged:self];
+            }
             [deleteActivity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 [sender setEnabled:YES];
             }];
@@ -380,6 +383,9 @@
             addActivity.activityType = @0;
             addActivity.fromUser = [User currentUser];
             addActivity.toUser = selectedPost.author;
+            if ([addActivity.toUser isEqual:[User currentUser]]){
+                [self.delegate postWasChanged:self];
+            }
             addActivity.post = selectedPost;
             [addActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 [sender setEnabled:YES];
@@ -406,6 +412,7 @@
             UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 // Remove all activity associated with the post as well
 
+                [self.delegate postWasChanged:self];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.feedPosts];
                     [tempArray removeObjectAtIndex:indexPath.section];

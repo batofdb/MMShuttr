@@ -39,7 +39,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="34" id="L5d-HJ-o1J"/>
                             </constraints>
-                            <state key="normal" backgroundImage="heart"/>
+                            <state key="normal" backgroundImage="semi-heart-on"/>
                             <connections>
                                 <action selector="onLikeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="gUL-1H-1eh"/>
                             </connections>
@@ -114,7 +114,7 @@
         </view>
     </objects>
     <resources>
-        <image name="heart" width="64" height="64"/>
         <image name="more" width="65" height="21"/>
+        <image name="semi-heart-on" width="64" height="64"/>
     </resources>
 </document>

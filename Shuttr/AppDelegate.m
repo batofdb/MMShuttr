@@ -39,7 +39,7 @@
     [PFTwitterUtils initializeWithConsumerKey:@"WKyiOLgjYPuymsknt9hHzfgDA" consumerSecret:@"d7HD65T6zMAL34yUUiiQJUxEZmoICyzhJ1c7jDlCY7thf1dXcF"];
 
 
-   // [PFUser enableRevocableSessionInBackground];
+    [PFUser enableRevocableSessionInBackground];
 
 
     if (![User currentUser]) { // Check if user is linked to Facebook

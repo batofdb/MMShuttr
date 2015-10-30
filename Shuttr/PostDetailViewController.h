@@ -11,7 +11,8 @@
 
 @protocol PostDetailDelegate <NSObject>
 
--(void)postWasDeleted:(id)sender;
+- (void)postWasDeleted:(id)sender;
+- (void)postWasChangedOnDetail:(id)sender;
 
 @end
 
