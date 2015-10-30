@@ -262,7 +262,9 @@
             cell.toPostButton.tag = indexPath.row;
 
         } else if ([activity.activityType isEqual:@2] ){
-            cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ is following you", activity.fromUser.username];
+            if (![activity.fromUser.username isEqual:[User currentUser]]) {
+                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ is following you", activity.fromUser.username];
+            }
 
             UIImageView* image = [UIImageView new];
             image.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)];

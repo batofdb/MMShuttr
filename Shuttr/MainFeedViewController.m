@@ -103,6 +103,7 @@
 
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
+
         self.feedPosts = [[NSArray alloc] initWithArray:objects];
 
         [likesActivityQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -131,8 +132,9 @@
             });
             
         }];
-        
+
     }];
+
 
 }
 
@@ -154,7 +156,7 @@
 
 - (PFQuery *)queryForPosts {
 
-    // Get activity from followers
+//    // Get activity from followers
     PFQuery *followingActivityQuery = [Activity query];
     [followingActivityQuery whereKey:@"activityType" equalTo:@2];
     [followingActivityQuery whereKey:@"fromUser" equalTo:[User currentUser]];
@@ -166,7 +168,7 @@
 
     // Also want user's photos
     PFQuery *photosFromCurrentUserQuery = [Post query];
-    [photosFromFollowedUsersQuery whereKey:@"author" equalTo:[User currentUser]];
+    [photosFromCurrentUserQuery whereKey:@"author" equalTo:[User currentUser]];
     [photosFromCurrentUserQuery whereKeyExists:@"roll"];
 
     // Combine queries

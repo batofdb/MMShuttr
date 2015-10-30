@@ -36,6 +36,8 @@
     self.passwordTextField.text = self.user.password;
     self.imageChanged = NO;
     self.profilePictureImageView.image = [ImageProcessing getImageFromData:self.user.profilePicture];
+    self.profilePictureImageView.layer.cornerRadius = 85;
+    self.profilePictureImageView.clipsToBounds = YES;
 }
 
 - (IBAction)onCancelButtonPressed:(UIBarButtonItem *)sender {
