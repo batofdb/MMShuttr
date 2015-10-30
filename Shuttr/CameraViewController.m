@@ -65,20 +65,20 @@
   
     
     // shutter image sequence
-    self.shutterImageArray = [NSArray arrayWithObjects: [UIImage imageNamed:@"shutter 1"],
-  [UIImage imageNamed:@"shutter 2"],
-                              [UIImage imageNamed:@"shutter 1"],
-                              [UIImage imageNamed:@"shutter 4"],
-                              [UIImage imageNamed:@"shutter 5"],
-                              [UIImage imageNamed:@"shutter 6"],
-                              [UIImage imageNamed:@"shutter 7"],
-                              [UIImage imageNamed:@"shutter 8"],
-                              [UIImage imageNamed:@"shutter 9"],
-                              [UIImage imageNamed:@"shutter 10"],
-                              [UIImage imageNamed:@"shutter 11"],
-                              [UIImage imageNamed:@"shutter 12"],
+    self.shutterImageArray = [NSArray arrayWithObjects: [UIImage imageNamed:@"shutter1"],
+  [UIImage imageNamed:@"shutter2"],
+                              [UIImage imageNamed:@"shutter3"],
+                              [UIImage imageNamed:@"shutter4"],
+                              [UIImage imageNamed:@"shutter5"],
+                              [UIImage imageNamed:@"shutter6"],
+                              [UIImage imageNamed:@"shutter7"],
+                              [UIImage imageNamed:@"shutter8"],
+                              [UIImage imageNamed:@"shutter9"],
+                              [UIImage imageNamed:@"shutter10"],
+                              [UIImage imageNamed:@"shutter11"],
+                              [UIImage imageNamed:@"shutter12"],
                               
-                              [UIImage imageNamed:@"shutter 13"],nil];
+                              [UIImage imageNamed:@"shutter13"],nil];
     
     self.imageCount =5;
     
