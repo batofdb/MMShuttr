@@ -48,7 +48,7 @@
     [likeQuery whereKey:@"activityType" equalTo:@0];
     [likeQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 
-        if (objects){
+        if (objects.count > 0){
             [self.heartButton setImage:[UIImage imageNamed:@"heart-on"] forState:UIControlStateNormal];
             self.isLiked = YES;
         } else {

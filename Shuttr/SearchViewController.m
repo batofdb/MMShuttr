@@ -54,12 +54,15 @@
 -(void)updateSearchWithQuery {
 
     if (self.activityUserSegmentedControl.selectedSegmentIndex == 0)
+        //self.tableView.tableHeaderView = [UIView new];
         [self activityItemsQuery];
 
     if (self.activityUserSegmentedControl.selectedSegmentIndex == 1)
+        //self.tableView.tableHeaderView = self.searchController.searchBar;
         [self friendsQuery];
 
     if (self.activityUserSegmentedControl.selectedSegmentIndex == 2)
+       //self.tableView.tableHeaderView = self.searchController.searchBar;
         [self userQueryAndSave];
 }
 
@@ -87,6 +90,7 @@
         self.users = [[NSArray alloc] initWithArray:objects];
         [SVProgressHUD dismiss];
         self.exploreItems = self.users;
+        self.activityUserSegmentedControl.userInteractionEnabled = YES;
         [self.tableView reloadData];
     }];
 }
@@ -117,7 +121,7 @@
 
         [SVProgressHUD dismiss];
         self.exploreItems = self.friends;
-
+        self.activityUserSegmentedControl.userInteractionEnabled = YES;
         [self.tableView reloadData];
     }];
 }
@@ -150,6 +154,7 @@
 
 }
 - (IBAction)onActivityUserSelected:(UISegmentedControl *)sender {
+    self.activityUserSegmentedControl.userInteractionEnabled = NO;
     [self updateSearchWithQuery];
 }
 
@@ -177,6 +182,7 @@
         self.activityItems = objects;
         dispatch_async(dispatch_get_main_queue(), ^{
             self.exploreItems = self.activityItems;
+            self.activityUserSegmentedControl.userInteractionEnabled = YES;
             [self.tableView reloadData];
 
             [SVProgressHUD dismiss];

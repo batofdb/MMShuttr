@@ -74,7 +74,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // TODO: add code here to requery under cetrain conditions
-
+    [SVProgressHUD show];
     [self getAllPosts];
 
 //    if (self.somethingChanged){
