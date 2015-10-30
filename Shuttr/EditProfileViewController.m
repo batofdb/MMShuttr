@@ -94,15 +94,15 @@
 
 #pragma mark - IBActions
 - (IBAction)onLogoutButtonPressed:(UIButton *)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Logging Out" message:@"Are you sure you want to log out?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Log out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         [User logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
             [self performSegueWithIdentifier:@"ToSignupSegue" sender:self];
         }];
 
     }];
-    UIAlertAction *cancelAction= [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancelAction= [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:yesAction];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];

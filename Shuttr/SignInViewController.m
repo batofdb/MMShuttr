@@ -152,7 +152,7 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
 
     }];
 
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
     [alert addAction:action];
     [alert addAction:cancel];
