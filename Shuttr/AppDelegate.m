@@ -23,9 +23,14 @@
 @implementation AppDelegate
 
 
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    
+
+    [[UITabBar appearance] setTintColor:UIColorFromRGB(0xe7e4e5)];
+    [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0x5F495F)];
+
     //[[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
 
     [Parse enableLocalDatastore];

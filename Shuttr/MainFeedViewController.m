@@ -37,6 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self setNeedsStatusBarAppearanceUpdate];
     self.imageB = [NSMutableArray new];
     for (int i = 1; i <37; i++) {
 
@@ -59,9 +62,12 @@
     [self getAllPosts];
     CameraViewController *vc = [self.tabBarController.viewControllers objectAtIndex:1];
     vc.delegate = self;
-    self.tabBarController.tabBar.tintColor = UIColorFromRGB(0x533E54);
+    self.view.backgroundColor = UIColorFromRGB(0x533E54);
+    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0x533E54);
 
 }
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // TODO: add code here to requery under cetrain conditions
@@ -244,7 +250,6 @@
     }
 
 }
-
 
 #pragma mark UITableViewDelegate methods
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

@@ -58,7 +58,7 @@
 
 #pragma mark - Helper Methods
 - (void) queryAndPopulateView {
-
+    [self.view setUserInteractionEnabled:NO];
     User *user = [User currentUser];
     self.rollCoverImages = [NSMutableArray new];
     self.userPosts = [NSMutableArray new];
@@ -113,7 +113,7 @@
         self.likesCountLabel.text = [NSString stringWithFormat:@"%lu", userLikes.count];
         self.followersCountLabel.text = [NSString stringWithFormat:@"%lu Followers", userFollowers.count];
         self.followingCountLabel.text = [NSString stringWithFormat:@"%lu Following", userFollowing.count];
-
+            [self.view setUserInteractionEnabled:YES];
 //            [self.collectionView reloadData];
         });
     }];
