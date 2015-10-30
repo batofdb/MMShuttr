@@ -43,7 +43,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     // Need to keep activity up to date
     // TODO: implement pulldown to refresh
-    [self activityItemsQuery];
+    [self updateSearchWithQuery];
 
 
 
@@ -52,6 +52,7 @@
 
 
 -(void)updateSearchWithQuery {
+
     if (self.activityUserSegmentedControl.selectedSegmentIndex == 0)
         [self activityItemsQuery];
 
@@ -69,7 +70,8 @@
     self.searchController.dimsBackgroundDuringPresentation = NO;
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.placeholder = @"Search for people";
-    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.searchController.searchBar.tintColor = UIColorFromRGB(0x4C374C);
+    self.searchController.searchBar.barTintColor = UIColorFromRGB(0x4C374C);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchResultsUpdater = self;
     self.searchController.searchBar.delegate = self;
@@ -115,6 +117,7 @@
 
         [SVProgressHUD dismiss];
         self.exploreItems = self.friends;
+
         [self.tableView reloadData];
     }];
 }
@@ -140,6 +143,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         [self.users arrayByAddingObjectsFromArray:objects];
         [SVProgressHUD dismiss];
+
         [self.tableView reloadData];
 
     }];
@@ -174,6 +178,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.exploreItems = self.activityItems;
             [self.tableView reloadData];
+
             [SVProgressHUD dismiss];
         });
     }];
@@ -181,10 +186,10 @@
 
 - (NSArray *)currentArray {
     if (self.searchController.isActive) {
-        self.tableView.allowsSelection = YES;
+        //self.tableView.allowsSelection = YES;
         return self.filteredSearchResults;
     } else {
-        self.tableView.allowsSelection = NO;
+        //self.tableView.allowsSelection = NO;
         //return self.activityItems;
         return self.exploreItems;
     }
@@ -215,7 +220,7 @@
     } else {
         Activity *activity = [target objectAtIndex:indexPath.row];
         ActivityFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityCell"];
-
+        cell.activityItemTextLabel.textColor = UIColorFromRGB(0xD9A39A);
         if ([activity.activityType isEqual:@0]){
 
             if ([activity.fromUser isEqual:[User currentUser]]){
@@ -309,8 +314,13 @@
         if (self.searchController.isActive) {
             vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row] ;
        } else {
-            Activity *activity = [self.exploreItems objectAtIndex:indexPath.row] ;
-            vc.user = activity.fromUser;
+           if (self.activityUserSegmentedControl.selectedSegmentIndex == 0) {
+                Activity *activity = [self.exploreItems objectAtIndex:indexPath.row] ;
+                vc.user = activity.fromUser;
+           } else {
+               User *user = [self.exploreItems objectAtIndex:indexPath.row] ;
+               vc.user = user;
+           }
         }
 
     } else if ([segue.identifier isEqualToString:@"ToPostDetailSegue"]) {

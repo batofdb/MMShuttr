@@ -53,7 +53,7 @@
 
     self.followActivity = [Activity object];
     [self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
-    [self.followButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.followButton setTitleColor:UIColorFromRGB(0x5F495F) forState:UIControlStateNormal];
 
     // Get user posts
     PFQuery *queryPosts = [Post query];
@@ -132,8 +132,10 @@
     if (self.sourceVC){
 
         UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
-        navBar.backgroundColor = [UIColor whiteColor];
-
+        navBar.barTintColor = UIColorFromRGB(0x5F495F);
+        navBar.tintColor = UIColorFromRGB(0xD9A39A);
+        navBar.titleTextAttributes = [NSDictionary dictionaryWithObject:UIColorFromRGB(0xD9A39A)forKey:NSForegroundColorAttributeName];
+        navBar.translucent = NO;
         UINavigationItem *navItem = [[UINavigationItem alloc] init];
         navItem.title = self.user.username;
 

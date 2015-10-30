@@ -21,25 +21,52 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import "RefreshControlView.h"
 
 @interface MainFeedViewController () <UITableViewDataSource, UITableViewDelegate, FeedTableHeaderDelegate, FeedTableFooterCellDelegate, CameraViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (nonatomic) NSArray *objects;
 @property (nonatomic) NSArray *feedPosts;
 @property (nonatomic) NSArray *likesArray;
+@property (nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic) UIImageView *logoSpinner;
+@property (nonatomic) NSMutableArray *imageB;
 @end
 
 @implementation MainFeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self setNeedsStatusBarAppearanceUpdate];
+    self.imageB = [NSMutableArray new];
+    for (int i = 1; i <37; i++) {
+
+        NSString *imageName = [NSString stringWithFormat:@"LogoLoginStart%d",i];
+
+        [self.imageB addObject:[UIImage imageNamed:imageName]];
+
+    }
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
+    self.refreshControl.tintColor = [UIColor clearColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(pullToRefreshAction)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.feedTableView addSubview:self.refreshControl];
+    [self loadCustomRefreshContents];
+
     [self.feedTableView registerClass:[FeedTableViewCell class] forCellReuseIdentifier:@"FeedTableViewCell"];
     [self getAllPosts];
     CameraViewController *vc = [self.tabBarController.viewControllers objectAtIndex:1];
     vc.delegate = self;
-    self.tabBarController.tabBar.tintColor = UIColorFromRGB(0x533E54);
+    self.view.backgroundColor = UIColorFromRGB(0x533E54);
+    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0x533E54);
 
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -50,7 +77,14 @@
     [self getAllPosts];
 }
 
+- (void)pullToRefreshAction {
+    [self startAnimatingLogo];
+    [self getAllPosts];
+
+}
+
 - (void)getAllPosts {
+    [self.view setUserInteractionEnabled:NO];
     PFQuery *query = [self queryForPosts];
     PFQuery *likesActivityQuery = [self queryForUserLikeActivity];
     self.feedPosts = [NSArray new];
@@ -81,11 +115,31 @@
             self.likesArray = [[NSArray alloc] initWithArray:resultLikes];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.feedTableView reloadData];
+                [self.logoSpinner stopAnimating];
+                [self.view setUserInteractionEnabled:YES];
+                [self.refreshControl endRefreshing];
             });
             
         }];
         
     }];
+
+}
+
+- (void)startAnimatingLogo{
+    self.logoSpinner.animationImages = self.imageB;
+    self.logoSpinner.animationDuration = 1;
+    self.logoSpinner.animationRepeatCount = 0;
+    [self.logoSpinner startAnimating];
+}
+
+
+- (void)loadCustomRefreshContents {
+    RefreshControlView *refreshView = [[NSBundle mainBundle] loadNibNamed:@"RefreshControlView" owner:self options:nil].firstObject;
+    self.logoSpinner = refreshView.logoSpinner;
+    refreshView.frame = self.refreshControl.bounds;
+    //self.logoSpinner.image = (UIImage *)[refreshView viewWithTag:0];
+    [self.refreshControl addSubview:refreshView];
 }
 
 - (PFQuery *)queryForPosts {
@@ -194,7 +248,6 @@
     }
 
 }
-
 
 #pragma mark UITableViewDelegate methods
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

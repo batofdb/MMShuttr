@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ln-3D-hb4">
-=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ln-3D-hb4">
->>>>>>> cameraStageThree
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ln-3D-hb4">
+>>>>>>> refreshControl
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -15,10 +15,13 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="9ln-3D-hb4" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="jLv-fT-MeY">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="jLv-fT-MeY">
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.14509803921568626" green="0.13725490196078433" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="PAA-dQ-cCR" kind="relationship" relationship="viewControllers" id="dCv-tM-TcZ"/>
@@ -31,7 +34,7 @@
             </objects>
             <point key="canvasLocation" x="410" y="-543"/>
         </scene>
-        <!--Feed-->
+        <!--Home-->
         <scene sceneID="JEI-WY-KCL">
             <objects>
                 <viewController id="PAA-dQ-cCR" customClass="MainFeedViewController" sceneMemberID="viewController">
@@ -40,33 +43,35 @@
                         <viewControllerLayoutGuide type="bottom" id="W0K-XM-k3k"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="16z-ka-AoS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-Rg-Dac">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7i-Rg-Dac">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="vhm-X2-Fri"/>
+                                    <constraint firstAttribute="height" constant="70" id="vhm-X2-Fri"/>
                                 </constraints>
+                                <color key="tintColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.37254901959999998" green="0.28627450980000002" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.85098039219999999" green="0.63921568630000003" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Shuttr" id="ERM-cF-D6T"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-hm-H9e">
-                                <rect key="frame" x="0.0" y="50" width="600" height="501"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-hm-H9e">
+                                <rect key="frame" x="0.0" y="70" width="600" height="481"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostHeader" rowHeight="109" id="B9b-Fc-OIZ">
                                         <rect key="frame" x="0.0" y="28" width="600" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B9b-Fc-OIZ" id="Cim-lo-yqH">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="108"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="108.5"/>
->>>>>>> cameraStageThree
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jonnyblessed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTp-YF-vHx">
@@ -123,19 +128,11 @@
                                         <rect key="frame" x="0.0" y="137" width="600" height="211"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jBD-se-DTg" id="pgN-1e-3lF">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="211"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E1p-jQ-Oif">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="210"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="210.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E1p-jQ-Oif">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="210.5"/>
->>>>>>> cameraStageThree
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="211"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -144,6 +141,7 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <color key="backgroundColor" red="0.29803921570000003" green="0.2156862745" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
@@ -155,7 +153,7 @@
                             </tableView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32549019610000002" green="0.24313725489999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="X6c-hm-H9e" firstAttribute="top" secondItem="n7i-Rg-Dac" secondAttribute="bottom" id="FRP-ed-ocx"/>
                             <constraint firstItem="n7i-Rg-Dac" firstAttribute="leading" secondItem="16z-ka-AoS" secondAttribute="leading" id="K9T-fp-VqJ"/>
@@ -166,10 +164,13 @@
                             <constraint firstItem="n7i-Rg-Dac" firstAttribute="top" secondItem="16z-ka-AoS" secondAttribute="top" id="ut7-24-M91"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" id="eAO-qO-RZA"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="eAO-qO-RZA">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="5" vertical="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="feedTableView" destination="X6c-hm-H9e" id="F1R-Iv-2no"/>
                         <segue destination="Wdk-Pa-WdH" kind="presentation" identifier="ToUserProfileSegue" id="UTR-8x-XIs"/>
+                        <segue destination="qrN-2b-hzk" kind="presentation" identifier="toPostDetailSegue" id="IB0-hY-A3R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="and-li-s4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,6 +184,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSU-ff-LFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1985.5" y="71"/>
+        </scene>
+        <!--PostDetail-->
+        <scene sceneID="sY6-aT-SQ1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PostDetail" id="qrN-2b-hzk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vw5-3g-U9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1983" y="304"/>
         </scene>
         <!--Camera-->
         <scene sceneID="ZY7-2I-ki8">
@@ -215,4 +224,7 @@
             <point key="canvasLocation" x="-27.5" y="7"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home" width="20" height="20"/>
+    </resources>
 </document>

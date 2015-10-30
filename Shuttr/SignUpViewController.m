@@ -149,7 +149,7 @@
                         newUser.password = self.passwordTextField.text;
                         newUser.email = self.emailTextField.text;
                         newUser.fullName = self.fullNameTextField.text;
-                        newUser.profilePicture = [ImageProcessing getDataFromImage:[UIImage imageNamed:@"profile_default"]];
+                        newUser.profilePicture = [ImageProcessing getDataFromImage:[UIImage imageNamed:@"defaultProfilePicture"]];
                         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                             if (succeeded) {
                                 [User logInWithUsernameInBackground:newUser.username password:newUser.password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
