@@ -59,25 +59,27 @@
 
     User *user = [User currentUser];
     Post *post = [Post object];
-
     post.author = user;
     post.textDescription = self.descriptionTextField.text;
-
     post.roll = [NSArray arrayWithObject: [ImageProcessing getDataFromImage:[self.images firstObject]]];
-
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 
         if (succeeded) {
             for (int i=1; i<[self.images count]; i++){
-                [post.roll arrayByAddingObject:[ImageProcessing getDataFromImage:self.images[i]]];
-                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-
-                    if (succeeded) {
-                        NSLog(@"additional photo saved");
+                PFQuery *query = [Post query];
+                [query whereKey:@"objectId" equalTo:post.objectId];
+                [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                    if (!error) {
+                        Post *postToEdit = (Post *)object;
+                    NSArray *posts = [postToEdit.roll arrayByAddingObject:[ImageProcessing getDataFromImage:self.images[i]]];
+                    [postToEdit setObject:posts forKey:@"roll"];
+                        [postToEdit saveInBackground];
                     } else {
                         NSLog(@"error saving additional photo");
                     }
+
                 }];
+
             }
 
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post Uploaded!" message:@"" preferredStyle:UIAlertControllerStyleAlert];

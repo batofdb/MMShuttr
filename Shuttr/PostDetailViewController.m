@@ -285,7 +285,7 @@
     
 }
 
-#pragma mark delete Comments from tabel cells
+#pragma mark delete Comments from table cells
 
 
 
