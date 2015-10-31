@@ -17,6 +17,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (nonatomic) UIImage *profilePicture;
+@property (nonatomic) NSMutableArray * imageA;
+@property (nonatomic) NSMutableArray * imageB;
+
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+
+
 @end
 
 @implementation SignInViewController
@@ -24,7 +30,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
+  
+    
+    self.imageA = [NSMutableArray new];
+    for (int i = 1; i <30; i++) {
+        
+        NSString *imageName = [NSString stringWithFormat:@"logoLoginEnded%d",i];
+        
+        [self.imageA addObject:[UIImage imageNamed:imageName]];
+        
+    }
+    
+    
+    self.imageB = [NSMutableArray new];
+    for (int i = 1; i <37; i++) {
+        
+        NSString *imageName = [NSString stringWithFormat:@"LogoLoginStart%d",i];
+        
+        [self.imageB addObject:[UIImage imageNamed:imageName]];
+        
+    }
+    
     // Add a custom login button to your app
     UIButton *myLoginButton=[UIButton buttonWithType:UIButtonTypeCustom];
     myLoginButton.backgroundColor= UIColorFromRGB(0xD9A39A);
@@ -78,7 +105,32 @@
     }];
 }
 
+#pragma  mark textfield animation
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    self.logoImageView.animationImages = self.imageB;
+    self.logoImageView.animationDuration = 1.5;
+    self.logoImageView.animationRepeatCount = 0;
+    [self.logoImageView startAnimating];
+    [self.usernameTextField endEditing:NO];
+    [self.passwordTextField endEditing:NO];
+    return YES;
+}
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+  
+    [self signInAction];
+    
+  
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.usernameTextField endEditing:NO];
+    [self.passwordTextField endEditing:NO];
+    [self.logoImageView stopAnimating];
+}
 
 #warning does not work - must authenticate json request
 - (void)getTwitterProfilePicture {
@@ -108,7 +160,9 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
 }
 }
 - (void)loginButtonClicked {
-
+ 
+  
+    
     // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[ @"user_about_me", @"email", @"user_relationships", @"user_birthday", @"user_location"];
 
@@ -206,30 +260,41 @@ if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]]) {
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self signInAction];
-    [textField resignFirstResponder];
-    return YES;
-}
-
 
 - (void)signInAction {
-    [User logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-
-        if (!error) {
-            [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
-        } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Incorrect username/password." preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *tryAgain = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:nil];
-            [alert addAction:tryAgain];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
+    if (![self.passwordTextField.text isEqualToString:@"Password"]) {
+        self.logoImageView.animationImages = self.imageA;
+        self.logoImageView.animationDuration = 1.5;
+        self.logoImageView.animationRepeatCount = 1;
+        [self.logoImageView startAnimating];
+        [self.usernameTextField endEditing:YES];
+        [self.passwordTextField endEditing:YES];
         
-    }];
+    }
+    //set delayValue 1.5 sec
+    double delayInSeconds = 1.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [User logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+            
+            if (!error) {
+                [self performSegueWithIdentifier:@"ToMainFeedSegue" sender:self];
+            } else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Incorrect username/password." preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *tryAgain = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:nil];
+                [alert addAction:tryAgain];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            
+        }];
+    });
+    
 }
 
 - (IBAction)onSignInButtonPressed:(UIButton *)sender {
-
+ 
+  
+    
     [self signInAction];
 }
 

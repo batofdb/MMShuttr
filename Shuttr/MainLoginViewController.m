@@ -19,6 +19,7 @@
 @property (nonatomic) AVPlayer *avPlayer;
 @property (nonatomic) AVPlayerLayer *avLayer;
 @property (weak, nonatomic) IBOutlet CustomMovieView *customMovieView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 
 @end
 
@@ -31,7 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+ 
+    
     // Add movie animation here
     NSString *filepath = [[NSBundle mainBundle] pathForResource:@"filmSceneb" ofType:@"mp4"];
     NSURL *fileURL = [NSURL fileURLWithPath:filepath];

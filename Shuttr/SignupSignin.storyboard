@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GRf-7P-ovu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GRf-7P-ovu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -80,7 +80,7 @@
                                     <segue destination="M4h-Jk-8jy" kind="presentation" identifier="ToSignInSegue" id="Vrg-9d-CtK"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Shutter" translatesAutoresizingMaskIntoConstraints="NO" id="Hxq-IT-18L">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLoginStart1" translatesAutoresizingMaskIntoConstraints="NO" id="Hxq-IT-18L">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <constraints>
@@ -137,7 +137,9 @@
                             <constraint firstItem="54j-IF-453" firstAttribute="top" secondItem="4Ee-XS-exn" secondAttribute="bottom" constant="15" id="ADV-T9-FyP"/>
                             <constraint firstItem="4Ee-XS-exn" firstAttribute="centerX" secondItem="3Y3-jA-0oc" secondAttribute="centerX" id="GgS-R8-5IT"/>
                             <constraint firstItem="jDC-Oe-YuJ" firstAttribute="top" secondItem="3Y3-jA-0oc" secondAttribute="topMargin" id="LG6-G6-dhi"/>
-                            <constraint firstItem="jDC-Oe-YuJ" firstAttribute="leading" secondItem="3Y3-jA-0oc" secondAttribute="leading" constant="10" id="MNK-PO-anX"/>
+                            <constraint firstItem="jDC-Oe-YuJ" firstAttribute="leading" secondItem="3Y3-jA-0oc" secondAttribute="leading" constant="10" id="MNK-PO-anX">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="0CS-UA-reR" firstAttribute="top" secondItem="jDC-Oe-YuJ" secondAttribute="bottom" id="RGn-dY-OGu"/>
                             <constraint firstItem="54j-IF-453" firstAttribute="top" secondItem="jDC-Oe-YuJ" secondAttribute="bottom" constant="-100" id="Sma-l8-Yjn"/>
                             <constraint firstItem="Tr5-oL-0VJ" firstAttribute="centerX" secondItem="3Y3-jA-0oc" secondAttribute="centerX" id="Ufh-F4-JPq"/>
@@ -213,6 +215,7 @@
                     </view>
                     <connections>
                         <outlet property="customMovieView" destination="jDC-Oe-YuJ" id="QNq-1b-m7m"/>
+                        <outlet property="logoImageView" destination="Hxq-IT-18L" id="Jai-eu-AgY"/>
                         <segue destination="fzB-vU-ibK" kind="show" identifier="toMainFeedSegueWithoutLogin" id="euR-KV-jjT"/>
                     </connections>
                 </viewController>
@@ -643,7 +646,7 @@
                                     <action selector="onSignInButtonPressed:" destination="M4h-Jk-8jy" eventType="touchUpInside" id="gyC-SU-aP5"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login_Shutter" translatesAutoresizingMaskIntoConstraints="NO" id="MN8-aX-Pqp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLoginStart1" translatesAutoresizingMaskIntoConstraints="NO" id="MN8-aX-Pqp">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                                 <constraints>
@@ -768,6 +771,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="logoImageView" destination="MN8-aX-Pqp" id="KRo-tw-Vnv"/>
                         <outlet property="passwordTextField" destination="XOR-T1-Wfc" id="dGd-Ie-irE"/>
                         <outlet property="usernameTextField" destination="rKA-wF-PdB" id="XaI-Vr-VXX"/>
                         <segue destination="fzB-vU-ibK" kind="show" identifier="ToMainFeedSegue" id="6U8-SF-wMF"/>
@@ -779,7 +783,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Login_Shutter" width="86" height="147"/>
+        <image name="LogoLoginStart1" width="180" height="180"/>
         <image name="X" width="31" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
