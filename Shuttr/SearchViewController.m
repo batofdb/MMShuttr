@@ -11,10 +11,9 @@
 #import "User.h"
 #import "UIImage+ImageResizing.h"
 #import "ImageProcessing.h"
-#import "Activity.h"
-#import "ActivityFeedTableViewCell.h"
 #import "PostDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "Activity.h"
 
 
 @interface SearchViewController () <UISearchBarDelegate, UISearchResultsUpdating, UITableViewDataSource, UITableViewDelegate>
@@ -23,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSArray *filteredSearchResults;
 @property (nonatomic) NSArray *users;
-@property (nonatomic) NSArray *activityItems;
 @property (nonatomic) NSArray *userItems;
 @property (nonatomic) NSMutableArray *friends;
 @property (nonatomic) NSArray *exploreItems;
@@ -45,24 +43,16 @@
     // TODO: implement pulldown to refresh
     [self updateSearchWithQuery];
 
-
-
 }
-
-
 
 -(void)updateSearchWithQuery {
 
     if (self.activityUserSegmentedControl.selectedSegmentIndex == 0)
-        //self.tableView.tableHeaderView = [UIView new];
-        [self activityItemsQuery];
-
-    if (self.activityUserSegmentedControl.selectedSegmentIndex == 1)
         //self.tableView.tableHeaderView = self.searchController.searchBar;
         [self friendsQuery];
 
-    if (self.activityUserSegmentedControl.selectedSegmentIndex == 2)
-       //self.tableView.tableHeaderView = self.searchController.searchBar;
+    if (self.activityUserSegmentedControl.selectedSegmentIndex == 1)
+        //self.tableView.tableHeaderView = self.searchController.searchBar;
         [self userQueryAndSave];
 }
 
@@ -73,8 +63,8 @@
     self.searchController.dimsBackgroundDuringPresentation = NO;
     [self.searchController.searchBar sizeToFit];
     self.searchController.searchBar.placeholder = @"Search for people";
-    self.searchController.searchBar.tintColor = UIColorFromRGB(0xD9A39A);
-    self.searchController.searchBar.barTintColor = UIColorFromRGB(0x4C374C);
+    self.searchController.searchBar.tintColor = UIColorFromRGB(0xFBF5AF);
+    //self.searchController.searchBar.barTintColor = UIColorFromRGB(0x4C374C);
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchResultsUpdater = self;
     self.searchController.searchBar.delegate = self;
@@ -91,7 +81,9 @@
         [SVProgressHUD dismiss];
         self.exploreItems = self.users;
         self.activityUserSegmentedControl.userInteractionEnabled = YES;
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
 }
 
@@ -106,8 +98,6 @@
 
     PFQuery *friendQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:fromUserQuery, toUserQuery,nil]];
 
-
-
     [friendQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.friends = [NSMutableArray new];
 
@@ -117,12 +107,19 @@
             } else {
                 [self.friends addObject:activity.fromUser];
             }
+
+            if (self.friends.count == objects.count) {
+                [SVProgressHUD dismiss];
+                self.exploreItems = self.friends;
+                self.activityUserSegmentedControl.userInteractionEnabled = YES;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+            }
         }
 
-        [SVProgressHUD dismiss];
-        self.exploreItems = self.friends;
-        self.activityUserSegmentedControl.userInteractionEnabled = YES;
-        [self.tableView reloadData];
+
+
     }];
 }
 
@@ -139,6 +136,7 @@
     for (User *user in self.filteredSearchResults) {
         [objectIdArray addObject:user.objectId];
     }
+
     query.limit = 20;
     [SVProgressHUD show];
 
@@ -158,47 +156,12 @@
     [self updateSearchWithQuery];
 }
 
-- (void) activityItemsQuery {
-    self.activityItems = [NSArray new];
 
-    PFQuery *queryToUser = [Activity query];
-    //One week ago = 7 (days) * 24 (hours) * 60 (minutes) * 60 (seconds)
-    //int oneWeekAgo = 7*24*60*60;
-    //NSDate *threeDaysAgo = [NSDate dateWithTimeIntervalSinceNow:-oneWeekAgo];
-    //[query whereKey:@"updatedAt" greaterThanOrEqualTo:threeDaysAgo];
-
-    [queryToUser whereKey:@"toUser" equalTo:[User currentUser]];
-
-
-    // Can comment this out again later, but for now it causes more problems than it solves, since we have to check each activity and edit if it's the user who creates the activity. Also, have to check in prepareForSegue and change the destination view controller if the user clicks on their own profile picture.
-
-    PFQuery *queryFromUser = [Activity query];
-    [queryFromUser whereKey:@"fromUser" equalTo:[User currentUser]];
-    [SVProgressHUD show];
-
-    PFQuery *queryAllRelatedActivities = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryFromUser, queryToUser, nil]];
-    [queryAllRelatedActivities includeKey:@"fromUser"];
-    [queryAllRelatedActivities includeKey:@"toUser"];
-
-    [queryAllRelatedActivities findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        self.activityItems = objects;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.exploreItems = self.activityItems;
-            self.activityUserSegmentedControl.userInteractionEnabled = YES;
-            [self.tableView reloadData];
-
-            [SVProgressHUD dismiss];
-        });
-    }];
-}
 
 - (NSArray *)currentArray {
     if (self.searchController.isActive) {
-        //self.tableView.allowsSelection = YES;
         return self.filteredSearchResults;
     } else {
-        //self.tableView.allowsSelection = NO;
-        //return self.activityItems;
         return self.exploreItems;
     }
 }
@@ -212,86 +175,25 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    NSArray *target = [self currentArray];
-    if (self.activityUserSegmentedControl.selectedSegmentIndex != 0) {
-
+        NSArray *target = [self currentArray];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
 
         User *user = [target objectAtIndex:indexPath.row];
 
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         cell.textLabel.text = user.username;
         cell.detailTextLabel.text = user.fullName;
-       // cell.imageView.image =[UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(50, 50)] ;
+        // cell.imageView.image =[UIImage imageWithImage:[ImageProcessing getImageFromData:user.profilePicture] scaledToSize:CGSizeMake(50, 50)] ;
         UIImageView *imageView = [[UIImageView alloc]initWithImage:[ImageProcessing getImageFromData:user.profilePicture]];
         imageView.layer.cornerRadius = imageView.frame.size.height/2;
         imageView.clipsToBounds = YES;
 
         cell.imageView.image =imageView.image;
-        return cell;
 
-    } else {
-        Activity *activity = [target objectAtIndex:indexPath.row];
-        ActivityFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityCell"];
-        cell.activityItemTextLabel.textColor = UIColorFromRGB(0xD9A39A);
-        if ([activity.activityType isEqual:@0]){
-
-            if ([activity.fromUser isEqual:[User currentUser]]){
-                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You've liked on one of your rolls"];
-            } else {
-
-                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ likes one of your rolls", activity.fromUser.username];
-            }
-            [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
-
-            UIImage *postRollCoverImage = [ImageProcessing getImageFromData:[activity.post.roll firstObject]];
-            [cell.toPostButton setBackgroundImage:[UIImage imageWithImage:postRollCoverImage scaledToSize:CGSizeMake(cell.toPostButton.frame.size.width, cell.toPostButton.frame.size.width)] forState:UIControlStateNormal];
-
-            [cell.toPostButton setEnabled:YES];
-            cell.fromUserButton.tag = indexPath.row;
-            cell.toPostButton.tag = indexPath.row;
-
-        } else if ([activity.activityType isEqual:@1]){
-            if ([activity.fromUser isEqual:[User currentUser]]){
-                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You've commented on one of your rolls"];
-            } else {
-                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ commented on one of your rolls", activity.fromUser.username];
-            }
-           [cell.fromUserButton setBackgroundImage:[UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)] forState:UIControlStateNormal];
-            UIImage *postRollCoverImage = [ImageProcessing getImageFromData:[activity.post.roll firstObject]];
-            [cell.toPostButton setBackgroundImage:[UIImage imageWithImage:postRollCoverImage scaledToSize:CGSizeMake(cell.toPostButton.frame.size.width, cell.toPostButton.frame.size.width)] forState:UIControlStateNormal];
-            [cell.toPostButton setEnabled:YES];
-            cell.fromUserButton.tag = indexPath.row;
-            cell.toPostButton.tag = indexPath.row;
-
-        } else if ([activity.activityType isEqual:@2] ){
-
-            if (![activity.fromUser isEqual:[User currentUser]]) {
-                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"%@ is following you", activity.fromUser.username];
-            } else {
-                cell.activityItemTextLabel.text = [NSString stringWithFormat:@"You are following %@", activity.toUser.username];
-            }
-
-
-            UIImageView* image = [UIImageView new];
-            image.image = [UIImage imageWithImage:[ImageProcessing getImageFromData:activity.fromUser.profilePicture] scaledToSize:CGSizeMake(cell.fromUserButton.frame.size.width, cell.fromUserButton.frame.size.width)];
-
-//            if (!image) {
-//                image.image = image.image;
-//            } else {
-//                image.image = [UIImage imageNamed:@"defaultProfilePicture"];
-//            }
-
-
-            image.layer.cornerRadius = image.frame.size.height/2;
-            image.clipsToBounds = YES;
-
-            [cell.fromUserButton setBackgroundImage:image.image forState:UIControlStateNormal];
-            [cell.toPostButton setEnabled:NO];
-            cell.fromUserButton.tag = indexPath.row;
-        }
+    }];
 
         return cell;
-    }
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -339,14 +241,14 @@
 
         if (self.searchController.isActive) {
             vc.user = [self.filteredSearchResults objectAtIndex:indexPath.row] ;
-       } else {
-           if (self.activityUserSegmentedControl.selectedSegmentIndex == 0) {
+        } else {
+            if (self.activityUserSegmentedControl.selectedSegmentIndex == 0) {
                 Activity *activity = [self.exploreItems objectAtIndex:indexPath.row] ;
                 vc.user = activity.fromUser;
-           } else {
-               User *user = [self.exploreItems objectAtIndex:indexPath.row] ;
-               vc.user = user;
-           }
+            } else {
+                User *user = [self.exploreItems objectAtIndex:indexPath.row] ;
+                vc.user = user;
+            }
         }
 
     } else if ([segue.identifier isEqualToString:@"ToPostDetailSegue"]) {

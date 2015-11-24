@@ -27,8 +27,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 
-    [[UITabBar appearance] setTintColor:UIColorFromRGB(0xe7e4e5)];
-    [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0x5F495F)];
+    [[UITabBar appearance] setTintColor:UIColorFromRGB(0xFBF5AF)];
+    [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0x9B9B9B)];
 
     //[[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

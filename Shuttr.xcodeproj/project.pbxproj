@@ -31,6 +31,7 @@
 		3AB5CF051BDF918F00128EA5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5CF021BDF918F00128EA5 /* FBSDKShareKit.framework */; };
 		3AB5CF071BDF9B5100128EA5 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5CF061BDF9B5100128EA5 /* Accounts.framework */; };
 		3AB5CF091BDF9B5600128EA5 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB5CF081BDF9B5600128EA5 /* Social.framework */; };
+		3AC38AF71C03A99700AD4FF1 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC38AF61C03A99700AD4FF1 /* ActivityViewController.m */; };
 		3ACF11691BD9FB8500EDBF4B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11681BD9FB8500EDBF4B /* User.m */; };
 		3ACF116C1BD9FB9500EDBF4B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF116B1BD9FB9500EDBF4B /* Post.m */; };
 		3ACF11721BDA083C00EDBF4B /* PostCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF11711BDA083C00EDBF4B /* PostCollectionViewCell.m */; };
@@ -114,6 +115,8 @@
 		3AB5CF021BDF918F00128EA5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		3AB5CF061BDF9B5100128EA5 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3AB5CF081BDF9B5600128EA5 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		3AC38AF51C03A99700AD4FF1 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		3AC38AF61C03A99700AD4FF1 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		3ACF11671BD9FB8500EDBF4B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		3ACF11681BD9FB8500EDBF4B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3ACF116A1BD9FB9500EDBF4B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -341,8 +344,6 @@
 		47A4A8B31BD9CFFB006091DA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				65D5445F1BE2C777004CD50B /* CommentTableViewCell.h */,
-				65D544601BE2C777004CD50B /* CommentTableViewCell.m */,
 				3AA3745E1BDDDB6300CDAF74 /* SignupSignin.storyboard */,
 				47A4A8661BD9CF19006091DA /* Main.storyboard */,
 				3ACF11D01BDB3BE000EDBF4B /* Search.storyboard */,
@@ -351,23 +352,25 @@
 				658E324E1BD9DCC200314027 /* Camera.storyboard */,
 				658E32511BD9DCDE00314027 /* Post.storyboard */,
 				47A4A86B1BD9CF19006091DA /* LaunchScreen.storyboard */,
-				47A4A9371BDB63A4006091DA /* FeedContainerCellView.h */,
-				47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */,
-				475A38561BE3056000991F7D /* FeedPhotoCollectionViewCell.xib */,
-				47A4A93E1BDB68FA006091DA /* FeedPhotoCollectionViewCell.h */,
-				47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */,
 				475A38541BE3052200991F7D /* FeedContainerCellView.xib */,
-				47A4A9431BDB7070006091DA /* FeedTableViewCell.h */,
-				47A4A9441BDB7070006091DA /* FeedTableViewCell.m */,
-				47A4A9461BDC478F006091DA /* FeedTableFooterCellView.h */,
+				475A38561BE3056000991F7D /* FeedPhotoCollectionViewCell.xib */,
 				3AA3745A1BDDBD5800CDAF74 /* FeedTableFooterCellView.xib */,
 				3AA3745B1BDDBD5800CDAF74 /* FeedTableHeaderView.xib */,
+				475A38481BE2812400991F7D /* RefreshControlView.xib */,
+				47A4A9371BDB63A4006091DA /* FeedContainerCellView.h */,
+				47A4A9381BDB63A4006091DA /* FeedContainerCellView.m */,
+				47A4A93E1BDB68FA006091DA /* FeedPhotoCollectionViewCell.h */,
+				47A4A93F1BDB68FA006091DA /* FeedPhotoCollectionViewCell.m */,
+				47A4A9431BDB7070006091DA /* FeedTableViewCell.h */,
+				47A4A9441BDB7070006091DA /* FeedTableViewCell.m */,
+				65D5445F1BE2C777004CD50B /* CommentTableViewCell.h */,
+				65D544601BE2C777004CD50B /* CommentTableViewCell.m */,
+				47A4A9461BDC478F006091DA /* FeedTableFooterCellView.h */,
 				47A4A9471BDC478F006091DA /* FeedTableFooterCellView.m */,
 				3A74833A1BDC7F3A00484FED /* FeedTableHeaderView.h */,
 				3A74833B1BDC7F3A00484FED /* FeedTableHeaderView.m */,
 				3A2277DC1BE06FFF00B05BFA /* CustomMovieView.h */,
 				3A2277DD1BE06FFF00B05BFA /* CustomMovieView.m */,
-				475A38481BE2812400991F7D /* RefreshControlView.xib */,
 				475A384A1BE286F300991F7D /* RefreshControlView.h */,
 				475A384B1BE286F300991F7D /* RefreshControlView.m */,
 			);
@@ -399,6 +402,8 @@
 				3AA374641BDDEAB000CDAF74 /* SignInViewController.m */,
 				3AA374661BDDEABC00CDAF74 /* SignUpViewController.h */,
 				3AA374671BDDEABC00CDAF74 /* SignUpViewController.m */,
+				3AC38AF51C03A99700AD4FF1 /* ActivityViewController.h */,
+				3AC38AF61C03A99700AD4FF1 /* ActivityViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA374651BDDEAB000CDAF74 /* SignInViewController.m in Sources */,
+				3AC38AF71C03A99700AD4FF1 /* ActivityViewController.m in Sources */,
 				3A7483561BDDB92000484FED /* FeedTableFooterCellView.m in Sources */,
 				3AA7CF591BDC61A000C09601 /* Activity.m in Sources */,
 				3A74833C1BDC7F3A00484FED /* FeedTableHeaderView.m in Sources */,

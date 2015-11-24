@@ -63,8 +63,8 @@
 
     CameraViewController *vc = [self.tabBarController.viewControllers objectAtIndex:1];
     vc.delegate = self;
-    self.view.backgroundColor = UIColorFromRGB(0x533E54);
-    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0x533E54);
+    //self.view.backgroundColor = UIColorFromRGB(0x533E54);
+    //self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0x533E54);
 
     //[self getAllPosts];
 

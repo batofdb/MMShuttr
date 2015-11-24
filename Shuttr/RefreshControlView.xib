@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIView"/>
@@ -12,13 +12,15 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLoginStart1" translatesAutoresizingMaskIntoConstraints="NO" id="JZv-D1-w1m">
                     <rect key="frame" x="265" y="13" width="70" height="70"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="H8b-yw-uFB"/>
                         <constraint firstAttribute="width" constant="70" id="nL6-yH-IVe"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <animations/>
+            <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="JZv-D1-w1m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lRm-Un-01Z"/>
                 <constraint firstItem="JZv-D1-w1m" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sMx-ta-W4a"/>
@@ -32,6 +34,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LogoLoginStart1" width="250" height="250"/>
+        <image name="LogoLoginStart1" width="180" height="180"/>
     </resources>
 </document>
